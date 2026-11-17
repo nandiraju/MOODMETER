@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +7,12 @@
     <!-- Primary Meta Tags -->
     <title>Mood Meter — Free, Private Mood Tracker & Emotional Journal (iOS & Android)</title>
     <meta name="title" content="Mood Meter — Free, Private Mood Tracker & Emotional Journal (iOS & Android)">
-    <meta name="description"
-        content="Explore 220+ expressive moods, create custom vibes, rate 1–5 intensity with journal reflections, and visualize emotional trends. 100% free, offline-first, no ads, no accounts, and stored strictly on your device.">
-    <meta name="keywords"
-        content="mood tracker, free mood tracker app, private mood journal, offline mood tracker, emotional analytics, custom moods, mental wellbeing tracker, no subscription mood app, iOS Android mood log">
+    <meta name="description" content="Explore 220+ expressive moods, create custom vibes, rate 1–5 intensity with journal reflections, and visualize emotional trends. 100% free, offline-first, no ads, no accounts, and stored strictly on your device.">
+    <meta name="keywords" content="mood tracker, free mood tracker app, private mood journal, offline mood tracker, emotional analytics, custom moods, mental wellbeing tracker, no subscription mood app, iOS Android mood log">
     <meta name="author" content="Mood Meter">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#f8fbff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#FDF5E6" media="(prefers-color-scheme: light)">
 
     <link rel="canonical" href="https://moodmeter.cend.in/">
     <link rel="alternate" hreflang="en" href="https://moodmeter.cend.in/">
@@ -35,23 +32,19 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://moodmeter.cend.in/">
     <meta property="og:title" content="Mood Meter — Explore 220+ Moods. Own Your Vibe.">
-    <meta property="og:description"
-        content="Capture feelings in seconds, spot 7-day intensity trends, create custom vibes, and keep every journal note 100% on your device. Free forever with zero ads.">
+    <meta property="og:description" content="Capture feelings in seconds, spot 7-day intensity trends, create custom vibes, and keep every journal note 100% on your device. Free forever with zero ads.">
     <meta property="og:image" content="https://moodmeter.cend.in/assets/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt"
-        content="Mood Meter app screens showing 220+ mood picker, Capture Vibe intensity slider, and Intensity Trend analytics">
+    <meta property="og:image:alt" content="Mood Meter app screens showing 220+ mood picker, Capture Vibe intensity slider, and Intensity Trend analytics">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://moodmeter.cend.in/">
     <meta name="twitter:title" content="Mood Meter — Explore 220+ Moods. Own Your Vibe.">
-    <meta name="twitter:description"
-        content="Free, local-first mood tracker for iOS & Android. 220+ moods, custom vibes, 1–5 intensity slider, searchable history, and rich streak analytics.">
+    <meta name="twitter:description" content="Free, local-first mood tracker for iOS & Android. 220+ moods, custom vibes, 1–5 intensity slider, searchable history, and rich streak analytics.">
     <meta name="twitter:image" content="https://moodmeter.cend.in/assets/images/og-image.png">
-    <meta name="twitter:image:alt"
-        content="Mood Meter app screens showing mood picker, capture vibe modal, and emotional analytics">
+    <meta name="twitter:image:alt" content="Mood Meter app screens showing mood picker, capture vibe modal, and emotional analytics">
 
     <!-- Structured Data (JSON-LD for Search & AI Engines) -->
     <script type="application/ld+json">
@@ -131,7 +124,7 @@
             "Write or voice-type journal reflections and backdate entries",
             "Searchable chronological mood history with full edit and delete control",
             "Analytics dashboard with Current Vibe Streak, Vibe Power Gauge, 7-day Intensity Trend, Vibe Distribution, Hourly Activity, and 8 key metrics",
-            "Warm Cream light mode and Deep Slate dark mode",
+            "Light and Dark appearance modes",
             "100% local on-device storage with zero ads, zero accounts, and zero third-party tracking"
           ]
         },
@@ -184,7 +177,7 @@
               "name": "Which devices does Mood Meter support?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Mood Meter is available for iPhone and iPad on the Apple App Store and for Android phones and tablets on Google Play, with adaptive multi-column layouts and built-in Dark and Light themes."
+                "text": "Mood Meter is available for iPhone and iPad on the Apple App Store and for Android phones and tablets on Google Play, with adaptive multi-column layouts and built-in Light and Dark themes."
               }
             }
           ]
@@ -193,56 +186,56 @@
     }
     </script>
 
-    <!-- Google Fonts matching MMeter's geometric UI -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS v4 CDN -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
+    <!-- Default to Crisp Light Theme unless user explicitly chose dark -->
     <script>
-        if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.remove('dark');
-        } else {
+        if (localStorage.getItem('mm-theme') === 'dark') {
             document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
     </script>
 
     <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
         @theme {
             --font-outfit: 'Outfit', sans-serif;
             --font-inter: 'Inter', sans-serif;
-            --color-primary: #6366f1;
-            --color-primary-light: #818cf8;
+            --color-primary: #4f46e5;
             --color-secondary: #ec4899;
-            --color-amber-vibe: #f59e0b;
-            --color-emerald-vibe: #10b981;
-            --color-cream: #FDF5E6;
-            --color-navy: #0f172a;
         }
 
         :root {
-            /* Matches MMeter Light Mode (#FDF5E6 warm cream + crisp white surfaces) */
-            --bg-color: #FDF5E6;
-            --bg-gradient: radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.10) 0%, transparent 45%),
-                           radial-gradient(circle at 90% 90%, rgba(245, 158, 11, 0.10) 0%, transparent 45%);
-            --surface-card: rgba(255, 255, 255, 0.88);
+            /* Default Crisp Pure-White & Ultra-Light Ice-Blue Theme */
+            --bg-color: #f8fbff;
+            --bg-gradient: radial-gradient(circle at 10% 0%, rgba(79, 70, 229, 0.07) 0%, transparent 45%),
+                           radial-gradient(circle at 90% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 42%),
+                           radial-gradient(circle at 80% 90%, rgba(236, 72, 153, 0.05) 0%, transparent 45%);
+            --surface-card: #ffffff;
+            --surface-subtle: #f1f6fd;
             --surface-border: rgba(15, 23, 42, 0.08);
+            --surface-shadow: 0 14px 34px -10px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
             --text-main: #475569;
             --text-heading: #0f172a;
         }
 
         .dark {
-            /* Matches MMeter Dark Mode (#0f172a slate + rgba(30, 41, 59, 0.55) cards) */
             --bg-color: #0f172a;
             --bg-gradient: radial-gradient(circle at 12% 8%, rgba(99, 102, 241, 0.20) 0%, transparent 45%),
                            radial-gradient(circle at 88% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
-                           radial-gradient(circle at 60% 25%, rgba(245, 158, 11, 0.08) 0%, transparent 35%);
-            --surface-card: rgba(30, 41, 59, 0.58);
-            --surface-border: rgba(255, 255, 255, 0.07);
+                           radial-gradient(circle at 60% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 35%);
+            --surface-card: rgba(30, 41, 59, 0.65);
+            --surface-subtle: rgba(255, 255, 255, 0.05);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --surface-shadow: 0 20px 45px -15px rgba(2, 6, 23, 0.65);
             --text-main: #94a3b8;
             --text-heading: #ffffff;
         }
@@ -265,40 +258,52 @@
         }
 
         .text-gradient {
-            @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
+            @apply bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500 bg-clip-text text-transparent;
         }
 
         .dark .text-gradient {
-            @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent;
+            @apply bg-gradient-to-r from-indigo-400 via-violet-400 to-pink-400 bg-clip-text text-transparent;
         }
 
         .app-card {
             background-color: var(--surface-card);
             border: 1px solid var(--surface-border);
-            @apply backdrop-blur-xl shadow-lg dark:shadow-2xl;
+            box-shadow: var(--surface-shadow);
+            @apply backdrop-blur-xl;
+        }
+
+        .subtle-tile {
+            background-color: var(--surface-subtle);
+            border: 1px solid var(--surface-border);
         }
 
         .nav-glass {
-            background-color: rgba(253, 245, 230, 0.82);
-            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+            background-color: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.07);
             @apply backdrop-blur-xl;
         }
 
         .dark .nav-glass {
-            background-color: rgba(15, 23, 42, 0.82);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            background-color: rgba(15, 23, 42, 0.84);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .nav-link {
             @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
         }
 
-        /* Frameless Crisp App Screen Showcase (zero bezel, zero corner clipping) */
+        /* Frameless Crisp App Screen Showcase */
         .screen-showcase {
-            @apply relative mx-auto overflow-hidden rounded-2xl bg-[#0f172a] aspect-[9/16] ring-1 ring-slate-900/10 dark:ring-white/12 transition-transform duration-500;
+            @apply relative mx-auto overflow-hidden rounded-2xl bg-[#0f172a] aspect-[9/16] ring-1 ring-slate-900/12 dark:ring-white/12 transition-transform duration-500;
             box-shadow:
-                0 24px 60px -14px rgba(2, 6, 23, 0.55),
-                0 8px 20px -6px rgba(99, 102, 241, 0.12);
+                0 24px 55px -14px rgba(15, 23, 42, 0.28),
+                0 8px 20px -6px rgba(79, 70, 229, 0.12);
+        }
+
+        .dark .screen-showcase {
+            box-shadow:
+                0 26px 60px -14px rgba(2, 6, 23, 0.72),
+                0 8px 20px -6px rgba(99, 102, 241, 0.16);
         }
 
         article:hover .screen-showcase {
@@ -306,7 +311,10 @@
         }
 
         .screen-tab[aria-selected="true"] {
-            @apply bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/25;
+            background-color: #4f46e5;
+            color: #ffffff;
+            border-color: #4f46e5;
+            box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.35);
         }
 
         .reveal {
@@ -326,46 +334,33 @@
         }
     </style>
 </head>
-
-<body class="selection:bg-indigo-500/30 antialiased">
+<body class="selection:bg-indigo-500/20 antialiased">
 
     <!-- Navigation -->
     <header class="fixed top-0 inset-x-0 z-50 nav-glass">
         <nav class="container mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40"
-                    class="w-10 h-10 rounded-xl shadow-md group-hover:scale-105 transition-transform">
-                <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight"
-                    style="color: var(--text-heading);">
-                    Mood<span class="text-indigo-500">Meter</span>
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-sm ring-1 ring-slate-900/10 dark:ring-white/10 group-hover:scale-105 transition-transform">
+                <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight" style="color: var(--text-heading);">
+                    Mood<span class="text-indigo-600 dark:text-indigo-400">Meter</span>
                 </span>
             </a>
 
-            <div class="hidden md:flex items-center gap-8">
+            <div class="hidden md:flex items-center gap-7">
                 <a href="#vibes" class="nav-link">220+ Moods</a>
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#analytics" class="nav-link">Analytics</a>
                 <a href="#privacy" class="nav-link">Privacy</a>
                 <a href="#faq" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" type="button"
-                    class="p-2.5 rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer"
-                    aria-label="Toggle color theme">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path
-                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                            fill-rule="evenodd" clip-rule="evenodd"></path>
-                    </svg>
+                <button id="theme-toggle" type="button" class="p-2.5 rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                 </button>
-                <a href="#download"
-                    class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 whitespace-nowrap hover:bg-indigo-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
+                <a href="#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
                     Get the App
                 </a>
             </div>
@@ -378,8 +373,7 @@
             <div class="container mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
                 <!-- Hero Copy -->
                 <div class="lg:col-span-7 space-y-7 reveal active">
-                    <div
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full app-card text-xs font-extrabold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full app-card text-xs font-extrabold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         100% Free • Local-First • Zero Ads
                     </div>
@@ -390,38 +384,31 @@
                     </h1>
 
                     <p class="text-lg sm:text-xl max-w-2xl leading-relaxed">
-                        <strong>Mood Meter</strong> is a fast, privacy-first mood tracker and emotional journal for iOS
-                        &amp; Android. Capture how you feel on a 1–5 intensity scale, add voice-ready reflections,
-                        create custom vibes, and uncover emotional patterns—all stored strictly on your device.
+                        <strong>Mood Meter</strong> is a fast, privacy-first mood tracker and emotional journal for iOS &amp; Android. Capture how you feel on a 1–5 intensity scale, add voice-ready reflections, create custom vibes, and uncover emotional patterns—all stored strictly on your device.
                     </p>
 
                     <!-- Store Download Buttons -->
                     <div class="flex flex-wrap items-center gap-4 pt-2">
-                        <a href="https://apps.apple.com/us/app/mood-meter/id391278676" target="_blank"
-                            rel="noopener noreferrer" class="hover:scale-105 active:scale-95 transition-transform">
-                            <img src="app_screens/apple_store.svg" class="h-14 w-auto" width="168" height="56"
-                                alt="Download Mood Meter on the Apple App Store">
+                        <a href="https://apps.apple.com/us/app/mood-meter/id391278676" target="_blank" rel="noopener noreferrer" class="hover:scale-105 active:scale-95 transition-transform">
+                            <img src="app_screens/apple_store.svg" class="h-14 w-auto" width="168" height="56" alt="Download Mood Meter on the Apple App Store">
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.jaw_drop.moodmeter" target="_blank"
-                            rel="noopener noreferrer" class="hover:scale-105 active:scale-95 transition-transform">
-                            <img src="app_screens/android_store.svg" class="h-14 w-auto" width="189" height="56"
-                                alt="Get Mood Meter on Google Play">
+                        <a href="https://play.google.com/store/apps/details?id=com.jaw_drop.moodmeter" target="_blank" rel="noopener noreferrer" class="hover:scale-105 active:scale-95 transition-transform">
+                            <img src="app_screens/android_store.svg" class="h-14 w-auto" width="189" height="56" alt="Get Mood Meter on Google Play">
                         </a>
                     </div>
 
                     <!-- Authentic Product Highlights -->
                     <div class="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl pt-3">
                         <div class="app-card rounded-2xl p-3.5 sm:p-4">
-                            <p class="font-outfit text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400">
-                                220+</p>
+                            <p class="font-outfit text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400">220+</p>
                             <p class="text-xs font-semibold mt-0.5">Expressive Moods + Custom Vibes</p>
                         </div>
                         <div class="app-card rounded-2xl p-3.5 sm:p-4">
-                            <p class="font-outfit text-2xl sm:text-3xl font-black text-amber-500">100%</p>
+                            <p class="font-outfit text-2xl sm:text-3xl font-black text-sky-600 dark:text-sky-400">100%</p>
                             <p class="text-xs font-semibold mt-0.5">On-Device Storage &amp; Offline Ready</p>
                         </div>
                         <div class="app-card rounded-2xl p-3.5 sm:p-4">
-                            <p class="font-outfit text-2xl sm:text-3xl font-black text-pink-500">$0</p>
+                            <p class="font-outfit text-2xl sm:text-3xl font-black text-pink-600 dark:text-pink-400">$0</p>
                             <p class="text-xs font-semibold mt-0.5">Forever Free. No Pro Paywalls</p>
                         </div>
                     </div>
@@ -429,29 +416,21 @@
 
                 <!-- Interactive Live App Screen Previewer -->
                 <div class="lg:col-span-5 relative reveal active">
-                    <div
-                        class="absolute -inset-6 bg-gradient-to-tr from-indigo-500/25 via-purple-500/15 to-amber-500/20 blur-3xl rounded-full pointer-events-none">
-                    </div>
+                    <div class="absolute -inset-6 bg-gradient-to-tr from-indigo-500/15 via-sky-400/15 to-pink-500/10 blur-3xl rounded-full pointer-events-none"></div>
 
-                    <div class="relative mx-auto max-w-[300px] sm:max-w-[320px]">
+                    <div class="relative mx-auto max-w-[310px] sm:max-w-[340px]">
                         <!-- Floating Vibe Pill (Top Right) -->
-                        <div
-                            class="hidden sm:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -right-14 top-12 z-20 animate-float">
+                        <div class="hidden sm:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -right-12 top-12 z-20 animate-float">
                             <img src="assets/moods/in-love.svg" alt="" width="34" height="34" class="w-8 h-8">
                             <div>
-                                <p class="text-xs font-extrabold uppercase tracking-wider text-indigo-500">Grateful</p>
-                                <p
-                                    class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 inline-block mt-0.5">
-                                    Intensity 5 / 5</p>
+                                <p class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Grateful</p>
+                                <p class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 inline-block mt-0.5">Intensity 5 / 5</p>
                             </div>
                         </div>
 
                         <!-- Floating Privacy Pill (Bottom Left) -->
-                        <div
-                            class="hidden sm:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -left-16 bottom-20 z-20 animate-float [animation-delay:2.2s]">
-                            <div
-                                class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center font-bold text-lg">
-                                🛡️</div>
+                        <div class="hidden sm:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -left-14 bottom-20 z-20 animate-float [animation-delay:2.2s]">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg">🛡️</div>
                             <div>
                                 <p class="text-xs font-bold" style="color: var(--text-heading);">Zero Cloud Sync</p>
                                 <p class="text-[11px]">Stays on your phone</p>
@@ -459,7 +438,7 @@
                         </div>
 
                         <!-- Frameless App Screen -->
-                        <div class="screen-showcase">
+                        <div class="screen-showcase max-w-[300px]">
                             <img id="hero-screen-img"
                                  src="app_screens/01-mood-picker.webp"
                                  alt="Mood Meter app screen showing Explore 220+ moods grid with Energized, Grateful, Focused, Calm, Inspired, and Joyful icons"
@@ -469,38 +448,22 @@
                                  class="w-full h-full object-cover transition-opacity duration-200">
                         </div>
 
-                        <!-- Interactive Screen Switcher Pills -->
-                        <div class="mt-5 flex flex-wrap justify-center gap-2" role="tablist"
-                            aria-label="Preview Mood Meter app screens">
-                            <button type="button" role="tab" aria-selected="true"
-                                data-screen="app_screens/01-mood-picker.webp"
-                                data-alt="Mood Meter app screen showing Explore 220+ moods grid"
-                                class="screen-tab px-3 py-1.5 rounded-xl text-xs font-bold app-card cursor-pointer transition-all">
+                        <!-- Single-row Interactive Screen Switcher Pills -->
+                        <div class="mt-5 flex flex-wrap sm:flex-nowrap justify-center gap-1.5" role="tablist" aria-label="Preview Mood Meter app screens">
+                            <button type="button" role="tab" aria-selected="true" data-screen="app_screens/01-mood-picker.webp" data-alt="Mood Meter app screen showing Explore 220+ moods grid" class="screen-tab px-3 py-1.5 rounded-xl text-[11px] font-bold app-card whitespace-nowrap cursor-pointer transition-all">
                                 Moods
                             </button>
-                            <button type="button" role="tab" aria-selected="false"
-                                data-screen="app_screens/02-capture-vibe.webp"
-                                data-alt="Capture Vibe screen with Grateful mood, 3/5 intensity slider, and reflection note"
-                                class="screen-tab px-3 py-1.5 rounded-xl text-xs font-bold app-card cursor-pointer transition-all">
+                            <button type="button" role="tab" aria-selected="false" data-screen="app_screens/02-capture-vibe.webp" data-alt="Capture Vibe screen with Grateful mood, 3/5 intensity slider, and reflection note" class="screen-tab px-3 py-1.5 rounded-xl text-[11px] font-bold app-card whitespace-nowrap cursor-pointer transition-all">
                                 Capture
                             </button>
-                            <button type="button" role="tab" aria-selected="false"
-                                data-screen="app_screens/03-mood-history.webp"
-                                data-alt="History screen listing Energized, Focused, Grateful, and Calm journal entries"
-                                class="screen-tab px-3 py-1.5 rounded-xl text-xs font-bold app-card cursor-pointer transition-all">
+                            <button type="button" role="tab" aria-selected="false" data-screen="app_screens/03-mood-history.webp" data-alt="History screen listing Energized, Focused, Grateful, and Calm journal entries" class="screen-tab px-3 py-1.5 rounded-xl text-[11px] font-bold app-card whitespace-nowrap cursor-pointer transition-all">
                                 History
                             </button>
-                            <button type="button" role="tab" aria-selected="false"
-                                data-screen="app_screens/04-mood-trends.webp"
-                                data-alt="Analytics screen showing Inspired and Joyful gauges plus 7-day Intensity Trend line chart"
-                                class="screen-tab px-3 py-1.5 rounded-xl text-xs font-bold app-card cursor-pointer transition-all">
+                            <button type="button" role="tab" aria-selected="false" data-screen="app_screens/04-mood-trends.webp" data-alt="Analytics screen showing Inspired and Joyful gauges plus 7-day Intensity Trend line chart" class="screen-tab px-3 py-1.5 rounded-xl text-[11px] font-bold app-card whitespace-nowrap cursor-pointer transition-all">
                                 Analytics
                             </button>
-                            <button type="button" role="tab" aria-selected="false"
-                                data-screen="app_screens/05-custom-moods.webp"
-                                data-alt="Custom Vibes screen for creating and managing personal emotions"
-                                class="screen-tab px-3 py-1.5 rounded-xl text-xs font-bold app-card cursor-pointer transition-all">
-                                Custom Vibes
+                            <button type="button" role="tab" aria-selected="false" data-screen="app_screens/05-custom-moods.webp" data-alt="Custom Vibes screen for creating and managing personal emotions" class="screen-tab px-3 py-1.5 rounded-xl text-[11px] font-bold app-card whitespace-nowrap cursor-pointer transition-all">
+                                Custom
                             </button>
                         </div>
                     </div>
@@ -508,83 +471,59 @@
             </div>
         </section>
 
-        <!-- Expressive 220+ Vibemoji Strip (Directly from MMeter SVG pack) -->
-        <section id="vibes" class="py-16 border-y border-slate-900/5 dark:border-white/5">
+        <!-- Expressive 220+ Vibemoji Strip -->
+        <section id="vibes" class="py-16 border-y border-slate-900/6 dark:border-white/6">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 reveal">
                     <div>
-                        <p
-                            class="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
-                            Nuanced Emotional Vocabulary</p>
-                        <h2 class="text-3xl md:text-4xl font-extrabold">Beyond "Good" or "Bad" — <span
-                                class="text-gradient">220+ Expressive Vibes</span></h2>
+                        <p class="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">Nuanced Emotional Vocabulary</p>
+                        <h2 class="text-3xl md:text-4xl font-extrabold">Beyond "Good" or "Bad" — <span class="text-gradient">220+ Expressive Vibes</span></h2>
                     </div>
                     <p class="text-sm md:max-w-md">
-                        Emotional granularity helps you name exactly what you feel. Search 220+ expressive mood icons in
-                        milliseconds—or craft your own <strong>Custom Vibemojis</strong>.
+                        Emotional granularity helps you name exactly what you feel. Search 220+ expressive mood icons in milliseconds—or craft your own <strong>Custom Vibemojis</strong>.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-3 sm:gap-4 reveal">
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/in-love.svg" alt="Grateful mood icon" width="52" height="52"
-                            loading="lazy" class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Grateful</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/in-love.svg" alt="Grateful mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Grateful</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/joyful-1.svg" alt="Joyful mood icon" width="52" height="52"
-                            loading="lazy" class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Joyful</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/joyful-1.svg" alt="Joyful mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Joyful</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/relieved.svg" alt="Relieved mood icon" width="52" height="52"
-                            loading="lazy" class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Relieved</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/relieved.svg" alt="Relieved mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Relieved</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/smiling.svg" alt="Content mood icon" width="52" height="52"
-                            loading="lazy" class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Content</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/smiling.svg" alt="Content mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Content</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/winking.svg" alt="Playful mood icon" width="52" height="52"
-                            loading="lazy" class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Playful</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/winking.svg" alt="Playful mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Playful</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/geek.svg" alt="Focused mood icon" width="52" height="52" loading="lazy"
-                            class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Focused</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/geek.svg" alt="Focused mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Focused</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/angel.svg" alt="Peaceful mood icon" width="52" height="52" loading="lazy"
-                            class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Peaceful</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/angel.svg" alt="Peaceful mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Peaceful</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/surprised.svg" alt="Surprised mood icon" width="52" height="52"
-                            loading="lazy" class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Surprised</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/surprised.svg" alt="Surprised mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Surprised</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/confused.svg" alt="Uncertain mood icon" width="52" height="52"
-                            loading="lazy" class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Confused</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/confused.svg" alt="Uncertain mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Confused</span>
                     </div>
-                    <div
-                        class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
-                        <img src="assets/moods/tired-2.svg" alt="Tired mood icon" width="52" height="52" loading="lazy"
-                            class="w-12 h-12 mb-2.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider">Tired</span>
+                    <div class="app-card rounded-3xl p-4 flex flex-col items-center hover:-translate-y-1 transition-transform">
+                        <img src="assets/moods/tired-2.svg" alt="Tired mood icon" width="52" height="52" loading="lazy" class="w-12 h-12 mb-2.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Tired</span>
                     </div>
                 </div>
             </div>
@@ -594,13 +533,9 @@
         <section id="features" class="py-24 md:py-32">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-20 reveal">
-                    <p
-                        class="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3">
-                        Designed for Zero Friction</p>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-5">Every Screen Built Around <span
-                            class="text-gradient">Clarity</span></h2>
-                    <p class="text-lg">No sign-up walls, no cluttered feeds, and no tedious questionnaires. Open Mood
-                        Meter, tap how you feel, and watch your patterns emerge.</p>
+                    <p class="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3">Designed for Zero Friction</p>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-5">Every Screen Built Around <span class="text-gradient">Clarity</span></h2>
+                    <p class="text-lg">No sign-up walls, no cluttered feeds, and no tedious questionnaires. Open Mood Meter, tap how you feel, and watch your patterns emerge.</p>
                 </div>
 
                 <!-- Top Row: 3 Core Workflow Screens -->
@@ -608,16 +543,13 @@
                     <!-- Screen 1: Explore 220+ Moods -->
                     <article class="app-card rounded-[2.5rem] p-7 sm:p-8 flex flex-col justify-between reveal">
                         <div>
-                            <div
-                                class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-500 mb-3">
-                                <span
-                                    class="w-6 h-6 rounded-lg bg-indigo-500/15 flex items-center justify-center">1</span>
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-indigo-500/12 flex items-center justify-center">1</span>
                                 Mood Picker
                             </div>
                             <h3 class="text-2xl font-bold mb-3">Instant 220+ Mood Grid</h3>
                             <p class="text-sm leading-relaxed mb-6">
-                                Browse expressive emoticons in a buttery-smooth grid that adapts to phones and tablets,
-                                or tap the search button to find the exact vibe in seconds.
+                                Browse expressive emoticons in a buttery-smooth grid that adapts to phones and tablets, or tap the search button to find the exact vibe in seconds.
                             </p>
                         </div>
                         <div class="screen-showcase w-full max-w-[265px]">
@@ -626,23 +558,15 @@
                     </article>
 
                     <!-- Screen 2: Capture Vibe -->
-                    <article class="app-card rounded-[2.5rem] p-7 sm:p-8 flex flex-col justify-between reveal"
-                        style="transition-delay: 100ms;">
+                    <article class="app-card rounded-[2.5rem] p-7 sm:p-8 flex flex-col justify-between reveal" style="transition-delay: 100ms;">
                         <div>
-                            <div
-                                class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-amber-500 mb-3">
-                                <span
-                                    class="w-6 h-6 rounded-lg bg-amber-500/15 flex items-center justify-center">2</span>
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-sky-500/12 flex items-center justify-center">2</span>
                                 Capture Vibe
                             </div>
                             <h3 class="text-2xl font-bold mb-3">1–5 Intensity &amp; Reflections</h3>
                             <p class="text-sm leading-relaxed mb-6">
-                                Slide from subtle <code
-                                    class="text-xs font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">1/5</code>
-                                to peak <code
-                                    class="text-xs font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600 dark:text-amber-400">5/5</code>
-                                intensity with dynamic pulse animations, dictate reflections with keyboard voice typing,
-                                and backdate any moment.
+                                Slide from subtle <code class="text-xs font-bold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">1/5</code> to peak <code class="text-xs font-bold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">5/5</code> intensity with dynamic pulse animations, dictate reflections with keyboard voice typing, and backdate any moment.
                             </p>
                         </div>
                         <div class="screen-showcase w-full max-w-[265px]">
@@ -651,19 +575,15 @@
                     </article>
 
                     <!-- Screen 3: Searchable History -->
-                    <article class="app-card rounded-[2.5rem] p-7 sm:p-8 flex flex-col justify-between reveal"
-                        style="transition-delay: 200ms;">
+                    <article class="app-card rounded-[2.5rem] p-7 sm:p-8 flex flex-col justify-between reveal" style="transition-delay: 200ms;">
                         <div>
-                            <div
-                                class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-emerald-500 mb-3">
-                                <span
-                                    class="w-6 h-6 rounded-lg bg-emerald-500/15 flex items-center justify-center">3</span>
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-emerald-500/12 flex items-center justify-center">3</span>
                                 Timeline Journal
                             </div>
                             <h3 class="text-2xl font-bold mb-3">Searchable Mood History</h3>
                             <p class="text-sm leading-relaxed mb-6">
-                                Every reflection lives in a clean chronological timeline with intensity badges and
-                                timestamps. Filter by keyword or mood name, and tap any entry to edit or delete.
+                                Every reflection lives in a clean chronological timeline with intensity badges and timestamps. Filter by keyword or mood name, and tap any entry to edit or delete.
                             </p>
                         </div>
                         <div class="screen-showcase w-full max-w-[265px]">
@@ -675,30 +595,21 @@
                 <!-- Bottom Row: 2 Wide Feature Cards (Analytics + Custom Vibes) -->
                 <div id="analytics" class="grid lg:grid-cols-2 gap-8 pt-4">
                     <!-- Screen 4: Deep Analytics -->
-                    <article
-                        class="app-card rounded-[2.5rem] p-8 sm:p-10 grid sm:grid-cols-12 gap-8 items-center reveal">
+                    <article class="app-card rounded-[2.5rem] p-8 sm:p-10 grid sm:grid-cols-12 gap-8 items-center reveal">
                         <div class="sm:col-span-7 space-y-4">
-                            <div
-                                class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-pink-500">
-                                <span
-                                    class="w-6 h-6 rounded-lg bg-pink-500/15 flex items-center justify-center">4</span>
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-pink-600 dark:text-pink-400">
+                                <span class="w-6 h-6 rounded-lg bg-pink-500/12 flex items-center justify-center">4</span>
                                 Vibe Journey Insights
                             </div>
                             <h3 class="text-2xl sm:text-3xl font-extrabold">Streaks, Gauges &amp; Intensity Trends</h3>
                             <p class="text-sm leading-relaxed">
-                                Turn daily check-ins into self-awareness. Track your <strong>Current Vibe
-                                    Streak</strong>, check your <strong>Vibe Power Gauge</strong> (<em>Low Hum</em> to
-                                <em>Supernova</em>), and inspect 7-day intensity curves and hourly check-in patterns.
+                                Turn daily check-ins into self-awareness. Track your <strong>Current Vibe Streak</strong>, check your <strong>Vibe Power Gauge</strong> (<em>Low Hum</em> to <em>Supernova</em>), and inspect 7-day intensity curves and hourly check-in patterns.
                             </p>
                             <div class="grid grid-cols-2 gap-2.5 pt-2 text-xs font-bold">
-                                <div class="p-3 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-300">🔥
-                                    Current Vibe Streak</div>
-                                <div class="p-3 rounded-2xl bg-amber-500/10 text-amber-700 dark:text-amber-300">⚡ Vibe
-                                    Power Gauge</div>
-                                <div class="p-3 rounded-2xl bg-pink-500/10 text-pink-600 dark:text-pink-300">📈 7-Day
-                                    Intensity Trend</div>
-                                <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">🕒
-                                    Hourly Activity Bars</div>
+                                <div class="p-3 rounded-2xl subtle-tile text-indigo-700 dark:text-indigo-300">🔥 Current Vibe Streak</div>
+                                <div class="p-3 rounded-2xl subtle-tile text-sky-700 dark:text-sky-300">⚡ Vibe Power Gauge</div>
+                                <div class="p-3 rounded-2xl subtle-tile text-pink-700 dark:text-pink-300">📈 7-Day Intensity Trend</div>
+                                <div class="p-3 rounded-2xl subtle-tile text-emerald-700 dark:text-emerald-300">🕒 Hourly Activity Bars</div>
                             </div>
                         </div>
                         <div class="sm:col-span-5">
@@ -709,29 +620,20 @@
                     </article>
 
                     <!-- Screen 5: Custom Vibes -->
-                    <article
-                        class="app-card rounded-[2.5rem] p-8 sm:p-10 grid sm:grid-cols-12 gap-8 items-center reveal"
-                        style="transition-delay: 120ms;">
+                    <article class="app-card rounded-[2.5rem] p-8 sm:p-10 grid sm:grid-cols-12 gap-8 items-center reveal" style="transition-delay: 120ms;">
                         <div class="sm:col-span-7 space-y-4">
-                            <div
-                                class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-purple-500">
-                                <span
-                                    class="w-6 h-6 rounded-lg bg-purple-500/15 flex items-center justify-center">5</span>
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-violet-600 dark:text-violet-400">
+                                <span class="w-6 h-6 rounded-lg bg-violet-500/12 flex items-center justify-center">5</span>
                                 Personalization
                             </div>
                             <h3 class="text-2xl sm:text-3xl font-extrabold">Create Your Own Custom Vibes</h3>
                             <p class="text-sm leading-relaxed">
-                                Have a specific feeling only you know—like <em>Post-Run Glow</em>, <em>Deep Flow</em>,
-                                or <em>Sunday Reset</em>? Create unlimited <strong>Custom Vibes</strong>, pair them with
-                                any icon, and track them seamlessly in History and Analytics.
+                                Have a specific feeling only you know—like <em>Post-Run Glow</em>, <em>Deep Flow</em>, or <em>Sunday Reset</em>? Create unlimited <strong>Custom Vibes</strong>, pair them with any icon, and track them seamlessly in History and Analytics.
                             </p>
                             <ul class="space-y-2 pt-2 text-sm font-medium">
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-500 font-bold">✓</span>
-                                    Name unlimited personal emotions</li>
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-500 font-bold">✓</span>
-                                    Pair with any of 220+ expressive icons</li>
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-500 font-bold">✓</span>
-                                    Switch effortlessly between Dark &amp; Warm Cream themes</li>
+                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Name unlimited personal emotions</li>
+                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Pair with any of 220+ expressive icons</li>
+                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Switch effortlessly between Light &amp; Dark themes</li>
                             </ul>
                         </div>
                         <div class="sm:col-span-5">
@@ -742,50 +644,48 @@
                     </article>
                 </div>
 
-                <!-- 8 Key Metrics Strip mirroring MMeter AnalyticsScreen -->
+                <!-- 8 Key Metrics Strip -->
                 <div class="mt-12 app-card rounded-[2.5rem] p-8 sm:p-10 reveal">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                         <div>
-                            <p class="text-xs font-extrabold uppercase tracking-widest text-indigo-500 mb-1">Built-In
-                                Intelligence</p>
+                            <p class="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-1">Built-In Intelligence</p>
                             <h3 class="text-2xl font-extrabold">8 Personal Metrics Computed Locally on Your Phone</h3>
                         </div>
-                        <span
-                            class="text-xs font-bold px-3.5 py-1.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 self-start md:self-auto">
+                        <span class="text-xs font-bold px-3.5 py-1.5 rounded-full bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 self-start md:self-auto">
                             Zero Server Processing
                         </span>
                     </div>
                     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-                        <div class="p-4 rounded-2xl bg-slate-900/5 dark:bg-white/5">
-                            <p class="text-indigo-500 font-bold text-sm mb-1">📅 Days Tracked</p>
+                        <div class="p-4 rounded-2xl subtle-tile">
+                            <p class="text-indigo-600 dark:text-indigo-400 font-bold text-sm mb-1">📅 Days Tracked</p>
                             <p class="text-xs">Active days &amp; total sessions</p>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-900/5 dark:bg-white/5">
-                            <p class="text-amber-500 font-bold text-sm mb-1">⚡ Avg Intensity</p>
+                        <div class="p-4 rounded-2xl subtle-tile">
+                            <p class="text-amber-600 dark:text-amber-400 font-bold text-sm mb-1">⚡ Avg Intensity</p>
                             <p class="text-xs">Overall 1–5 mean score</p>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-900/5 dark:bg-white/5">
-                            <p class="text-pink-500 font-bold text-sm mb-1">💗 Common Mood</p>
+                        <div class="p-4 rounded-2xl subtle-tile">
+                            <p class="text-pink-600 dark:text-pink-400 font-bold text-sm mb-1">💗 Common Mood</p>
                             <p class="text-xs">Your signature vibe</p>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-900/5 dark:bg-white/5">
-                            <p class="text-emerald-500 font-bold text-sm mb-1">📈 7D Average</p>
+                        <div class="p-4 rounded-2xl subtle-tile">
+                            <p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm mb-1">📈 7D Average</p>
                             <p class="text-xs">Week-over-week % shift</p>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-900/5 dark:bg-white/5">
-                            <p class="text-yellow-500 font-bold text-sm mb-1">☀️ Best Day</p>
+                        <div class="p-4 rounded-2xl subtle-tile">
+                            <p class="text-sky-600 dark:text-sky-400 font-bold text-sm mb-1">☀️ Best Day</p>
                             <p class="text-xs">Peak intensity date</p>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-900/5 dark:bg-white/5">
-                            <p class="text-slate-500 dark:text-slate-400 font-bold text-sm mb-1">🌙 Worst Day</p>
+                        <div class="p-4 rounded-2xl subtle-tile">
+                            <p class="text-slate-700 dark:text-slate-300 font-bold text-sm mb-1">🌙 Worst Day</p>
                             <p class="text-xs">Lowest intensity date</p>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-900/5 dark:bg-white/5">
-                            <p class="text-purple-500 font-bold text-sm mb-1">🚀 High Intensity</p>
+                        <div class="p-4 rounded-2xl subtle-tile">
+                            <p class="text-violet-600 dark:text-violet-400 font-bold text-sm mb-1">🚀 High Intensity</p>
                             <p class="text-xs">% of days above 4/5</p>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-900/5 dark:bg-white/5">
-                            <p class="text-cyan-500 font-bold text-sm mb-1">🎨 Mood Diversity</p>
+                        <div class="p-4 rounded-2xl subtle-tile">
+                            <p class="text-cyan-600 dark:text-cyan-400 font-bold text-sm mb-1">🎨 Mood Diversity</p>
                             <p class="text-xs">Unique vibes per day</p>
                         </div>
                     </div>
@@ -793,79 +693,65 @@
             </div>
         </section>
 
-        <!-- Privacy & Radical Philosophy Section -->
-        <section id="privacy" class="py-24 md:py-32 bg-slate-900 text-white relative overflow-hidden">
-            <div class="absolute -top-24 -left-24 w-96 h-96 bg-indigo-600/20 blur-3xl rounded-full pointer-events-none">
-            </div>
-            <div
-                class="absolute -bottom-24 -right-24 w-96 h-96 bg-pink-600/15 blur-3xl rounded-full pointer-events-none">
-            </div>
-
-            <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Privacy & Local-First Section (Harmonized for both Light & Dark Themes) -->
+        <section id="privacy" class="py-20 md:py-28 border-y border-slate-900/6 dark:border-white/6">
+            <div class="container mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 space-y-8 reveal">
-                    <div
-                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-indigo-300 text-xs font-extrabold uppercase tracking-widest">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full app-card text-indigo-600 dark:text-indigo-400 text-xs font-extrabold uppercase tracking-widest">
                         Local-First Architecture
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                    <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
                         Your Emotions Are Not a <span class="text-gradient">Data Product.</span>
                     </h2>
-                    <p class="text-slate-300 text-lg leading-relaxed max-w-2xl">
-                        Most mental-health apps force you to create an account, sync your private reflections to someone
-                        else's cloud, and pay a monthly subscription to view your own charts. Mood Meter takes the
-                        opposite path.
+                    <p class="text-lg leading-relaxed max-w-2xl">
+                        Most mental-health apps force you to create an account, sync your private reflections to someone else's cloud, and pay a monthly subscription to view your own charts. Mood Meter takes the opposite path.
                     </p>
 
-                    <div class="grid sm:grid-cols-3 gap-6 pt-2">
-                        <div class="p-6 rounded-3xl bg-white/5 border border-white/10">
-                            <div class="text-2xl mb-3">🔒</div>
-                            <h3 class="text-lg font-bold text-white mb-2">100% On-Device</h3>
-                            <p class="text-sm text-slate-400">Your mood history and journal reflections live exclusively
-                                in local storage on your phone—never on external servers.</p>
+                    <div class="grid sm:grid-cols-3 gap-5 pt-2">
+                        <div class="p-6 rounded-3xl app-card">
+                            <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-xl mb-4">🔒</div>
+                            <h3 class="text-lg font-bold mb-2">100% On-Device</h3>
+                            <p class="text-sm leading-relaxed">Your mood history and journal reflections live exclusively in local storage on your phone—never on external servers.</p>
                         </div>
-                        <div class="p-6 rounded-3xl bg-white/5 border border-white/10">
-                            <div class="text-2xl mb-3">🚫</div>
-                            <h3 class="text-lg font-bold text-white mb-2">Zero SDK Trackers</h3>
-                            <p class="text-sm text-slate-400">No ad networks, no behavioral telemetry, no third-party
-                                analytics SDKs, and no personal data monetization—ever.</p>
+                        <div class="p-6 rounded-3xl app-card">
+                            <div class="w-11 h-11 rounded-2xl bg-sky-500/10 flex items-center justify-center text-xl mb-4">🚫</div>
+                            <h3 class="text-lg font-bold mb-2">Zero SDK Trackers</h3>
+                            <p class="text-sm leading-relaxed">No ad networks, no behavioral telemetry, no third-party analytics SDKs, and no personal data monetization—ever.</p>
                         </div>
-                        <div class="p-6 rounded-3xl bg-white/5 border border-white/10">
-                            <div class="text-2xl mb-3">🎁</div>
-                            <h3 class="text-lg font-bold text-white mb-2">Truly Free Forever</h3>
-                            <p class="text-sm text-slate-400">No trial traps, no subscription bills, and no locked
-                                insights. Mental self-awareness should be accessible to everyone.</p>
+                        <div class="p-6 rounded-3xl app-card">
+                            <div class="w-11 h-11 rounded-2xl bg-pink-500/10 flex items-center justify-center text-xl mb-4">🎁</div>
+                            <h3 class="text-lg font-bold mb-2">Truly Free Forever</h3>
+                            <p class="text-sm leading-relaxed">No trial traps, no subscription bills, and no locked insights. Mental self-awareness should be accessible to everyone.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="lg:col-span-5 reveal" style="transition-delay: 150ms;">
-                    <div
-                        class="p-8 sm:p-10 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-xl space-y-6">
-                        <h3 class="text-2xl font-bold text-white">Privacy at a Glance</h3>
-                        <ul class="space-y-4 text-sm text-slate-300">
-                            <li class="flex items-center justify-between py-2.5 border-b border-white/10">
+                    <div class="p-8 sm:p-10 rounded-[2.5rem] app-card space-y-6">
+                        <h3 class="text-2xl font-bold">Privacy at a Glance</h3>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-center justify-between py-2.5 border-b border-slate-900/8 dark:border-white/10">
                                 <span>Account or Email Required</span>
-                                <span class="font-bold text-emerald-400">Never</span>
+                                <span class="font-bold text-emerald-600 dark:text-emerald-400">Never</span>
                             </li>
-                            <li class="flex items-center justify-between py-2.5 border-b border-white/10">
+                            <li class="flex items-center justify-between py-2.5 border-b border-slate-900/8 dark:border-white/10">
                                 <span>Where Reflections Are Stored</span>
-                                <span class="font-bold text-emerald-400">On Your Device Only</span>
+                                <span class="font-bold text-emerald-600 dark:text-emerald-400">On Your Device Only</span>
                             </li>
-                            <li class="flex items-center justify-between py-2.5 border-b border-white/10">
+                            <li class="flex items-center justify-between py-2.5 border-b border-slate-900/8 dark:border-white/10">
                                 <span>Third-Party Analytics / Ads</span>
-                                <span class="font-bold text-emerald-400">None</span>
+                                <span class="font-bold text-emerald-600 dark:text-emerald-400">None</span>
                             </li>
-                            <li class="flex items-center justify-between py-2.5 border-b border-white/10">
+                            <li class="flex items-center justify-between py-2.5 border-b border-slate-900/8 dark:border-white/10">
                                 <span>Works Offline (Airplane Mode)</span>
-                                <span class="font-bold text-emerald-400">100% Yes</span>
+                                <span class="font-bold text-emerald-600 dark:text-emerald-400">100% Yes</span>
                             </li>
                             <li class="flex items-center justify-between py-2.5">
                                 <span>Cost / In-App Subscriptions</span>
-                                <span class="font-bold text-emerald-400">$0.00 Forever</span>
+                                <span class="font-bold text-emerald-600 dark:text-emerald-400">$0.00 Forever</span>
                             </li>
                         </ul>
-                        <a href="privacy_policy.html"
-                            class="inline-flex items-center gap-2 text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors">
+                        <a href="privacy_policy.html" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
                             Read the full Privacy Policy →
                         </a>
                     </div>
@@ -873,102 +759,71 @@
             </div>
         </section>
 
-        <!-- FAQ Section (Synchronized with FAQPage JSON-LD) -->
+        <!-- FAQ Section -->
         <section id="faq" class="py-24 md:py-32">
             <div class="container mx-auto px-6 max-w-4xl">
                 <div class="text-center mb-16 reveal">
-                    <p
-                        class="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3">
-                        Questions &amp; Answers</p>
-                    <h2 class="text-4xl md:text-5xl font-extrabold">Frequently Asked <span
-                            class="text-gradient">Questions</span></h2>
+                    <p class="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3">Questions &amp; Answers</p>
+                    <h2 class="text-4xl md:text-5xl font-extrabold">Frequently Asked <span class="text-gradient">Questions</span></h2>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6 reveal">
                     <div class="app-card p-7 rounded-3xl">
                         <h3 class="text-lg font-bold mb-2.5">Is Mood Meter really 100% free?</h3>
-                        <p class="text-sm leading-relaxed">Yes. Mood Meter is completely free with no ads, no
-                            subscriptions, no in-app purchases, and no locked "Pro" paywalls. Every feature—including
-                            all 220+ moods, custom vibes, and full analytics—is unlocked for everyone.</p>
+                        <p class="text-sm leading-relaxed">Yes. Mood Meter is completely free with no ads, no subscriptions, no in-app purchases, and no locked "Pro" paywalls. Every feature—including all 220+ moods, custom vibes, and full analytics—is unlocked for everyone.</p>
                     </div>
                     <div class="app-card p-7 rounded-3xl">
                         <h3 class="text-lg font-bold mb-2.5">Where is my mood and journal data stored?</h3>
-                        <p class="text-sm leading-relaxed">All mood entries, custom vibes, intensity ratings, and
-                            journal reflections are stored exclusively on your device. Mood Meter requires no account,
-                            maintains no cloud database of your entries, and includes zero third-party trackers. See our
-                            <a href="privacy_policy.html"
-                                class="text-indigo-600 dark:text-indigo-400 font-semibold underline">Privacy Policy</a>.
-                        </p>
+                        <p class="text-sm leading-relaxed">All mood entries, custom vibes, intensity ratings, and journal reflections are stored exclusively on your device. Mood Meter requires no account, maintains no cloud database of your entries, and includes zero third-party trackers. See our <a href="privacy_policy.html" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">Privacy Policy</a>.</p>
                     </div>
                     <div class="app-card p-7 rounded-3xl">
-                        <h3 class="text-lg font-bold mb-2.5">How many moods can I track, and can I create custom moods?
-                        </h3>
-                        <p class="text-sm leading-relaxed">Mood Meter comes with over 220 expressive built-in mood icons
-                            that you can browse or filter via instant search. You can also open <strong>Custom
-                                Vibes</strong> to create, name, edit, or delete your own personal emotions paired with
-                            any icon.</p>
+                        <h3 class="text-lg font-bold mb-2.5">How many moods can I track, and can I create custom moods?</h3>
+                        <p class="text-sm leading-relaxed">Mood Meter comes with over 220 expressive built-in mood icons that you can browse or filter via instant search. You can also open <strong>Custom Vibes</strong> to create, name, edit, or delete your own personal emotions paired with any icon.</p>
                     </div>
                     <div class="app-card p-7 rounded-3xl">
                         <h3 class="text-lg font-bold mb-2.5">What analytics and insights does Mood Meter provide?</h3>
-                        <p class="text-sm leading-relaxed">The Analytics tab calculates your Current Vibe Streak, Vibe
-                            Power Gauge, per-mood contribution donut gauges, a 7-day Intensity Trend chart, top-5 Vibe
-                            Distribution, Hourly Activity bars, and 8 key metrics including Days Tracked, Average
-                            Intensity, Common Mood, 7-Day Average change, Best/Worst Day, High Intensity %, and Mood
-                            Diversity.</p>
+                        <p class="text-sm leading-relaxed">The Analytics tab calculates your Current Vibe Streak, Vibe Power Gauge, per-mood contribution donut gauges, a 7-day Intensity Trend chart, top-5 Vibe Distribution, Hourly Activity bars, and 8 key metrics including Days Tracked, Average Intensity, Common Mood, 7-Day Average change, Best/Worst Day, High Intensity %, and Mood Diversity.</p>
                     </div>
                     <div class="app-card p-7 rounded-3xl">
                         <h3 class="text-lg font-bold mb-2.5">Can I log past moods or edit my journal history?</h3>
-                        <p class="text-sm leading-relaxed">Yes. When capturing a vibe, you can pick any date and time to
-                            backdate an entry, use keyboard voice dictation for quick reflections, search your entire
-                            History by mood name or note text, and tap any past entry to edit or delete it.</p>
+                        <p class="text-sm leading-relaxed">Yes. When capturing a vibe, you can pick any date and time to backdate an entry, use keyboard voice dictation for quick reflections, search your entire History by mood name or note text, and tap any past entry to edit or delete it.</p>
                     </div>
                     <div class="app-card p-7 rounded-3xl">
                         <h3 class="text-lg font-bold mb-2.5">Which devices does Mood Meter support?</h3>
-                        <p class="text-sm leading-relaxed">Mood Meter is available for iPhone and iPad on the Apple App
-                            Store and for Android phones and tablets on Google Play, featuring adaptive multi-column
-                            layouts and built-in Dark and Warm Cream Light themes.</p>
+                        <p class="text-sm leading-relaxed">Mood Meter is available for iPhone and iPad on the Apple App Store and for Android phones and tablets on Google Play, featuring adaptive multi-column layouts and built-in Light and Dark themes.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Final Download CTA -->
-        <section id="download" class="pb-28 pt-6">
+        <section id="download" class="pb-28 pt-4">
             <div class="container mx-auto px-6 reveal">
-                <div
-                    class="max-w-4xl mx-auto app-card p-10 sm:p-16 rounded-[3rem] text-center relative overflow-hidden">
-                    <img src="assets/images/app-icon.webp" alt="Mood Meter app icon" width="72" height="72"
-                        loading="lazy" class="w-18 h-18 rounded-2xl mx-auto mb-6 shadow-xl">
-                    <h2 class="text-4xl md:text-6xl font-extrabold mb-5">Start Capturing Your Vibe Today.</h2>
+                <div class="max-w-4xl mx-auto app-card p-10 sm:p-16 rounded-[3rem] text-center relative overflow-hidden">
+                    <img src="assets/images/app-icon.webp" alt="Mood Meter app icon" width="72" height="72" loading="lazy" class="w-18 h-18 rounded-2xl mx-auto mb-6 shadow-md ring-1 ring-slate-900/10 dark:ring-white/10">
+                    <h2 class="text-4xl md:text-6xl font-extrabold mb-5">Start Capturing Your <span class="text-gradient">Vibe Today.</span></h2>
                     <p class="text-lg max-w-xl mx-auto mb-10">
-                        220+ moods, custom vibes, searchable reflections, and streak analytics—100% free and private on
-                        your device.
+                        220+ moods, custom vibes, searchable reflections, and streak analytics—100% free and private on your device.
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
-                        <a href="https://apps.apple.com/us/app/mood-meter/id391278676" target="_blank"
-                            rel="noopener noreferrer" class="hover:scale-105 active:scale-95 transition-transform">
-                            <img src="app_screens/apple_store.svg" class="h-15 w-auto" width="180" height="60"
-                                alt="Download Mood Meter on the App Store">
+                        <a href="https://apps.apple.com/us/app/mood-meter/id391278676" target="_blank" rel="noopener noreferrer" class="hover:scale-105 active:scale-95 transition-transform">
+                            <img src="app_screens/apple_store.svg" class="h-14 w-auto" width="168" height="56" alt="Download Mood Meter on the App Store">
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.jaw_drop.moodmeter" target="_blank"
-                            rel="noopener noreferrer" class="hover:scale-105 active:scale-95 transition-transform">
-                            <img src="app_screens/android_store.svg" class="h-15 w-auto" width="202" height="60"
-                                alt="Get Mood Meter on Google Play">
+                        <a href="https://play.google.com/store/apps/details?id=com.jaw_drop.moodmeter" target="_blank" rel="noopener noreferrer" class="hover:scale-105 active:scale-95 transition-transform">
+                            <img src="app_screens/android_store.svg" class="h-14 w-auto" width="189" height="56" alt="Get Mood Meter on Google Play">
                         </a>
                     </div>
-                    <p class="mt-7 text-xs font-semibold uppercase tracking-widest opacity-70">Available for iPhone,
-                        iPad &amp; Android • No Sign-Up Needed</p>
+                    <p class="mt-7 text-xs font-semibold uppercase tracking-widest opacity-70">Available for iPhone, iPad &amp; Android • No Sign-Up Needed</p>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-slate-900/10 dark:border-white/10">
+    <footer class="py-12 border-t border-slate-900/8 dark:border-white/10">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
-                <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy"
-                    class="w-8 h-8 rounded-lg">
+                <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg ring-1 ring-slate-900/10 dark:ring-white/10">
                 <div>
                     <span class="font-outfit font-extrabold" style="color: var(--text-heading);">Mood Meter</span>
                     <span class="text-xs ml-2">© 2026 Mood Meter. All rights reserved.</span>
@@ -976,24 +831,22 @@
             </div>
 
             <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
-                <a href="#features" class="hover:text-indigo-500 transition-colors">Features</a>
-                <a href="#faq" class="hover:text-indigo-500 transition-colors">FAQ</a>
-                <a href="privacy_policy.html" class="hover:text-indigo-500 transition-colors">Privacy Policy</a>
-                <a href="terms_of_service.html" class="hover:text-indigo-500 transition-colors">Terms of Service</a>
-                <a href="contact.html" class="hover:text-indigo-500 transition-colors">Contact</a>
+                <a href="#features" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Features</a>
+                <a href="#faq" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">FAQ</a>
+                <a href="privacy_policy.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Privacy Policy</a>
+                <a href="terms_of_service.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Terms of Service</a>
+                <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
             </div>
         </div>
         <div class="container mx-auto px-6 mt-6 text-center md:text-left">
-            <p class="text-[11px] opacity-60">
-                Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank"
-                    rel="noopener noreferrer" class="underline hover:text-indigo-500">Emoticon Set Pack by Smashicons on
-                    Flaticon</a>.
+            <p class="text-[11px] opacity-65">
+                Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">Emoticon Set Pack by Smashicons on Flaticon</a>.
             </p>
         </div>
     </footer>
 
     <script>
-        // Theme Switcher
+        // Theme Switcher (Default: Crisp Light Mode)
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
@@ -1011,7 +864,7 @@
 
         themeToggleBtn.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('mm-theme', isDark ? 'dark' : 'light');
             syncThemeIcons();
         });
 
@@ -1048,5 +901,4 @@
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
 </body>
-
 </html>

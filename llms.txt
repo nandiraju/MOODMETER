@@ -10,7 +10,7 @@
 - **Mood Logging ("Capture Vibe"):** 1–5 intensity slider with dynamic pulse feedback, voice-typing friendly journal reflections, and flexible date/time backdating
 - **Timeline Journal ("History"):** Chronological feed with intensity badges, full-text search across mood names and reflections, and one-tap editing or deletion
 - **On-Device Analytics:** Current Vibe Streak, Vibe Power Gauge (*Low Hum*, *Steady*, *High Voltage*, *Supernova*), per-mood contribution donut gauges, 7-day Intensity Trend line chart, top-5 Vibe Distribution, Hourly Activity bars, and 8 key metrics (*Days Tracked*, *Avg Intensity*, *Common Mood*, *7D Average WoW*, *Best Day*, *Worst Day*, *High Intensity %*, *Mood Diversity*)
-- **Appearance:** Built-in Deep Slate Dark Mode (`#0f172a`) and Warm Cream Light Mode (`#FDF5E6`)
+- **Appearance:** Built-in Light Mode and Dark Mode
 
 ## Official Pages
 - [Home](https://moodmeter.cend.in/): Product overview, interactive 5-screen tour, analytics breakdown, and FAQ

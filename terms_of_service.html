@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Terms of Service | Mood Meter — Free & Private Mood Tracker</title>
+    <title>Terms of Service | Mood Meter — Free &amp; Private Mood Tracker</title>
     <meta name="title" content="Terms of Service | Mood Meter — Free & Private Mood Tracker">
     <meta name="description" content="Read the Terms of Service for the Mood Meter mobile app and website. Free personal use, 100% user ownership of on-device journal entries, and important mental health wellness disclaimers.">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f8fbff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#FDF5E6" media="(prefers-color-scheme: light)">
 
     <link rel="canonical" href="https://moodmeter.cend.in/terms_of_service.html">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
@@ -59,37 +59,53 @@
     <!-- Tailwind CSS v4 CDN -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
+    <!-- Default to Crisp Light Theme unless user explicitly chose dark -->
     <script>
-        if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.remove('dark');
-        } else {
+        if (localStorage.getItem('mm-theme') === 'dark') {
             document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
     </script>
 
     <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
         @theme {
             --font-outfit: 'Outfit', sans-serif;
             --font-inter: 'Inter', sans-serif;
+            --color-primary: #4f46e5;
+            --color-secondary: #ec4899;
         }
+
         :root {
-            --bg-color: #FDF5E6;
-            --bg-gradient: radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.10) 0%, transparent 45%),
-                           radial-gradient(circle at 90% 90%, rgba(245, 158, 11, 0.10) 0%, transparent 45%);
-            --surface-card: rgba(255, 255, 255, 0.90);
+            --bg-color: #f8fbff;
+            --bg-gradient: radial-gradient(circle at 10% 0%, rgba(79, 70, 229, 0.07) 0%, transparent 45%),
+                           radial-gradient(circle at 90% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 42%),
+                           radial-gradient(circle at 80% 90%, rgba(236, 72, 153, 0.05) 0%, transparent 45%);
+            --surface-card: #ffffff;
+            --surface-subtle: #f1f6fd;
             --surface-border: rgba(15, 23, 42, 0.08);
+            --surface-shadow: 0 14px 34px -10px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
             --text-main: #475569;
             --text-heading: #0f172a;
         }
+
         .dark {
             --bg-color: #0f172a;
             --bg-gradient: radial-gradient(circle at 12% 8%, rgba(99, 102, 241, 0.20) 0%, transparent 45%),
-                           radial-gradient(circle at 88% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%);
-            --surface-card: rgba(30, 41, 59, 0.58);
-            --surface-border: rgba(255, 255, 255, 0.07);
-            --text-main: #cbd5e1;
+                           radial-gradient(circle at 88% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+                           radial-gradient(circle at 60% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 35%);
+            --surface-card: rgba(30, 41, 59, 0.65);
+            --surface-subtle: rgba(255, 255, 255, 0.05);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --surface-shadow: 0 20px 45px -15px rgba(2, 6, 23, 0.65);
+            --text-main: #94a3b8;
             --text-heading: #ffffff;
         }
+
+        html { scroll-behavior: smooth; }
+
         body {
             @apply font-inter transition-colors duration-300 min-h-screen;
             color: var(--text-main);
@@ -97,51 +113,61 @@
             background-image: var(--bg-gradient);
             background-attachment: fixed;
         }
-        h1, h2, h3 {
+
+        h1, h2, h3, h4 {
             @apply font-outfit;
             color: var(--text-heading);
         }
+
         .text-gradient {
-            @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
+            @apply bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500 bg-clip-text text-transparent;
         }
+
         .dark .text-gradient {
-            @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent;
+            @apply bg-gradient-to-r from-indigo-400 via-violet-400 to-pink-400 bg-clip-text text-transparent;
         }
+
         .app-card {
             background-color: var(--surface-card);
             border: 1px solid var(--surface-border);
-            @apply backdrop-blur-xl shadow-lg dark:shadow-2xl;
-        }
-        .nav-glass {
-            background-color: rgba(253, 245, 230, 0.82);
-            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: var(--surface-shadow);
             @apply backdrop-blur-xl;
         }
-        .dark .nav-glass {
-            background-color: rgba(15, 23, 42, 0.82);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+        .subtle-tile {
+            background-color: var(--surface-subtle);
+            border: 1px solid var(--surface-border);
         }
+
+        .nav-glass {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+            @apply backdrop-blur-xl;
+        }
+
+        .dark .nav-glass {
+            background-color: rgba(15, 23, 42, 0.84);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
         .nav-link {
             @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
         }
-        .prose-legal p { @apply mb-4 leading-relaxed; }
-        .prose-legal ul { @apply list-disc pl-6 mb-6 space-y-2; }
-        .prose-legal h2 { @apply text-2xl sm:text-3xl font-bold mt-10 mb-4; }
-        .prose-legal h3 { @apply text-lg font-bold mt-6 mb-3; }
     </style>
 </head>
-<body class="selection:bg-indigo-500/30 antialiased">
+<body class="selection:bg-indigo-500/20 antialiased">
 
+    <!-- Navigation -->
     <header class="fixed top-0 inset-x-0 z-50 nav-glass">
         <nav class="container mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
             <a href="index.html" class="flex items-center gap-3 group">
-                <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-md group-hover:scale-105 transition-transform">
+                <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-sm ring-1 ring-slate-900/10 dark:ring-white/10 group-hover:scale-105 transition-transform">
                 <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight" style="color: var(--text-heading);">
-                    Mood<span class="text-indigo-500">Meter</span>
+                    Mood<span class="text-indigo-600 dark:text-indigo-400">Meter</span>
                 </span>
             </a>
 
-            <div class="hidden md:flex items-center gap-8">
+            <div class="hidden md:flex items-center gap-7">
                 <a href="index.html#features" class="nav-link">Features</a>
                 <a href="index.html#analytics" class="nav-link">Analytics</a>
                 <a href="privacy_policy.html" class="nav-link">Privacy</a>
@@ -154,7 +180,7 @@
                     <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                 </button>
-                <a href="index.html#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 whitespace-nowrap hover:bg-indigo-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
+                <a href="index.html#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
                     Get the App
                 </a>
             </div>
@@ -162,87 +188,160 @@
     </header>
 
     <main class="pt-32 pb-24">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <header class="text-center mb-14">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full app-card text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-4">
-                    Simple &amp; Transparent
+        <div class="container mx-auto px-6 max-w-5xl">
+            <!-- Hero Header -->
+            <header class="text-center max-w-3xl mx-auto mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full app-card text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-5">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                    Simple &amp; Transparent Terms
                 </div>
-                <h1 class="text-4xl sm:text-6xl font-black mb-4">
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-4">
                     Terms of <span class="text-gradient">Service</span>
                 </h1>
-                <p class="text-sm font-semibold opacity-75">Effective Date: November 17, 2026</p>
+                <p class="text-lg leading-relaxed mb-4">
+                    Clear, plain-English terms governing your use of the <strong>Mood Meter</strong> mobile app on iOS &amp; Android and <a href="https://moodmeter.cend.in/" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">moodmeter.cend.in</a>.
+                </p>
+                <p class="text-xs font-bold uppercase tracking-widest opacity-65">
+                    Effective Date: November 17, 2026
+                </p>
             </header>
 
-            <article class="app-card p-8 sm:p-12 rounded-[2.75rem] prose-legal">
-                <p>
-                    Welcome to <strong>Mood Meter</strong> ("MoodMeter", "we", "our", or "us"). By downloading, accessing, or using the Mood Meter mobile application on iOS or Android (the "App") or visiting <a href="https://moodmeter.cend.in/" class="text-indigo-600 dark:text-indigo-400 underline font-semibold">moodmeter.cend.in</a> (the "Site"), you agree to these Terms of Service ("Terms"). If you do not agree with these Terms, please discontinue use of the App and Site.
-                </p>
+            <!-- Top 3-Card Plain-English Summary -->
+            <section aria-label="Terms Summary" class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="app-card rounded-3xl p-7">
+                    <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-xl mb-4">🎁</div>
+                    <h2 class="text-xl font-bold mb-2">$0 Forever</h2>
+                    <p class="text-sm leading-relaxed">Personal use is 100% free with zero subscriptions, trial traps, or hidden charges.</p>
+                </div>
+                <div class="app-card rounded-3xl p-7">
+                    <div class="w-11 h-11 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-xl mb-4">✍️</div>
+                    <h2 class="text-xl font-bold mb-2">You Own Your Notes</h2>
+                    <p class="text-sm leading-relaxed">Every mood entry, custom vibe, and reflection belongs 100% to you on your device.</p>
+                </div>
+                <div class="app-card rounded-3xl p-7">
+                    <div class="w-11 h-11 rounded-2xl bg-amber-500/10 flex items-center justify-center text-xl mb-4">🩺</div>
+                    <h2 class="text-xl font-bold mb-2">Wellness Tool</h2>
+                    <p class="text-sm leading-relaxed">Built for personal journaling and self-awareness—not clinical diagnosis or emergency care.</p>
+                </div>
+            </section>
 
-                <h2>1. Description of Service &amp; Free Access</h2>
-                <p>
-                    Mood Meter is a personal mood-tracking and self-reflection tool that enables you to select from 220+ built-in mood icons, create Custom Vibes, record intensity ratings and reflections, and view on-device emotional analytics. The App is provided <strong>100% free of charge</strong>, without advertisements, subscriptions, or paid tiers.
-                </p>
+            <!-- Important Medical & Wellness Disclaimer Banner -->
+            <section class="app-card rounded-[2rem] p-7 sm:p-8 mb-6 border-l-4 border-l-amber-500">
+                <div class="flex flex-col sm:flex-row gap-4 sm:items-start">
+                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-amber-500/12 flex items-center justify-center text-xl">⚠️</div>
+                    <div>
+                        <h2 class="text-xl font-extrabold mb-1.5">Wellness &amp; Medical Disclaimer</h2>
+                        <p class="text-sm leading-relaxed">
+                            Mood Meter is a personal self-reflection and journaling app—<strong>not a medical device, clinical diagnostic tool, or substitute for professional mental health care, psychotherapy, or medical advice</strong>. Always consult a qualified physician or licensed mental health professional with questions regarding a medical or psychological condition. If you are experiencing a mental health crisis, please contact your local emergency services or crisis helpline immediately.
+                        </p>
+                    </div>
+                </div>
+            </section>
 
-                <h2>2. Wellness &amp; Medical Disclaimer</h2>
-                <div class="my-4 p-5 rounded-2xl bg-amber-500/10 border border-amber-500/25">
-                    <p class="mb-0 text-sm font-medium">
-                        <strong>Important Notice:</strong> Mood Meter is a personal journaling and self-awareness tool—<strong>not a medical device, clinical diagnostic instrument, or substitute for professional mental health care, therapy, or medical advice</strong>. Always seek the advice of a qualified physician, psychologist, or licensed mental health professional with any questions regarding a medical or psychological condition. If you are experiencing a mental health crisis or emergency, please contact your local emergency services or crisis helpline immediately.
-                    </p>
+            <!-- Structured Terms Sections -->
+            <div class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <section class="app-card rounded-[2rem] p-8 space-y-4">
+                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+                            <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">01</span>
+                            Agreement &amp; Free Access
+                        </div>
+                        <h2 class="text-2xl font-extrabold">Scope of Service</h2>
+                        <p class="text-sm leading-relaxed">
+                            By downloading or using the Mood Meter application ("App") or visiting this website ("Site"), you agree to these Terms. Mood Meter enables you to browse 220+ mood icons, create Custom Vibes, log 1–5 intensity scores and journal reflections, and view on-device analytics completely free of charge.
+                        </p>
+                    </section>
+
+                    <section class="app-card rounded-[2rem] p-8 space-y-4">
+                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+                            <span class="w-7 h-7 rounded-lg bg-emerald-500/12 flex items-center justify-center">02</span>
+                            Content &amp; Local Custody
+                        </div>
+                        <h2 class="text-2xl font-extrabold">Your Entries &amp; Backups</h2>
+                        <p class="text-sm leading-relaxed">
+                            You retain 100% ownership of all mood logs and journal reflections you create. Because all entries stay exclusively on your device without cloud servers (see our <a href="privacy_policy.html" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">Privacy Policy</a>), you are responsible for safeguarding your phone and device backups. We cannot recover data if you delete the App or lose your device.
+                        </p>
+                    </section>
                 </div>
 
-                <h2>3. Ownership &amp; Custody of Your Content</h2>
-                <ul>
-                    <li><strong>You Own Your Reflections:</strong> You retain 100% ownership of all mood entries, custom vibes, and journal notes you create inside the App.</li>
-                    <li><strong>Local Responsibility:</strong> Because Mood Meter stores all data exclusively on your device without cloud servers (as detailed in our <a href="privacy_policy.html" class="text-indigo-600 dark:text-indigo-400 underline font-semibold">Privacy Policy</a>), you are solely responsible for safeguarding your device and maintaining device-level backups if desired. We cannot retrieve or restore lost data if you uninstall the App or lose your device.</li>
-                </ul>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <section class="app-card rounded-[2rem] p-8 space-y-4">
+                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">
+                            <span class="w-7 h-7 rounded-lg bg-sky-500/12 flex items-center justify-center">03</span>
+                            Personal License
+                        </div>
+                        <h2 class="text-2xl font-extrabold">Acceptable Use</h2>
+                        <p class="text-sm leading-relaxed">
+                            We grant you a personal, worldwide, royalty-free, non-exclusive license to use Mood Meter on compatible iOS and Android devices you own or control. You agree not to:
+                        </p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">•</span><span>Repackage, clone, or resell the App commercially.</span></li>
+                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">•</span><span>Remove copyright, trademark, or icon attribution notices.</span></li>
+                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">•</span><span>Use the App or Site in violation of applicable laws.</span></li>
+                        </ul>
+                    </section>
 
-                <h2>4. License &amp; Acceptable Use</h2>
-                <p>
-                    We grant you a personal, worldwide, royalty-free, non-assignable, and non-exclusive license to use the App on compatible iOS and Android devices that you own or control, subject to Apple App Store and Google Play Store rules. You agree not to:
-                </p>
-                <ul>
-                    <li>Reverse-engineer, decompile, redistribute, or resell the App as a competing commercial product.</li>
-                    <li>Remove or obscure copyright, trademark, or icon attribution notices included in the App or Site.</li>
-                    <li>Use the Site or App in any manner that violates applicable local, national, or international laws.</li>
-                </ul>
-
-                <h2>5. Intellectual Property &amp; Attribution</h2>
-                <p>
-                    The Mood Meter application design, source code, branding, and custom analytics interface are owned by Mood Meter. Emoticon illustrations featured in the App are licensed/attributed from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 underline font-semibold">Emoticon Set Pack by Smashicons on Flaticon</a>.
-                </p>
-
-                <h2>6. Disclaimer of Warranties</h2>
-                <p>
-                    Because Mood Meter is offered completely free of charge, the App and Site are provided on an <strong>"AS IS" and "AS AVAILABLE"</strong> basis without warranties of any kind, whether express or implied, including implied warranties of merchantability, fitness for a particular purpose, or uninterrupted availability.
-                </p>
-
-                <h2>7. Limitation of Liability</h2>
-                <p>
-                    To the fullest extent permitted by applicable law, Mood Meter and its creators shall not be liable for any indirect, incidental, special, consequential, or punitive damages—including loss of locally stored journal entries due to device loss, operating system resets, or app uninstallation—arising out of or related to your use of the App or Site.
-                </p>
-
-                <h2>8. Updates &amp; Changes to Terms</h2>
-                <p>
-                    We may improve the App or update these Terms from time to time. Updated Terms will be posted on this page with a revised Effective Date. Continued use of the App after changes take effect constitutes acceptance of the revised Terms.
-                </p>
-
-                <h2>9. Contact Information</h2>
-                <div class="mt-6 p-6 rounded-3xl bg-indigo-500/10 border border-indigo-500/20">
-                    <p class="font-bold text-lg mb-1" style="color: var(--text-heading);">Have questions about these Terms?</p>
-                    <p class="mb-3 text-sm">Visit our <a href="contact.html" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">Contact page</a> or reach us directly by email:</p>
-                    <a href="mailto:social@nandiraju.com" class="inline-flex items-center font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
-                        social@nandiraju.com
-                    </a>
+                    <section class="app-card rounded-[2rem] p-8 space-y-4">
+                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-violet-600 dark:text-violet-400">
+                            <span class="w-7 h-7 rounded-lg bg-violet-500/12 flex items-center justify-center">04</span>
+                            Ownership &amp; Credits
+                        </div>
+                        <h2 class="text-2xl font-extrabold">Intellectual Property</h2>
+                        <p class="text-sm leading-relaxed">
+                            The Mood Meter application interface, code, visual analytics design, and branding are owned by Mood Meter.
+                        </p>
+                        <div class="p-4 rounded-2xl subtle-tile text-xs leading-relaxed">
+                            Emoticon illustrations displayed in the App are attributed to the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">Emoticon Set Pack by Smashicons on Flaticon</a>.
+                        </div>
+                    </section>
                 </div>
-            </article>
+
+                <div class="grid md:grid-cols-12 gap-6 items-stretch">
+                    <section class="md:col-span-7 app-card rounded-[2rem] p-8 space-y-4">
+                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-pink-600 dark:text-pink-400">
+                            <span class="w-7 h-7 rounded-lg bg-pink-500/12 flex items-center justify-center">05</span>
+                            Warranties &amp; Liability
+                        </div>
+                        <h2 class="text-2xl font-extrabold">"As Is" Service &amp; Updates</h2>
+                        <p class="text-sm leading-relaxed">
+                            Because Mood Meter is offered completely free of charge, the App and Site are provided <strong>"AS IS" and "AS AVAILABLE"</strong> without warranties of any kind. To the maximum extent permitted by law, Mood Meter and its creators shall not be liable for indirect, incidental, or consequential damages, including loss of locally stored entries resulting from device loss, OS resets, or app uninstallation.
+                        </p>
+                        <p class="text-sm leading-relaxed">
+                            We may update these Terms as the App evolves by posting revised Terms with an updated Effective Date on this page.
+                        </p>
+                    </section>
+
+                    <section class="md:col-span-5 app-card rounded-[2rem] p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3">
+                                <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">06</span>
+                                Get in Touch
+                            </div>
+                            <h2 class="text-2xl font-extrabold mb-2">Questions About Terms?</h2>
+                            <p class="text-sm leading-relaxed mb-6">
+                                Reach out to our team anytime for clarification or support regarding Mood Meter.
+                            </p>
+                        </div>
+                        <div class="space-y-3">
+                            <a href="contact.html" class="flex items-center justify-between px-5 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold shadow-lg shadow-indigo-600/25 transition">
+                                <span>Open Contact Page</span>
+                                <span>→</span>
+                            </a>
+                            <a href="mailto:social@nandiraju.com" class="block text-center text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                                social@nandiraju.com
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-slate-900/10 dark:border-white/10">
+    <footer class="py-12 border-t border-slate-900/8 dark:border-white/10">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
-                <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg">
+                <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg ring-1 ring-slate-900/10 dark:ring-white/10">
                 <div>
                     <span class="font-outfit font-extrabold" style="color: var(--text-heading);">Mood Meter</span>
                     <span class="text-xs ml-2">© 2026 Mood Meter. All rights reserved.</span>
@@ -250,11 +349,16 @@
             </div>
 
             <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
-                <a href="index.html" class="hover:text-indigo-500 transition-colors">Home</a>
-                <a href="privacy_policy.html" class="hover:text-indigo-500 transition-colors">Privacy Policy</a>
+                <a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</a>
+                <a href="privacy_policy.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Privacy Policy</a>
                 <a href="terms_of_service.html" class="text-indigo-600 dark:text-indigo-400">Terms of Service</a>
-                <a href="contact.html" class="hover:text-indigo-500 transition-colors">Contact</a>
+                <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
             </div>
+        </div>
+        <div class="container mx-auto px-6 mt-6 text-center md:text-left">
+            <p class="text-[11px] opacity-65">
+                Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">Emoticon Set Pack by Smashicons on Flaticon</a>.
+            </p>
         </div>
     </footer>
 
@@ -276,7 +380,7 @@
 
         themeToggleBtn.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('mm-theme', isDark ? 'dark' : 'light');
             syncThemeIcons();
         });
     </script>
