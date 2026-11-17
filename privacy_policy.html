@@ -167,7 +167,7 @@
 
     <!-- Navigation -->
     <header class="fixed top-0 inset-x-0 z-50 nav-glass">
-        <nav class="container mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
             <a href="index.html" class="flex items-center gap-3 group">
                 <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-sm ring-1 ring-slate-900/10 dark:ring-white/10 group-hover:scale-105 transition-transform">
                 <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight" style="color: var(--text-heading);">
@@ -184,10 +184,10 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" type="button" class="w-10 h-10 flex items-center justify-center rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
+                <button id="theme-toggle" type="button" class="w-10 h-10 flex items-center justify-center rounded-xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
                     <ion-icon id="theme-toggle-icon" name="moon" class="text-lg text-slate-700 dark:text-amber-400"></ion-icon>
                 </button>
-                <a href="index.html#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
+                <a href="index.html#download" class="px-4 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
                     Get the App
                 </a>
             </div>
@@ -195,7 +195,7 @@
     </header>
 
     <main class="pt-32 pb-24">
-        <div class="container mx-auto px-6 max-w-5xl">
+        <div class="max-w-6xl mx-auto px-6">
             <!-- Hero Header -->
             <header class="text-center max-w-3xl mx-auto mb-14">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full app-card text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-5">
@@ -213,38 +213,39 @@
                 </p>
             </header>
 
-            <!-- Top 3-Card Bento Summary -->
-            <section aria-label="Privacy Highlights" class="grid md:grid-cols-3 gap-6 mb-10">
-                <div class="app-card rounded-3xl p-7">
-                    <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4"><ion-icon name="shield-checkmark"></ion-icon></div>
-                    <h2 class="text-xl font-bold mb-2">100% On-Device</h2>
-                    <p class="text-sm leading-relaxed">Mood logs, intensity ratings, custom vibes, and journal notes never leave your phone or tablet.</p>
-                </div>
-                <div class="app-card rounded-3xl p-7">
-                    <div class="w-11 h-11 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-4"><ion-icon name="eye-off"></ion-icon></div>
-                    <h2 class="text-xl font-bold mb-2">Zero SDK Trackers</h2>
-                    <p class="text-sm leading-relaxed">No ad networks, no Firebase/Google Analytics, no Meta SDK, and zero third-party data brokers.</p>
-                </div>
-                <div class="app-card rounded-3xl p-7">
-                    <div class="w-11 h-11 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4"><ion-icon name="person-remove"></ion-icon></div>
-                    <h2 class="text-xl font-bold mb-2">No Sign-Up Ever</h2>
-                    <p class="text-sm leading-relaxed">We never ask for your name, email address, phone number, or social login credentials.</p>
-                </div>
-            </section>
-
-            <!-- Structured Policy Sections Grid -->
             <div class="space-y-6">
+                <!-- Top 3-Card Bento Summary -->
+                <section aria-label="Privacy Highlights" class="grid md:grid-cols-3 gap-6 items-stretch">
+                    <div class="app-card rounded-3xl p-8 h-full flex flex-col">
+                        <div class="w-11 h-11 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-5"><ion-icon name="shield-checkmark"></ion-icon></div>
+                        <h2 class="text-xl font-bold mb-2.5">100% On-Device</h2>
+                        <p class="text-sm leading-relaxed">Mood logs, intensity ratings, custom vibes, and journal notes never leave your phone or tablet.</p>
+                    </div>
+                    <div class="app-card rounded-3xl p-8 h-full flex flex-col">
+                        <div class="w-11 h-11 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-5"><ion-icon name="eye-off"></ion-icon></div>
+                        <h2 class="text-xl font-bold mb-2.5">Zero SDK Trackers</h2>
+                        <p class="text-sm leading-relaxed">No ad networks, no Firebase/Google Analytics, no Meta SDK, and zero third-party data brokers.</p>
+                    </div>
+                    <div class="app-card rounded-3xl p-8 h-full flex flex-col">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-5"><ion-icon name="person-remove"></ion-icon></div>
+                        <h2 class="text-xl font-bold mb-2.5">No Sign-Up Ever</h2>
+                        <p class="text-sm leading-relaxed">We never ask for your name, email address, phone number, or social login credentials.</p>
+                    </div>
+                </section>
+
                 <!-- Section 1 & 2 Side-by-Side -->
-                <div class="grid md:grid-cols-2 gap-6">
-                    <section class="app-card rounded-[2rem] p-8 space-y-4">
-                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-                            <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">01</span>
-                            Core Principles
+                <div class="grid md:grid-cols-2 gap-6 items-stretch">
+                    <section class="app-card rounded-3xl p-8 h-full flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+                                <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">01</span>
+                                Core Principles
+                            </div>
+                            <h2 class="text-2xl font-extrabold">Privacy by Architecture</h2>
+                            <p class="text-sm leading-relaxed">
+                                This Privacy Policy describes how information is handled when you use the Mood Meter mobile app on iOS and Android (the "App") and visit <a href="https://moodmeter.cend.in/" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">moodmeter.cend.in</a>.
+                            </p>
                         </div>
-                        <h2 class="text-2xl font-extrabold">Privacy by Architecture</h2>
-                        <p class="text-sm leading-relaxed">
-                            This Privacy Policy describes how information is handled when you use the Mood Meter mobile app on iOS and Android (the "App") and visit <a href="https://moodmeter.cend.in/" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">moodmeter.cend.in</a>.
-                        </p>
                         <ul class="space-y-2.5 text-sm">
                             <li class="flex items-start gap-2.5"><ion-icon name="checkmark-circle" class="text-emerald-600 dark:text-emerald-400 text-lg shrink-0 mt-0.5"></ion-icon><span><strong>Self-Custody:</strong> Your reflections stay inside your device's sandboxed storage.</span></li>
                             <li class="flex items-start gap-2.5"><ion-icon name="checkmark-circle" class="text-emerald-600 dark:text-emerald-400 text-lg shrink-0 mt-0.5"></ion-icon><span><strong>Zero Monetization:</strong> We never sell, rent, or monetize personal or emotional data.</span></li>
@@ -252,20 +253,22 @@
                         </ul>
                     </section>
 
-                    <section class="app-card rounded-[2rem] p-8 space-y-4">
-                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">
-                            <span class="w-7 h-7 rounded-lg bg-sky-500/12 flex items-center justify-center">02</span>
-                            Local Data Scope
+                    <section class="app-card rounded-3xl p-8 h-full flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">
+                                <span class="w-7 h-7 rounded-lg bg-sky-500/12 flex items-center justify-center">02</span>
+                                Local Data Scope
+                            </div>
+                            <h2 class="text-2xl font-extrabold">What Lives on Your Device</h2>
+                            <p class="text-sm leading-relaxed">
+                                The App stores only what you explicitly create inside your device's local application storage:
+                            </p>
                         </div>
-                        <h2 class="text-2xl font-extrabold">What Lives on Your Device</h2>
-                        <p class="text-sm leading-relaxed">
-                            The App stores only what you explicitly create inside your device's local application storage:
-                        </p>
-                        <div class="space-y-2.5 text-sm">
-                            <div class="p-3.5 rounded-2xl subtle-tile">
+                        <div class="space-y-3 text-sm">
+                            <div class="p-4 rounded-2xl subtle-tile">
                                 <strong style="color: var(--text-heading);">Mood Entries &amp; Notes:</strong> Selected mood icons, 1–5 intensity scores, timestamps, and optional reflections.
                             </div>
-                            <div class="p-3.5 rounded-2xl subtle-tile">
+                            <div class="p-4 rounded-2xl subtle-tile">
                                 <strong style="color: var(--text-heading);">Custom Vibes &amp; Theme:</strong> Personal emotion labels/icons you create and your Light/Dark mode choice.
                             </div>
                         </div>
@@ -273,71 +276,73 @@
                 </div>
 
                 <!-- Section 3 & 4 -->
-                <div class="grid md:grid-cols-2 gap-6">
-                    <section class="app-card rounded-[2rem] p-8 space-y-4">
-                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-violet-600 dark:text-violet-400">
-                            <span class="w-7 h-7 rounded-lg bg-violet-500/12 flex items-center justify-center">03</span>
-                            Zero Telemetry
+                <div class="grid md:grid-cols-2 gap-6 items-stretch">
+                    <section class="app-card rounded-3xl p-8 h-full flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-violet-600 dark:text-violet-400">
+                                <span class="w-7 h-7 rounded-lg bg-violet-500/12 flex items-center justify-center">03</span>
+                                Zero Telemetry
+                            </div>
+                            <h2 class="text-2xl font-extrabold">What We Never Collect</h2>
+                            <p class="text-sm leading-relaxed">
+                                Unlike cloud-backed apps, <strong>Mood Meter does not collect or transmit</strong> automated technical telemetry to external servers:
+                            </p>
                         </div>
-                        <h2 class="text-2xl font-extrabold">What We Never Collect</h2>
-                        <p class="text-sm leading-relaxed">
-                            Unlike cloud-backed apps, <strong>Mood Meter does not collect or transmit</strong> automated technical telemetry to external servers:
-                        </p>
-                        <ul class="space-y-2 text-sm">
+                        <ul class="space-y-2.5 text-sm">
                             <li class="flex items-center gap-2.5"><ion-icon name="close-circle" class="text-pink-600 dark:text-pink-400 text-lg shrink-0"></ion-icon> No IP addresses, GPS, or location tracking</li>
                             <li class="flex items-center gap-2.5"><ion-icon name="close-circle" class="text-pink-600 dark:text-pink-400 text-lg shrink-0"></ion-icon> No advertising IDs (IDFA / GAID) or device fingerprinting</li>
                             <li class="flex items-center gap-2.5"><ion-icon name="close-circle" class="text-pink-600 dark:text-pink-400 text-lg shrink-0"></ion-icon> No behavioral analytics, heatmaps, or third-party crash trackers</li>
                         </ul>
                     </section>
 
-                    <section class="app-card rounded-[2rem] p-8 space-y-4">
-                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
-                            <span class="w-7 h-7 rounded-lg bg-emerald-500/12 flex items-center justify-center">04</span>
-                            On-Device Processing
+                    <section class="app-card rounded-3xl p-8 h-full flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+                                <span class="w-7 h-7 rounded-lg bg-emerald-500/12 flex items-center justify-center">04</span>
+                                On-Device Processing
+                            </div>
+                            <h2 class="text-2xl font-extrabold">How Local Data Is Used</h2>
+                            <p class="text-sm leading-relaxed">
+                                All computations happen locally on your device processor solely to power your experience:
+                            </p>
                         </div>
-                        <h2 class="text-2xl font-extrabold">How Local Data Is Used</h2>
-                        <p class="text-sm leading-relaxed">
-                            All computations happen locally on your device processor solely to power your experience:
-                        </p>
                         <ul class="space-y-2.5 text-sm">
-                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold mt-0.5">•</span><span>Render your searchable chronological journal in the <strong>History</strong> tab.</span></li>
-                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold mt-0.5">•</span><span>Calculate your <strong>Current Vibe Streak</strong>, <strong>Vibe Power Gauge</strong>, 7-day Intensity Trend, and Hourly Activity charts.</span></li>
-                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold mt-0.5">•</span><span>Preserve your custom mood vocabulary and display preferences.</span></li>
+                            <li class="flex items-start gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0 mt-0.5"></ion-icon><span>Render your searchable chronological journal in the <strong>History</strong> tab.</span></li>
+                            <li class="flex items-start gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0 mt-0.5"></ion-icon><span>Calculate your <strong>Current Vibe Streak</strong>, <strong>Vibe Power Gauge</strong>, 7-day Intensity Trend, and Hourly Activity charts.</span></li>
+                            <li class="flex items-start gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0 mt-0.5"></ion-icon><span>Preserve your custom mood vocabulary and display preferences.</span></li>
                         </ul>
                     </section>
                 </div>
 
-                <!-- Section 5: Security & Retention + Section 6: GDPR/CCPA Rights -->
-                <section class="app-card rounded-[2rem] p-8 sm:p-10 space-y-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div>
-                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
-                                <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">05</span>
-                                Security, Retention &amp; Your Rights (GDPR / CCPA)
-                            </div>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold">Complete Control in Your Hands</h2>
+                <!-- Section 5: Security & Retention + GDPR/CCPA Rights -->
+                <section class="app-card rounded-3xl p-8 space-y-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
+                            <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">05</span>
+                            Security, Retention &amp; Your Rights (GDPR / CCPA)
                         </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold">Complete Control in Your Hands</h2>
                     </div>
 
                     <p class="text-sm leading-relaxed">
                         Because your data never touches a central server, its security relies on your operating system's app sandboxing and your device lock (Face ID, Touch ID, fingerprint, or passcode). We cannot view, access, or recover your entries if your device is lost or reset. You can exercise full data rights directly inside the App at any moment:
                     </p>
 
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="p-5 rounded-2xl subtle-tile">
-                            <h3 class="text-base font-bold mb-1">Instant Access</h3>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+                        <div class="p-5 rounded-2xl subtle-tile h-full flex flex-col">
+                            <h3 class="text-base font-bold mb-1.5">Instant Access</h3>
                             <p class="text-xs leading-relaxed">Browse and search 100% of your logged moods and notes anytime in History.</p>
                         </div>
-                        <div class="p-5 rounded-2xl subtle-tile">
-                            <h3 class="text-base font-bold mb-1">Easy Correction</h3>
+                        <div class="p-5 rounded-2xl subtle-tile h-full flex flex-col">
+                            <h3 class="text-base font-bold mb-1.5">Easy Correction</h3>
                             <p class="text-xs leading-relaxed">Tap any past entry or Custom Vibe to update its rating, note, timestamp, or label.</p>
                         </div>
-                        <div class="p-5 rounded-2xl subtle-tile">
-                            <h3 class="text-base font-bold mb-1">Granular Deletion</h3>
+                        <div class="p-5 rounded-2xl subtle-tile h-full flex flex-col">
+                            <h3 class="text-base font-bold mb-1.5">Granular Deletion</h3>
                             <p class="text-xs leading-relaxed">Remove individual journal entries or custom moods with one tap inside the App.</p>
                         </div>
-                        <div class="p-5 rounded-2xl subtle-tile">
-                            <h3 class="text-base font-bold mb-1">Complete Erasure</h3>
+                        <div class="p-5 rounded-2xl subtle-tile h-full flex flex-col">
+                            <h3 class="text-base font-bold mb-1.5">Complete Erasure</h3>
                             <p class="text-xs leading-relaxed">Uninstalling Mood Meter permanently wipes all local app storage from your device.</p>
                         </div>
                     </div>
@@ -345,21 +350,23 @@
 
                 <!-- Section 6 & 7: Children's Privacy & Policy Updates + Contact -->
                 <div class="grid md:grid-cols-12 gap-6 items-stretch">
-                    <section class="md:col-span-7 app-card rounded-[2rem] p-8 space-y-4">
-                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-pink-600 dark:text-pink-400">
-                            <span class="w-7 h-7 rounded-lg bg-pink-500/12 flex items-center justify-center">06</span>
-                            Additional Disclosures
+                    <section class="md:col-span-7 app-card rounded-3xl p-8 h-full flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-pink-600 dark:text-pink-400">
+                                <span class="w-7 h-7 rounded-lg bg-pink-500/12 flex items-center justify-center">06</span>
+                                Additional Disclosures
+                            </div>
+                            <h2 class="text-2xl font-extrabold">Children's Privacy &amp; Policy Updates</h2>
+                            <p class="text-sm leading-relaxed">
+                                <strong>Children's Privacy:</strong> Mood Meter does not collect personal information from anyone, including children under the age of 13. Downloading the App via the Apple App Store or Google Play is governed by Apple's or Google's respective store policies.
+                            </p>
                         </div>
-                        <h2 class="text-2xl font-extrabold">Children's Privacy &amp; Policy Updates</h2>
-                        <p class="text-sm leading-relaxed">
-                            <strong>Children's Privacy:</strong> Mood Meter does not collect personal information from anyone, including children under the age of 13. Downloading the App via the Apple App Store or Google Play is governed by Apple's or Google's respective store policies.
-                        </p>
                         <p class="text-sm leading-relaxed">
                             <strong>Updates to This Policy:</strong> If future optional features ever change how data is handled, we will update this page and revise the "Last Updated" date prior to release.
                         </p>
                     </section>
 
-                    <section class="md:col-span-5 app-card rounded-[2rem] p-8 flex flex-col justify-between">
+                    <section class="md:col-span-5 app-card rounded-3xl p-8 h-full flex flex-col justify-between">
                         <div>
                             <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3">
                                 <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">07</span>
@@ -387,7 +394,7 @@
 
     <!-- Footer -->
     <footer class="py-12 border-t border-slate-900/8 dark:border-white/10">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
                 <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg ring-1 ring-slate-900/10 dark:ring-white/10">
                 <div>
@@ -403,7 +410,7 @@
                 <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
             </div>
         </div>
-        <div class="container mx-auto px-6 mt-6 text-center md:text-left">
+        <div class="max-w-6xl mx-auto px-6 mt-6 text-center md:text-left">
             <p class="text-[11px] opacity-65">
                 Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">Emoticon Set Pack by Smashicons on Flaticon</a>.
             </p>

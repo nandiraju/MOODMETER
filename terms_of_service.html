@@ -167,7 +167,7 @@
 
     <!-- Navigation -->
     <header class="fixed top-0 inset-x-0 z-50 nav-glass">
-        <nav class="container mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
             <a href="index.html" class="flex items-center gap-3 group">
                 <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-sm ring-1 ring-slate-900/10 dark:ring-white/10 group-hover:scale-105 transition-transform">
                 <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight" style="color: var(--text-heading);">
@@ -184,10 +184,10 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" type="button" class="w-10 h-10 flex items-center justify-center rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
+                <button id="theme-toggle" type="button" class="w-10 h-10 flex items-center justify-center rounded-xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
                     <ion-icon id="theme-toggle-icon" name="moon" class="text-lg text-slate-700 dark:text-amber-400"></ion-icon>
                 </button>
-                <a href="index.html#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
+                <a href="index.html#download" class="px-4 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
                     Get the App
                 </a>
             </div>
@@ -195,7 +195,7 @@
     </header>
 
     <main class="pt-32 pb-24">
-        <div class="container mx-auto px-6 max-w-5xl">
+        <div class="max-w-6xl mx-auto px-6">
             <!-- Hero Header -->
             <header class="text-center max-w-3xl mx-auto mb-14">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full app-card text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-5">
@@ -213,42 +213,41 @@
                 </p>
             </header>
 
-            <!-- Top 3-Card Plain-English Summary -->
-            <section aria-label="Terms Summary" class="grid md:grid-cols-3 gap-6 mb-8">
-                <div class="app-card rounded-3xl p-7">
-                    <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4"><ion-icon name="gift"></ion-icon></div>
-                    <h2 class="text-xl font-bold mb-2">$0 Forever</h2>
-                    <p class="text-sm leading-relaxed">Personal use is 100% free with zero subscriptions, trial traps, or hidden charges.</p>
-                </div>
-                <div class="app-card rounded-3xl p-7">
-                    <div class="w-11 h-11 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4"><ion-icon name="create"></ion-icon></div>
-                    <h2 class="text-xl font-bold mb-2">You Own Your Notes</h2>
-                    <p class="text-sm leading-relaxed">Every mood entry, custom vibe, and reflection belongs 100% to you on your device.</p>
-                </div>
-                <div class="app-card rounded-3xl p-7">
-                    <div class="w-11 h-11 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-4"><ion-icon name="medkit"></ion-icon></div>
-                    <h2 class="text-xl font-bold mb-2">Wellness Tool</h2>
-                    <p class="text-sm leading-relaxed">Built for personal journaling and self-awareness—not clinical diagnosis or emergency care.</p>
-                </div>
-            </section>
-
-            <!-- Important Medical & Wellness Disclaimer Banner -->
-            <section class="app-card rounded-[2rem] p-7 sm:p-8 mb-6 border-l-4 border-l-amber-500">
-                <div class="flex flex-col sm:flex-row gap-4 sm:items-start">
-                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-amber-500/12 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl"><ion-icon name="warning"></ion-icon></div>
-                    <div>
-                        <h2 class="text-xl font-extrabold mb-1.5">Wellness &amp; Medical Disclaimer</h2>
-                        <p class="text-sm leading-relaxed">
-                            Mood Meter is a personal self-reflection and journaling app—<strong>not a medical device, clinical diagnostic tool, or substitute for professional mental health care, psychotherapy, or medical advice</strong>. Always consult a qualified physician or licensed mental health professional with questions regarding a medical or psychological condition. If you are experiencing a mental health crisis, please contact your local emergency services or crisis helpline immediately.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Structured Terms Sections -->
             <div class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <section class="app-card rounded-[2rem] p-8 space-y-4">
+                <!-- Top 3-Card Plain-English Summary -->
+                <section aria-label="Terms Summary" class="grid md:grid-cols-3 gap-6 items-stretch">
+                    <div class="app-card rounded-3xl p-8 h-full flex flex-col">
+                        <div class="w-11 h-11 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-5"><ion-icon name="gift"></ion-icon></div>
+                        <h2 class="text-xl font-bold mb-2.5">$0 Forever</h2>
+                        <p class="text-sm leading-relaxed">Personal use is 100% free with zero subscriptions, trial traps, or hidden charges.</p>
+                    </div>
+                    <div class="app-card rounded-3xl p-8 h-full flex flex-col">
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-5"><ion-icon name="create"></ion-icon></div>
+                        <h2 class="text-xl font-bold mb-2.5">You Own Your Notes</h2>
+                        <p class="text-sm leading-relaxed">Every mood entry, custom vibe, and reflection belongs 100% to you on your device.</p>
+                    </div>
+                    <div class="app-card rounded-3xl p-8 h-full flex flex-col">
+                        <div class="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-5"><ion-icon name="medkit"></ion-icon></div>
+                        <h2 class="text-xl font-bold mb-2.5">Wellness Tool</h2>
+                        <p class="text-sm leading-relaxed">Built for personal journaling and self-awareness—not clinical diagnosis or emergency care.</p>
+                    </div>
+                </section>
+
+                <!-- Important Medical & Wellness Disclaimer Banner -->
+                <section class="app-card rounded-3xl p-8 border-l-4 border-l-amber-500">
+                    <div class="flex flex-col sm:flex-row gap-4 sm:items-start">
+                        <div class="w-11 h-11 shrink-0 rounded-xl bg-amber-500/12 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl"><ion-icon name="warning"></ion-icon></div>
+                        <div>
+                            <h2 class="text-xl font-extrabold mb-1.5">Wellness &amp; Medical Disclaimer</h2>
+                            <p class="text-sm leading-relaxed">
+                                Mood Meter is a personal self-reflection and journaling app—<strong>not a medical device, clinical diagnostic tool, or substitute for professional mental health care, psychotherapy, or medical advice</strong>. Always consult a qualified physician or licensed mental health professional with questions regarding a medical or psychological condition. If you are experiencing a mental health crisis, please contact your local emergency services or crisis helpline immediately.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="grid md:grid-cols-2 gap-6 items-stretch">
+                    <section class="app-card rounded-3xl p-8 h-full flex flex-col space-y-4">
                         <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
                             <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">01</span>
                             Agreement &amp; Free Access
@@ -259,7 +258,7 @@
                         </p>
                     </section>
 
-                    <section class="app-card rounded-[2rem] p-8 space-y-4">
+                    <section class="app-card rounded-3xl p-8 h-full flex flex-col space-y-4">
                         <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
                             <span class="w-7 h-7 rounded-lg bg-emerald-500/12 flex items-center justify-center">02</span>
                             Content &amp; Local Custody
@@ -271,32 +270,36 @@
                     </section>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <section class="app-card rounded-[2rem] p-8 space-y-4">
-                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">
-                            <span class="w-7 h-7 rounded-lg bg-sky-500/12 flex items-center justify-center">03</span>
-                            Personal License
+                <div class="grid md:grid-cols-2 gap-6 items-stretch">
+                    <section class="app-card rounded-3xl p-8 h-full flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-sky-600 dark:text-sky-400">
+                                <span class="w-7 h-7 rounded-lg bg-sky-500/12 flex items-center justify-center">03</span>
+                                Personal License
+                            </div>
+                            <h2 class="text-2xl font-extrabold">Acceptable Use</h2>
+                            <p class="text-sm leading-relaxed">
+                                We grant you a personal, worldwide, royalty-free, non-exclusive license to use Mood Meter on compatible iOS and Android devices you own or control. You agree not to:
+                            </p>
                         </div>
-                        <h2 class="text-2xl font-extrabold">Acceptable Use</h2>
-                        <p class="text-sm leading-relaxed">
-                            We grant you a personal, worldwide, royalty-free, non-exclusive license to use Mood Meter on compatible iOS and Android devices you own or control. You agree not to:
-                        </p>
-                        <ul class="space-y-2 text-sm">
-                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">•</span><span>Repackage, clone, or resell the App commercially.</span></li>
-                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">•</span><span>Remove copyright, trademark, or icon attribution notices.</span></li>
-                            <li class="flex items-start gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">•</span><span>Use the App or Site in violation of applicable laws.</span></li>
+                        <ul class="space-y-2.5 text-sm">
+                            <li class="flex items-start gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0 mt-0.5"></ion-icon><span>Do not repackage, clone, or resell the App commercially.</span></li>
+                            <li class="flex items-start gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0 mt-0.5"></ion-icon><span>Do not remove copyright, trademark, or icon attribution notices.</span></li>
+                            <li class="flex items-start gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0 mt-0.5"></ion-icon><span>Do not use the App or Site in violation of applicable laws.</span></li>
                         </ul>
                     </section>
 
-                    <section class="app-card rounded-[2rem] p-8 space-y-4">
-                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-violet-600 dark:text-violet-400">
-                            <span class="w-7 h-7 rounded-lg bg-violet-500/12 flex items-center justify-center">04</span>
-                            Ownership &amp; Credits
+                    <section class="app-card rounded-3xl p-8 h-full flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-violet-600 dark:text-violet-400">
+                                <span class="w-7 h-7 rounded-lg bg-violet-500/12 flex items-center justify-center">04</span>
+                                Ownership &amp; Credits
+                            </div>
+                            <h2 class="text-2xl font-extrabold">Intellectual Property</h2>
+                            <p class="text-sm leading-relaxed">
+                                The Mood Meter application interface, code, visual analytics design, and branding are owned by Mood Meter.
+                            </p>
                         </div>
-                        <h2 class="text-2xl font-extrabold">Intellectual Property</h2>
-                        <p class="text-sm leading-relaxed">
-                            The Mood Meter application interface, code, visual analytics design, and branding are owned by Mood Meter.
-                        </p>
                         <div class="p-4 rounded-2xl subtle-tile text-xs leading-relaxed">
                             Emoticon illustrations displayed in the App are attributed to the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">Emoticon Set Pack by Smashicons on Flaticon</a>.
                         </div>
@@ -304,21 +307,23 @@
                 </div>
 
                 <div class="grid md:grid-cols-12 gap-6 items-stretch">
-                    <section class="md:col-span-7 app-card rounded-[2rem] p-8 space-y-4">
-                        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-pink-600 dark:text-pink-400">
-                            <span class="w-7 h-7 rounded-lg bg-pink-500/12 flex items-center justify-center">05</span>
-                            Warranties &amp; Liability
+                    <section class="md:col-span-7 app-card rounded-3xl p-8 h-full flex flex-col justify-between space-y-4">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-pink-600 dark:text-pink-400">
+                                <span class="w-7 h-7 rounded-lg bg-pink-500/12 flex items-center justify-center">05</span>
+                                Warranties &amp; Liability
+                            </div>
+                            <h2 class="text-2xl font-extrabold">"As Is" Service &amp; Updates</h2>
+                            <p class="text-sm leading-relaxed">
+                                Because Mood Meter is offered completely free of charge, the App and Site are provided <strong>"AS IS" and "AS AVAILABLE"</strong> without warranties of any kind. To the maximum extent permitted by law, Mood Meter and its creators shall not be liable for indirect, incidental, or consequential damages, including loss of locally stored entries resulting from device loss, OS resets, or app uninstallation.
+                            </p>
                         </div>
-                        <h2 class="text-2xl font-extrabold">"As Is" Service &amp; Updates</h2>
-                        <p class="text-sm leading-relaxed">
-                            Because Mood Meter is offered completely free of charge, the App and Site are provided <strong>"AS IS" and "AS AVAILABLE"</strong> without warranties of any kind. To the maximum extent permitted by law, Mood Meter and its creators shall not be liable for indirect, incidental, or consequential damages, including loss of locally stored entries resulting from device loss, OS resets, or app uninstallation.
-                        </p>
                         <p class="text-sm leading-relaxed">
                             We may update these Terms as the App evolves by posting revised Terms with an updated Effective Date on this page.
                         </p>
                     </section>
 
-                    <section class="md:col-span-5 app-card rounded-[2rem] p-8 flex flex-col justify-between">
+                    <section class="md:col-span-5 app-card rounded-3xl p-8 h-full flex flex-col justify-between">
                         <div>
                             <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-3">
                                 <span class="w-7 h-7 rounded-lg bg-indigo-500/12 flex items-center justify-center">06</span>
@@ -346,7 +351,7 @@
 
     <!-- Footer -->
     <footer class="py-12 border-t border-slate-900/8 dark:border-white/10">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
                 <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg ring-1 ring-slate-900/10 dark:ring-white/10">
                 <div>
@@ -362,7 +367,7 @@
                 <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
             </div>
         </div>
-        <div class="container mx-auto px-6 mt-6 text-center md:text-left">
+        <div class="max-w-6xl mx-auto px-6 mt-6 text-center md:text-left">
             <p class="text-[11px] opacity-65">
                 Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">Emoticon Set Pack by Smashicons on Flaticon</a>.
             </p>

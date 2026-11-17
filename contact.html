@@ -214,7 +214,7 @@
 
     <!-- Navigation -->
     <header class="fixed top-0 inset-x-0 z-50 nav-glass">
-        <nav class="container mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
             <a href="index.html" class="flex items-center gap-3 group">
                 <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-sm ring-1 ring-slate-900/10 dark:ring-white/10 group-hover:scale-105 transition-transform">
                 <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight" style="color: var(--text-heading);">
@@ -231,10 +231,10 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" type="button" class="w-10 h-10 flex items-center justify-center rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
+                <button id="theme-toggle" type="button" class="w-10 h-10 flex items-center justify-center rounded-xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
                     <ion-icon id="theme-toggle-icon" name="moon" class="text-lg text-slate-700 dark:text-amber-400"></ion-icon>
                 </button>
-                <a href="index.html#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
+                <a href="index.html#download" class="px-4 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
                     Get the App
                 </a>
             </div>
@@ -242,7 +242,7 @@
     </header>
 
     <main class="pt-32 pb-24">
-        <div class="container mx-auto px-6 max-w-5xl">
+        <div class="max-w-6xl mx-auto px-6">
             <!-- Hero Header -->
             <header class="text-center max-w-3xl mx-auto mb-14">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full app-card text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-5">
@@ -257,123 +257,126 @@
                 </p>
             </header>
 
-            <!-- 3 Quick Topic Cards -->
-            <section aria-label="Support Topics" class="grid md:grid-cols-3 gap-6 mb-10">
-                <div class="app-card rounded-3xl p-6 flex items-start gap-4">
-                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl"><ion-icon name="sparkles"></ion-icon></div>
-                    <div>
-                        <h2 class="text-lg font-bold mb-1">Feature &amp; Vibe Ideas</h2>
-                        <p class="text-xs leading-relaxed">Suggest new mood icons, chart types, or workflow improvements.</p>
+            <div class="space-y-6">
+                <!-- 3 Equal-Height Quick Topic Cards -->
+                <section aria-label="Support Topics" class="grid md:grid-cols-3 gap-6 items-stretch">
+                    <div class="app-card rounded-3xl p-8 h-full flex items-start gap-4">
+                        <div class="w-11 h-11 shrink-0 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl"><ion-icon name="sparkles"></ion-icon></div>
+                        <div>
+                            <h2 class="text-lg font-bold mb-1">Feature &amp; Vibe Ideas</h2>
+                            <p class="text-xs leading-relaxed">Suggest new mood icons, chart types, or workflow improvements.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="app-card rounded-3xl p-6 flex items-start gap-4">
-                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl"><ion-icon name="phone-portrait"></ion-icon></div>
-                    <div>
-                        <h2 class="text-lg font-bold mb-1">iOS &amp; Android Help</h2>
-                        <p class="text-xs leading-relaxed">Get quick help with app behavior on iPhone, iPad, or Android.</p>
+                    <div class="app-card rounded-3xl p-8 h-full flex items-start gap-4">
+                        <div class="w-11 h-11 shrink-0 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl"><ion-icon name="phone-portrait"></ion-icon></div>
+                        <div>
+                            <h2 class="text-lg font-bold mb-1">iOS &amp; Android Help</h2>
+                            <p class="text-xs leading-relaxed">Get quick help with app behavior on iPhone, iPad, or Android.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="app-card rounded-3xl p-6 flex items-start gap-4">
-                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl"><ion-icon name="lock-closed"></ion-icon></div>
-                    <div>
-                        <h2 class="text-lg font-bold mb-1">Privacy Inquiries</h2>
-                        <p class="text-xs leading-relaxed">Questions about Mood Meter's 100% local-first data architecture.</p>
+                    <div class="app-card rounded-3xl p-8 h-full flex items-start gap-4">
+                        <div class="w-11 h-11 shrink-0 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl"><ion-icon name="lock-closed"></ion-icon></div>
+                        <div>
+                            <h2 class="text-lg font-bold mb-1">Privacy Inquiries</h2>
+                            <p class="text-xs leading-relaxed">Questions about Mood Meter's 100% local-first data architecture.</p>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <div class="grid lg:grid-cols-12 gap-8 items-start">
-                <!-- Left Column: Direct Email & Quick Support Answers -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="app-card p-8 rounded-[2rem] space-y-5">
-                        <div class="flex items-center gap-3.5">
-                            <div class="w-11 h-11 shrink-0 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl"><ion-icon name="mail"></ion-icon></div>
-                            <div>
-                                <h2 class="text-xl font-extrabold">Direct Email</h2>
-                                <p class="text-xs opacity-75">Typical reply within 1–2 business days</p>
+                <!-- Equal-Height 2-Column Main Row -->
+                <div class="grid lg:grid-cols-12 gap-6 items-stretch">
+                    <!-- Left Column: Direct Email & Quick Support Answers -->
+                    <div class="lg:col-span-5 flex flex-col gap-6">
+                        <div class="app-card p-8 rounded-3xl space-y-5">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 shrink-0 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl"><ion-icon name="mail"></ion-icon></div>
+                                <div>
+                                    <h2 class="text-xl font-extrabold">Direct Email</h2>
+                                    <p class="text-xs opacity-75">Typical reply within 1–2 business days</p>
+                                </div>
+                            </div>
+                            <p class="text-sm leading-relaxed">
+                                To protect our inbox from automated spam harvesters, click below to reveal or copy our direct support email:
+                            </p>
+                            <div class="space-y-2.5">
+                                <button type="button" id="direct-email-btn" class="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/25 transition cursor-pointer">
+                                    <span id="direct-email-label">Click to Reveal Support Email</span>
+                                    <ion-icon id="direct-email-icon" name="lock-closed" class="text-lg"></ion-icon>
+                                </button>
+                                <div id="email-actions" class="hidden grid-cols-2 gap-2.5 pt-1">
+                                    <button type="button" id="copy-email-btn" class="py-2.5 px-4 rounded-xl subtle-tile text-xs font-bold hover:border-indigo-500 transition cursor-pointer" style="color: var(--text-heading);">
+                                        <span class="inline-flex items-center gap-1.5"><ion-icon name="copy-outline" class="text-sm"></ion-icon><span id="copy-email-text">Copy Address</span></span>
+                                    </button>
+                                    <button type="button" id="launch-email-btn" class="py-2.5 px-4 rounded-xl subtle-tile text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:border-indigo-500 transition cursor-pointer">
+                                        <span class="inline-flex items-center gap-1.5"><span>Open Mail App</span><ion-icon name="arrow-forward" class="text-sm"></ion-icon></span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <p class="text-sm leading-relaxed">
-                            To protect our inbox from automated spam harvesters, click below to reveal or copy our direct support email:
-                        </p>
-                        <div class="space-y-2.5">
-                            <button type="button" id="direct-email-btn" class="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/25 transition cursor-pointer">
-                                <span id="direct-email-label">Click to Reveal Support Email</span>
-                                <ion-icon id="direct-email-icon" name="lock-closed" class="text-lg"></ion-icon>
+
+                        <div class="app-card p-8 rounded-3xl flex-1 flex flex-col justify-between space-y-4">
+                            <h2 class="text-xl font-extrabold">Quick Support Answers</h2>
+                            <div class="space-y-3 text-sm">
+                                <div class="p-4 rounded-2xl subtle-tile">
+                                    <h3 class="text-sm font-bold mb-1">How do I cancel a subscription?</h3>
+                                    <p class="text-xs leading-relaxed">There is nothing to cancel—Mood Meter has zero subscriptions, zero free-trial traps, and zero in-app charges.</p>
+                                </div>
+                                <div class="p-4 rounded-2xl subtle-tile">
+                                    <h3 class="text-sm font-bold mb-1">Can you reset my account or recover entries?</h3>
+                                    <p class="text-xs leading-relaxed">Mood Meter has no accounts or cloud servers. All entries live locally on your phone, so only you have custody of them.</p>
+                                </div>
+                                <div class="p-4 rounded-2xl subtle-tile">
+                                    <h3 class="text-sm font-bold mb-1">Reporting a bug?</h3>
+                                    <p class="text-xs leading-relaxed">Mention whether you're on iOS or Android and what screen you were viewing—screenshots are always helpful.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Privacy-Preserving Message Composer -->
+                    <div class="lg:col-span-7 flex">
+                        <form id="contact-form" class="app-card p-8 rounded-3xl w-full h-full flex flex-col justify-between gap-6">
+                            <div>
+                                <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
+                                    Zero-Server Composer
+                                </div>
+                                <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">Send Us a Note</h2>
+                                <p class="text-sm">Opens pre-addressed in your email client—nothing is stored on a web server.</p>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="sender-name" class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--text-heading);">Your Name (Optional)</label>
+                                    <input id="sender-name" type="text" placeholder="Alex" class="form-input">
+                                </div>
+                                <div>
+                                    <label for="topic" class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--text-heading);">Topic</label>
+                                    <select id="topic" class="form-input">
+                                        <option value="Feature / Custom Vibe Idea">Feature or Vibe Idea</option>
+                                        <option value="iOS App Support">iOS App Support</option>
+                                        <option value="Android App Support">Android App Support</option>
+                                        <option value="Privacy Question">Privacy Question</option>
+                                        <option value="General Feedback">General Feedback</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 flex flex-col">
+                                <label for="message" class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--text-heading);">Message</label>
+                                <textarea id="message" rows="8" required placeholder="Tell us what's on your mind..." class="form-input flex-1 min-h-[200px] resize-none"></textarea>
+                            </div>
+
+                            <!-- Anti-bot honeypot trap -->
+                            <div class="hp-trap" aria-hidden="true">
+                                <label for="website-url">Website</label>
+                                <input id="website-url" name="website_url" type="text" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-indigo-600/25 transition active:scale-[0.99] cursor-pointer">
+                                <span class="inline-flex items-center justify-center gap-2"><span>Open in Email App</span><ion-icon name="send" class="text-base"></ion-icon></span>
                             </button>
-                            <div id="email-actions" class="hidden grid-cols-2 gap-2.5 pt-1">
-                                <button type="button" id="copy-email-btn" class="py-2.5 px-4 rounded-xl subtle-tile text-xs font-bold hover:border-indigo-500 transition cursor-pointer" style="color: var(--text-heading);">
-                                    <span class="inline-flex items-center gap-1.5"><ion-icon name="copy-outline" class="text-sm"></ion-icon><span id="copy-email-text">Copy Address</span></span>
-                                </button>
-                                <button type="button" id="launch-email-btn" class="py-2.5 px-4 rounded-xl subtle-tile text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:border-indigo-500 transition cursor-pointer">
-                                    <span class="inline-flex items-center gap-1.5"><span>Open Mail App</span><ion-icon name="arrow-forward" class="text-sm"></ion-icon></span>
-                                </button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-
-                    <div class="app-card p-8 rounded-[2rem] space-y-4">
-                        <h2 class="text-xl font-extrabold">Quick Support Answers</h2>
-                        <div class="space-y-3 text-sm">
-                            <div class="p-4 rounded-2xl subtle-tile">
-                                <h3 class="text-sm font-bold mb-1">How do I cancel a subscription?</h3>
-                                <p class="text-xs leading-relaxed">There is nothing to cancel—Mood Meter has zero subscriptions, zero free-trial traps, and zero in-app charges.</p>
-                            </div>
-                            <div class="p-4 rounded-2xl subtle-tile">
-                                <h3 class="text-sm font-bold mb-1">Can you reset my account or recover entries?</h3>
-                                <p class="text-xs leading-relaxed">Mood Meter has no accounts or cloud servers. All entries live locally on your phone, so only you have custody of them.</p>
-                            </div>
-                            <div class="p-4 rounded-2xl subtle-tile">
-                                <h3 class="text-sm font-bold mb-1">Reporting a bug?</h3>
-                                <p class="text-xs leading-relaxed">Mention whether you're on iOS or Android and what screen you were viewing—screenshots are always helpful.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Privacy-Preserving Message Composer -->
-                <div class="lg:col-span-7">
-                    <form id="contact-form" class="app-card p-8 sm:p-10 rounded-[2rem] space-y-6">
-                        <div>
-                            <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2">
-                                Zero-Server Composer
-                            </div>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">Send Us a Note</h2>
-                            <p class="text-sm">Opens pre-addressed in your email client—nothing is stored on a web server.</p>
-                        </div>
-
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="sender-name" class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--text-heading);">Your Name (Optional)</label>
-                                <input id="sender-name" type="text" placeholder="Alex" class="form-input">
-                            </div>
-                            <div>
-                                <label for="topic" class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--text-heading);">Topic</label>
-                                <select id="topic" class="form-input">
-                                    <option value="Feature / Custom Vibe Idea">Feature or Vibe Idea</option>
-                                    <option value="iOS App Support">iOS App Support</option>
-                                    <option value="Android App Support">Android App Support</option>
-                                    <option value="Privacy Question">Privacy Question</option>
-                                    <option value="General Feedback">General Feedback</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="message" class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--text-heading);">Message</label>
-                            <textarea id="message" rows="6" required placeholder="Tell us what's on your mind..." class="form-input"></textarea>
-                        </div>
-
-                        <!-- Anti-bot honeypot trap -->
-                        <div class="hp-trap" aria-hidden="true">
-                            <label for="website-url">Website</label>
-                            <input id="website-url" name="website_url" type="text" tabindex="-1" autocomplete="off">
-                        </div>
-
-                        <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-indigo-600/25 transition active:scale-[0.99] cursor-pointer">
-                            <span class="inline-flex items-center justify-center gap-2"><span>Open in Email App</span><ion-icon name="send" class="text-base"></ion-icon></span>
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -381,7 +384,7 @@
 
     <!-- Footer -->
     <footer class="py-12 border-t border-slate-900/8 dark:border-white/10">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
                 <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg ring-1 ring-slate-900/10 dark:ring-white/10">
                 <div>
@@ -397,7 +400,7 @@
                 <a href="contact.html" class="text-indigo-600 dark:text-indigo-400">Contact</a>
             </div>
         </div>
-        <div class="container mx-auto px-6 mt-6 text-center md:text-left">
+        <div class="max-w-6xl mx-auto px-6 mt-6 text-center md:text-left">
             <p class="text-[11px] opacity-65">
                 Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-600 dark:hover:text-indigo-400">Emoticon Set Pack by Smashicons on Flaticon</a>.
             </p>
