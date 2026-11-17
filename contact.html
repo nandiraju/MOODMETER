@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,7 @@
     <meta name="application-name" content="Mood Meter">
     <meta name="apple-itunes-app" content="app-id=391278676">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="theme-color" content="#f8fbff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#0f172a">
 
     <link rel="canonical" href="https://moodmeter.cend.in/contact.html">
     <link rel="alternate" hreflang="en" href="https://moodmeter.cend.in/contact.html">
@@ -90,13 +89,15 @@
     <!-- Precompiled Tailwind CSS (source: src/css/contact.css) -->
     <link rel="stylesheet" href="assets/css/contact.css?v=283ba034d5">
 
-    <!-- Default to Crisp Light Theme unless user explicitly chose dark -->
+    <!-- Dark theme by default; light only if the visitor chose it (saved as mm-theme=light) -->
     <script>
-        if (localStorage.getItem('mm-theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        (function () {
+            let light = false;
+            try { light = localStorage.getItem('mm-theme') === 'light'; } catch (_) {}
+            document.documentElement.classList.toggle('dark', !light);
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', light ? '#f8fbff' : '#0f172a');
+        })();
     </script>
 
 </head>
@@ -314,7 +315,9 @@
 
         themeToggleBtn.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('mm-theme', isDark ? 'dark' : 'light');
+            try { localStorage.setItem('mm-theme', isDark ? 'dark' : 'light'); } catch (_) {}
+            const themeMeta = document.querySelector('meta[name="theme-color"]');
+            if (themeMeta) themeMeta.setAttribute('content', isDark ? '#0f172a' : '#f8fbff');
             syncThemeIcons();
         });
 

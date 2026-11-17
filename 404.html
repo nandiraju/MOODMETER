@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found | Mood Meter</title>
     <meta name="description" content="This page doesn't exist. Head back to Mood Meter, the free, private mood tracker and journal for iOS and Android.">
     <meta name="robots" content="noindex, follow">
-    <meta name="theme-color" content="#f8fbff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#0f172a">
     <!-- Served by GitHub Pages at any missing path, so every URL here is root-absolute -->
     <link rel="icon" type="image/png" sizes="48x48" href="/assets/images/favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
@@ -22,12 +21,15 @@
     <!-- Precompiled Tailwind CSS (source: src/css/404.css) -->
     <link rel="stylesheet" href="/assets/css/404.css?v=52557c0478">
 
+    <!-- Dark theme by default; light only if the visitor chose it (saved as mm-theme=light) -->
     <script>
-        if (localStorage.getItem('mm-theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        (function () {
+            let light = false;
+            try { light = localStorage.getItem('mm-theme') === 'light'; } catch (_) {}
+            document.documentElement.classList.toggle('dark', !light);
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', light ? '#f8fbff' : '#0f172a');
+        })();
     </script>
 </head>
 <body class="selection:bg-indigo-500/20 antialiased min-h-screen flex flex-col">
@@ -81,7 +83,9 @@
 
         themeToggleBtn.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('mm-theme', isDark ? 'dark' : 'light');
+            try { localStorage.setItem('mm-theme', isDark ? 'dark' : 'light'); } catch (_) {}
+            const themeMeta = document.querySelector('meta[name="theme-color"]');
+            if (themeMeta) themeMeta.setAttribute('content', isDark ? '#0f172a' : '#f8fbff');
             syncThemeIcons();
         });
     </script>

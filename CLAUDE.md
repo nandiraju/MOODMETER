@@ -24,7 +24,8 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
   - `og-image.png` / `og-image.webp` (1200x630): Open Graph and Twitter/X social card banner.
 
 ## Design System & Layout Conventions
-- **Light Theme by Default:** Crisp ice-blue canvas (`#f8fbff`) with pure white cards (`#ffffff`) and subtle secondary tiles (`#f1f6fd`). Dark mode activates only when `localStorage.getItem('mm-theme') === 'dark'`, applied synchronously in `<head>` before paint to prevent theme flash.
+- **Dark Theme by Default:** Every page ships `<html lang="en" class="dark">` (so no-JS visitors and crawlers get dark too). A synchronous `<head>` script removes `dark` only when `localStorage['mm-theme'] === 'light'` (the visitor chose light via the toggle), and sets the single `<meta name="theme-color">` to `#0f172a` (dark) or `#f8fbff` (light); the toggle updates both and saves `mm-theme`. `localStorage` access is wrapped in `try/catch`. `site.webmanifest` `background_color` is `#0f172a`.
+- **Light Theme (opt-in):** Crisp ice-blue canvas (`#f8fbff`) with pure white cards (`#ffffff`) and subtle secondary tiles (`#f1f6fd`).
 - **Tailwind v4 Class-Based Dark Variant:** Every source CSS file declares `@custom-variant dark (&:where(.dark, .dark *));`.
 - **Dark Theme ("Liquid Glass"):** In `.dark`, `.ambient` renders three fixed blurred color orbs (`#4f46e5`, `#0ea5e9`, `#db2777` at `z-index: -1`) behind translucent gradient surfaces:
   - `.dark .app-card`: 145deg white-alpha gradient, `backdrop-filter: blur(26px) saturate(170%)`, 1px translucent border, and inset specular highlights.
