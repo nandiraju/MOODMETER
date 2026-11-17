@@ -522,6 +522,7 @@
             position: relative;
             overflow: hidden;
             padding: 1rem 0 2.5rem;
+            contain: layout paint style;
             -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
             mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
         }
@@ -537,11 +538,17 @@
         }
         .ticker-tile { box-shadow: 0 10px 22px -14px rgba(15, 23, 42, 0.18); }
         .dark .ticker-tile { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 10px 20px -14px rgba(2, 6, 23, 0.6); }
+        /* Moving elements must not use backdrop-filter (re-blurred every frame), so the tiles use a flat translucent fill. */
+        .ticker .ticker-tile { -webkit-backdrop-filter: none; backdrop-filter: none; }
+        .dark .ticker .ticker-tile {
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.06));
+        }
         .ticker-tile img { transition: transform 0.3s ease; }
         .ticker-tile:hover img { transform: scale(1.14) rotate(-4deg); }
         .ticker[data-static] { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
-        .ticker[data-static] .ticker-set[aria-hidden="true"] { display: none; }
-
+        
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after {
@@ -704,332 +711,90 @@
                 </div>
             </div>
 
-            <!-- Auto-scrolling mood ticker (native Web Animations API, pauses on hover) -->
+            <!-- Auto-scrolling mood ticker: 20 icons rendered once, JS clones the set just enough to loop -->
             <div class="ticker mt-2 reveal" data-ticker role="group" aria-label="A sample of the 220+ moods, scrolling automatically">
                 <div class="ticker-track">
                     <ul class="ticker-set">
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/happy.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Happy</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/in-love.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">In Love</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/joyful.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Joyful</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/relieved.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Relieved</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/smiling.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Smiling</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/winking.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Winking</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/laughing.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Laughing</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/goofy.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Goofy</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/cheeky.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Cheeky</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/flirt.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Flirt</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/geek.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Geek</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/nerd.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Nerd</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/thinking.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Thinking</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/sceptic.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sceptic</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/confused.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Confused</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/surprised.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Surprised</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/shocked.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Shocked</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/scared.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Scared</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/sad.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sad</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/crying.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Crying</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/angry.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Angry</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/tired.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Tired</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/yawning.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Yawning</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/sick.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sick</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/dazed.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Dazed</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/stunned.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Stunned</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/smug.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Smug</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/hipster.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Hipster</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/punk.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Punk</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/rockstar.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Rockstar</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/ninja.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Ninja</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/pirate.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Pirate</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/angel.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Angel</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/vampire.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Vampire</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/zombie.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Zombie</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/superhero.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Superhero</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/listening.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Listening</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/gentleman.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Gentleman</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/sporty.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sporty</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/emo.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Emo</span>
-                            </li>
-                    </ul>
-                    <ul class="ticker-set" aria-hidden="true">
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/happy.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Happy</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/in-love.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">In Love</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/joyful.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Joyful</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/relieved.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Relieved</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/smiling.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Smiling</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/winking.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Winking</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/laughing.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Laughing</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/goofy.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Goofy</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/cheeky.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Cheeky</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/flirt.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Flirt</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/geek.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Geek</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/nerd.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Nerd</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/thinking.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Thinking</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/sceptic.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sceptic</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/confused.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Confused</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/surprised.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Surprised</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/shocked.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Shocked</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/scared.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Scared</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/sad.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sad</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/crying.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Crying</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/angry.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Angry</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/tired.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Tired</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/yawning.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Yawning</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/sick.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sick</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/dazed.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Dazed</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/stunned.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Stunned</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/smug.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Smug</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/hipster.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Hipster</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/punk.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Punk</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/rockstar.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Rockstar</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/ninja.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Ninja</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/pirate.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Pirate</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/angel.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Angel</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/vampire.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Vampire</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/zombie.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Zombie</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/superhero.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Superhero</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/listening.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Listening</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/gentleman.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Gentleman</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/sporty.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sporty</span>
-                            </li>
-                            <li class="ticker-tile app-card rounded-2xl">
-                                <img src="assets/moods/emo.svg" alt="" width="48" height="48" loading="lazy" decoding="async" class="w-12 h-12 mb-2.5">
-                                <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Emo</span>
-                            </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/happy.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Happy</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/in-love.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">In Love</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/joyful.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Joyful</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/relieved.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Relieved</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/winking.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Winking</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/laughing.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Laughing</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/goofy.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Goofy</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/geek.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Geek</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/thinking.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Thinking</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/confused.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Confused</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/surprised.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Surprised</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/scared.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Scared</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/sad.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sad</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/crying.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Crying</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/angry.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Angry</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/tired.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Tired</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/sick.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Sick</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/dazed.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Dazed</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/smug.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Smug</span>
+                        </li>
+                        <li class="ticker-tile app-card rounded-2xl">
+                            <img src="assets/moods/angel.svg" alt="" width="48" height="48" decoding="async" class="w-12 h-12 mb-2.5">
+                            <span class="text-[10px] font-bold uppercase tracking-wider" style="color: var(--text-heading);">Angel</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1567,7 +1332,7 @@
             });
         });
 
-        // Mood ticker: seamless horizontal loop using the Web Animations API
+        // Mood ticker: 20 tiles rendered once; the set is cloned only as many times as the viewport needs
         (function () {
             const ticker = document.querySelector('[data-ticker]');
             if (!ticker || typeof ticker.animate !== 'function') return;
@@ -1577,25 +1342,40 @@
             const SPEED = 55; // pixels per second
             let anim = null;
             let userPaused = false;
-            let visible = true;
+            let visible = false;
+            let resizeTimer = 0;
 
             function sync() {
                 if (!anim) return;
-                (userPaused || !visible) ? anim.pause() : anim.play();
+                (userPaused || !visible || document.hidden) ? anim.pause() : anim.play();
+            }
+
+            function clearClones() {
+                track.querySelectorAll('.ticker-set[data-clone]').forEach((el) => el.remove());
             }
 
             function build() {
                 const progress = anim && anim.effect.getComputedTiming().progress;
                 if (anim) { anim.cancel(); anim = null; }
+                clearClones();
                 if (reduced.matches) { ticker.setAttribute('data-static', ''); return; }
                 ticker.removeAttribute('data-static');
                 const distance = firstSet.getBoundingClientRect().width;
                 if (!distance) return;
+                // Track must be at least viewport + one set wide for the loop to look endless.
+                const sets = Math.ceil(ticker.clientWidth / distance) + 1;
+                for (let i = 1; i < sets; i++) {
+                    const clone = firstSet.cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    clone.setAttribute('data-clone', '');
+                    track.appendChild(clone);
+                }
+                const duration = (distance / SPEED) * 1000;
                 anim = track.animate(
-                    [{ transform: 'translateX(0)' }, { transform: 'translateX(' + (-distance) + 'px)' }],
-                    { duration: (distance / SPEED) * 1000, iterations: Infinity, easing: 'linear' }
+                    [{ transform: 'translate3d(0, 0, 0)' }, { transform: 'translate3d(' + (-distance) + 'px, 0, 0)' }],
+                    { duration, iterations: Infinity, easing: 'linear' }
                 );
-                if (progress) anim.currentTime = progress * (distance / SPEED) * 1000;
+                if (progress) anim.currentTime = progress * duration;
                 sync();
             }
 
@@ -1603,8 +1383,9 @@
             ticker.addEventListener('mouseleave', () => { userPaused = false; sync(); });
             ticker.addEventListener('focusin', () => { userPaused = true; sync(); });
             ticker.addEventListener('focusout', () => { userPaused = false; sync(); });
-            new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; sync(); }).observe(ticker);
-            new ResizeObserver(build).observe(firstSet);
+            document.addEventListener('visibilitychange', sync);
+            new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; sync(); }, { rootMargin: '120px' }).observe(ticker);
+            window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(build, 150); });
             reduced.addEventListener('change', build);
             window.addEventListener('load', build);
             build();
