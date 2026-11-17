@@ -292,22 +292,118 @@
             @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
         }
 
-        /* Frameless Crisp App Screen Showcase */
-        .screen-showcase {
-            @apply relative mx-auto overflow-hidden rounded-2xl bg-[#0f172a] aspect-[9/16] ring-1 ring-slate-900/12 dark:ring-white/12 transition-transform duration-500;
+        /* Precision Concentric Titanium + Obsidian Studio Phone Frame */
+        .titanium-phone {
+            --r-outer: 2.35rem;
+            --p-rail: 3px;
+            --p-bezel: 6px;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: var(--r-outer);
+            padding: var(--p-rail);
+            background: linear-gradient(145deg, #94a3b8 0%, #475569 24%, #1e293b 52%, #64748b 78%, #334155 100%);
             box-shadow:
-                0 24px 55px -14px rgba(15, 23, 42, 0.28),
-                0 8px 20px -6px rgba(79, 70, 229, 0.12);
+                0 1px 0 0 rgba(255, 255, 255, 0.5) inset,
+                0 0 0 1px rgba(15, 23, 42, 0.22),
+                0 28px 56px -14px rgba(15, 23, 42, 0.30),
+                0 10px 22px -8px rgba(79, 70, 229, 0.14);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
         }
 
-        .dark .screen-showcase {
-            box-shadow:
-                0 26px 60px -14px rgba(2, 6, 23, 0.72),
-                0 8px 20px -6px rgba(99, 102, 241, 0.16);
+        .titanium-phone--hero {
+            --r-outer: 2.65rem;
+            --p-rail: 3.5px;
+            --p-bezel: 7px;
         }
 
-        article:hover .screen-showcase {
-            transform: translateY(-4px);
+        .dark .titanium-phone {
+            background: linear-gradient(145deg, #64748b 0%, #334155 26%, #0f172a 52%, #475569 80%, #1e293b 100%);
+            box-shadow:
+                0 1px 0 0 rgba(255, 255, 255, 0.28) inset,
+                0 0 0 1px rgba(0, 0, 0, 0.65),
+                0 30px 64px -14px rgba(2, 6, 23, 0.80),
+                0 10px 26px -8px rgba(99, 102, 241, 0.20);
+        }
+
+        article:hover .titanium-phone {
+            transform: translateY(-5px);
+        }
+
+        /* Subtle Machined Side Hardware Buttons */
+        .titanium-phone::before {
+            content: '';
+            position: absolute;
+            left: -2.5px;
+            top: 22%;
+            width: 2.5px;
+            height: 68px;
+            border-radius: 3px 0 0 3px;
+            background: linear-gradient(180deg, #64748b 0%, #334155 40%, transparent 40%, transparent 54%, #64748b 54%, #334155 100%);
+            opacity: 0.85;
+        }
+
+        .titanium-phone::after {
+            content: '';
+            position: absolute;
+            right: -2.5px;
+            top: 27%;
+            width: 2.5px;
+            height: 44px;
+            border-radius: 0 3px 3px 0;
+            background: linear-gradient(180deg, #64748b 0%, #334155 100%);
+            opacity: 0.85;
+        }
+
+        .titanium-bezel {
+            position: relative;
+            background: #060913;
+            padding: var(--p-bezel);
+            border-radius: calc(var(--r-outer) - var(--p-rail));
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+
+        /* Recessed Top Earpiece Speaker Slit */
+        .titanium-bezel::before {
+            content: '';
+            position: absolute;
+            top: 2.5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 36px;
+            height: 2.5px;
+            border-radius: 999px;
+            background: #1a2234;
+            z-index: 20;
+        }
+
+        .titanium-screen {
+            position: relative;
+            overflow: hidden;
+            border-radius: calc(var(--r-outer) - var(--p-rail) - var(--p-bezel));
+            background-color: #0f172b;
+            padding-top: 6px;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+
+        /* Subtle Diagonal OLED Glass Sheen */
+        .titanium-screen::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(125deg, rgba(255, 255, 255, 0.065) 0%, rgba(255, 255, 255, 0.015) 26%, transparent 44%);
+            z-index: 10;
+        }
+
+        .phone-stage {
+            background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.08) 0%, rgba(56, 189, 248, 0.04) 55%, transparent 100%), var(--surface-subtle);
+            border: 1px solid var(--surface-border);
+        }
+
+        .dark .phone-stage {
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.16) 0%, rgba(15, 23, 42, 0.3) 65%, transparent 100%), rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .screen-tab[aria-selected="true"] {
@@ -420,7 +516,7 @@
 
                     <div class="relative mx-auto max-w-[310px] sm:max-w-[340px]">
                         <!-- Floating Vibe Pill (Top Right) -->
-                        <div class="hidden sm:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -right-12 top-12 z-20 animate-float">
+                        <div class="hidden xl:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -right-24 top-16 z-20 animate-float">
                             <img src="assets/moods/in-love.svg" alt="" width="34" height="34" class="w-8 h-8">
                             <div>
                                 <p class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Grateful</p>
@@ -429,7 +525,7 @@
                         </div>
 
                         <!-- Floating Privacy Pill (Bottom Left) -->
-                        <div class="hidden sm:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -left-14 bottom-20 z-20 animate-float [animation-delay:2.2s]">
+                        <div class="hidden xl:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -left-24 bottom-24 z-20 animate-float [animation-delay:2.2s]">
                             <div class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg">🛡️</div>
                             <div>
                                 <p class="text-xs font-bold" style="color: var(--text-heading);">Zero Cloud Sync</p>
@@ -437,15 +533,19 @@
                             </div>
                         </div>
 
-                        <!-- Frameless App Screen -->
-                        <div class="screen-showcase max-w-[300px]">
-                            <img id="hero-screen-img"
-                                 src="app_screens/01-mood-picker.webp"
-                                 alt="Mood Meter app screen showing Explore 220+ moods grid with Energized, Grateful, Focused, Calm, Inspired, and Joyful icons"
-                                 width="1080"
-                                 height="1920"
-                                 fetchpriority="high"
-                                 class="w-full h-full object-cover transition-opacity duration-200">
+                        <!-- Studio Titanium Hero Phone -->
+                        <div class="titanium-phone titanium-phone--hero max-w-[296px]">
+                            <div class="titanium-bezel">
+                                <div class="titanium-screen">
+                                    <img id="hero-screen-img"
+                                         src="app_screens/01-mood-picker.webp"
+                                         alt="Mood Meter app screen showing Explore 220+ moods grid with Energized, Grateful, Focused, Calm, Inspired, and Joyful icons"
+                                         width="1080"
+                                         height="1920"
+                                         fetchpriority="high"
+                                         class="w-full h-auto block transition-opacity duration-200">
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Single-row Interactive Screen Switcher Pills -->
@@ -552,8 +652,14 @@
                                 Browse expressive emoticons in a buttery-smooth grid that adapts to phones and tablets, or tap the search button to find the exact vibe in seconds.
                             </p>
                         </div>
-                        <div class="screen-showcase w-full max-w-[265px]">
-                            <img src="app_screens/01-mood-picker.webp" alt="Mood Meter main screen showing Explore 220+ moods with Energized, Grateful, Focused, Calm, Inspired, Joyful, Playful, Content, and Reflective" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                        <div class="phone-stage rounded-[2rem] p-6">
+                            <div class="titanium-phone w-full max-w-[242px]">
+                                <div class="titanium-bezel">
+                                    <div class="titanium-screen">
+                                        <img src="app_screens/01-mood-picker.webp" alt="Mood Meter main screen showing Explore 220+ moods with Energized, Grateful, Focused, Calm, Inspired, Joyful, Playful, Content, and Reflective" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </article>
 
@@ -569,8 +675,14 @@
                                 Slide from subtle <code class="text-xs font-bold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">1/5</code> to peak <code class="text-xs font-bold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">5/5</code> intensity with dynamic pulse animations, dictate reflections with keyboard voice typing, and backdate any moment.
                             </p>
                         </div>
-                        <div class="screen-showcase w-full max-w-[265px]">
-                            <img src="app_screens/02-capture-vibe.webp" alt="Capture Vibe screen showing Grateful mood, 3/5 intensity slider, and personal dinner reflection" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                        <div class="phone-stage rounded-[2rem] p-6">
+                            <div class="titanium-phone w-full max-w-[242px]">
+                                <div class="titanium-bezel">
+                                    <div class="titanium-screen">
+                                        <img src="app_screens/02-capture-vibe.webp" alt="Capture Vibe screen showing Grateful mood, 3/5 intensity slider, and personal dinner reflection" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </article>
 
@@ -586,8 +698,14 @@
                                 Every reflection lives in a clean chronological timeline with intensity badges and timestamps. Filter by keyword or mood name, and tap any entry to edit or delete.
                             </p>
                         </div>
-                        <div class="screen-showcase w-full max-w-[265px]">
-                            <img src="app_screens/03-mood-history.webp" alt="Mood Meter History screen listing Energized 5/5, Focused 4/5, Grateful 5/5, and Calm 4/5 entries with journal notes" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                        <div class="phone-stage rounded-[2rem] p-6">
+                            <div class="titanium-phone w-full max-w-[242px]">
+                                <div class="titanium-bezel">
+                                    <div class="titanium-screen">
+                                        <img src="app_screens/03-mood-history.webp" alt="Mood Meter History screen listing Energized 5/5, Focused 4/5, Grateful 5/5, and Calm 4/5 entries with journal notes" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -595,8 +713,8 @@
                 <!-- Bottom Row: 2 Wide Feature Cards (Analytics + Custom Vibes) -->
                 <div id="analytics" class="grid lg:grid-cols-2 gap-8 pt-4">
                     <!-- Screen 4: Deep Analytics -->
-                    <article class="app-card rounded-[2.5rem] p-8 sm:p-10 grid sm:grid-cols-12 gap-8 items-center reveal">
-                        <div class="sm:col-span-7 space-y-4">
+                    <article class="app-card rounded-[2.5rem] p-7 sm:p-9 grid sm:grid-cols-12 gap-6 items-center reveal">
+                        <div class="sm:col-span-6 space-y-4">
                             <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-pink-600 dark:text-pink-400">
                                 <span class="w-6 h-6 rounded-lg bg-pink-500/12 flex items-center justify-center">4</span>
                                 Vibe Journey Insights
@@ -605,23 +723,29 @@
                             <p class="text-sm leading-relaxed">
                                 Turn daily check-ins into self-awareness. Track your <strong>Current Vibe Streak</strong>, check your <strong>Vibe Power Gauge</strong> (<em>Low Hum</em> to <em>Supernova</em>), and inspect 7-day intensity curves and hourly check-in patterns.
                             </p>
-                            <div class="grid grid-cols-2 gap-2.5 pt-2 text-xs font-bold">
-                                <div class="p-3 rounded-2xl subtle-tile text-indigo-700 dark:text-indigo-300">🔥 Current Vibe Streak</div>
-                                <div class="p-3 rounded-2xl subtle-tile text-sky-700 dark:text-sky-300">⚡ Vibe Power Gauge</div>
-                                <div class="p-3 rounded-2xl subtle-tile text-pink-700 dark:text-pink-300">📈 7-Day Intensity Trend</div>
-                                <div class="p-3 rounded-2xl subtle-tile text-emerald-700 dark:text-emerald-300">🕒 Hourly Activity Bars</div>
+                            <div class="grid grid-cols-2 gap-2 pt-2 text-xs font-bold">
+                                <div class="p-3 rounded-2xl subtle-tile text-indigo-700 dark:text-indigo-300">🔥 Vibe Streak</div>
+                                <div class="p-3 rounded-2xl subtle-tile text-sky-700 dark:text-sky-300">⚡ Power Gauge</div>
+                                <div class="p-3 rounded-2xl subtle-tile text-pink-700 dark:text-pink-300">📈 7-Day Trend</div>
+                                <div class="p-3 rounded-2xl subtle-tile text-emerald-700 dark:text-emerald-300">🕒 Hourly Bars</div>
                             </div>
                         </div>
-                        <div class="sm:col-span-5">
-                            <div class="screen-showcase w-full max-w-[240px]">
-                                <img src="app_screens/04-mood-trends.webp" alt="Mood Meter Analytics screen displaying 14% Inspired and 14% Joyful donut gauges alongside a 7-day Intensity Trend line chart" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                        <div class="sm:col-span-6">
+                            <div class="phone-stage rounded-[2rem] p-4 sm:p-5">
+                                <div class="titanium-phone w-full max-w-[242px]">
+                                    <div class="titanium-bezel">
+                                        <div class="titanium-screen">
+                                            <img src="app_screens/04-mood-trends.webp" alt="Mood Meter Analytics screen displaying 14% Inspired and 14% Joyful donut gauges alongside a 7-day Intensity Trend line chart" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </article>
 
                     <!-- Screen 5: Custom Vibes -->
-                    <article class="app-card rounded-[2.5rem] p-8 sm:p-10 grid sm:grid-cols-12 gap-8 items-center reveal" style="transition-delay: 120ms;">
-                        <div class="sm:col-span-7 space-y-4">
+                    <article class="app-card rounded-[2.5rem] p-7 sm:p-9 grid sm:grid-cols-12 gap-6 items-center reveal" style="transition-delay: 120ms;">
+                        <div class="sm:col-span-6 space-y-4">
                             <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-violet-600 dark:text-violet-400">
                                 <span class="w-6 h-6 rounded-lg bg-violet-500/12 flex items-center justify-center">5</span>
                                 Personalization
@@ -631,14 +755,20 @@
                                 Have a specific feeling only you know—like <em>Post-Run Glow</em>, <em>Deep Flow</em>, or <em>Sunday Reset</em>? Create unlimited <strong>Custom Vibes</strong>, pair them with any icon, and track them seamlessly in History and Analytics.
                             </p>
                             <ul class="space-y-2 pt-2 text-sm font-medium">
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Name unlimited personal emotions</li>
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Pair with any of 220+ expressive icons</li>
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Switch effortlessly between Light &amp; Dark themes</li>
+                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Unlimited personal emotions</li>
+                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Pair with 220+ expressive icons</li>
+                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Light &amp; Dark themes built in</li>
                             </ul>
                         </div>
-                        <div class="sm:col-span-5">
-                            <div class="screen-showcase w-full max-w-[240px]">
-                                <img src="app_screens/05-custom-moods.webp" alt="Custom Vibes screen showing Create New Vibe button and personal emotions Energized, Grateful, Focused, Calm, and Inspired" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                        <div class="sm:col-span-6">
+                            <div class="phone-stage rounded-[2rem] p-4 sm:p-5">
+                                <div class="titanium-phone w-full max-w-[242px]">
+                                    <div class="titanium-bezel">
+                                        <div class="titanium-screen">
+                                            <img src="app_screens/05-custom-moods.webp" alt="Custom Vibes screen showing Create New Vibe button and personal emotions Energized, Grateful, Focused, Calm, and Inspired" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </article>
