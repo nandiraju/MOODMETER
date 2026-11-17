@@ -100,7 +100,7 @@
             --surface-subtle: rgba(255, 255, 255, 0.05);
             --surface-border: rgba(255, 255, 255, 0.08);
             --surface-shadow: 0 20px 45px -15px rgba(2, 6, 23, 0.65);
-            --text-main: #94a3b8;
+            --text-main: #aab6cb;
             --text-heading: #ffffff;
         }
 
@@ -154,6 +154,63 @@
             @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
         }
         .obf-addr[data-u]::before { content: attr(data-u) "\0040" attr(data-d); }
+        /* Dark theme: liquid-glass surfaces over ambient color orbs */
+        .ambient { display: none; }
+        .dark .ambient {
+            display: block;
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .ambient span {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(90px);
+            opacity: 0.55;
+        }
+        .ambient .orb-a { width: 46vw; height: 46vw; top: -12%; left: -8%; background: #4f46e5; }
+        .ambient .orb-b { width: 40vw; height: 40vw; top: 28%; right: -10%; background: #0ea5e9; opacity: 0.38; }
+        .ambient .orb-c { width: 44vw; height: 44vw; bottom: -14%; left: 26%; background: #db2777; opacity: 0.34; }
+
+        .dark .app-card {
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.04) 45%, rgba(255, 255, 255, 0.07) 100%);
+            -webkit-backdrop-filter: blur(26px) saturate(170%);
+            backdrop-filter: blur(26px) saturate(170%);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.22),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+                inset 0 0 28px rgba(255, 255, 255, 0.025),
+                0 24px 48px -22px rgba(2, 6, 23, 0.75);
+        }
+
+        .dark .subtle-tile {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+            -webkit-backdrop-filter: blur(14px) saturate(150%);
+            backdrop-filter: blur(14px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+
+        .dark .phone-stage {
+            background:
+                radial-gradient(circle at 50% 0%, rgba(129, 140, 248, 0.20) 0%, rgba(255, 255, 255, 0.03) 70%),
+                rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .dark .nav-glass {
+            background: rgba(15, 23, 42, 0.45);
+            -webkit-backdrop-filter: blur(24px) saturate(170%);
+            backdrop-filter: blur(24px) saturate(170%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after {
@@ -174,6 +231,9 @@
     </style>
 </head>
 <body class="selection:bg-indigo-500/20 antialiased">
+
+    <!-- Ambient color orbs (visible in dark theme, give the glass something to refract) -->
+    <div class="ambient" aria-hidden="true"><span class="orb-a"></span><span class="orb-b"></span><span class="orb-c"></span></div>
 
     <!-- Navigation -->
     <header class="fixed top-0 inset-x-0 z-50 nav-glass">
