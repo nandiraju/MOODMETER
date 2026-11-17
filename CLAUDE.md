@@ -40,6 +40,10 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
   - Pure CSS `.iphone`, `.iphone-controls`, `.iphone-screen`, `.iphone-status`, and `.iphone-island` use `container-type: inline-size` and `cqw` units (`aspect-ratio: 71.5 / 149.6`) so frame bezels, hardware buttons, and Dynamic Island scale proportionally at any width (`max-w-[292px]` in hero, `max-w-[300px]` in 3-col feature row, `max-w-[210px]` in 2-col wide cards).
   - `.iphone-screen img` uses `clip-path: inset(5% 0 2.5%)` to trim the source screenshot status bar and home indicator cleanly.
   - Do **not** place an extra wrapper stage card behind `.iphone` mockups; let the phone sit directly inside `.app-card` to maximize screen legibility.
+- **Shiny Animated Borders (`@property --shine-angle`, `shine-spin` keyframes):**
+  - Selected hero pill (`.screen-tab[aria-selected="true"]`, plus a `.dark` variant so it outranks `.dark .app-card`): indigo `padding-box` fill over a conic-gradient `border-box` layer, spun every 2.8 s, plus a one-shot `pill-select-glow` ring on selection.
+  - Store badges (`a.store-badge`, hero + final download CTA): the SVGs draw their own 1px border, so a `::after` ring masked to border-only (`mask … exclude`, 1.6px, `border-radius: 0.48rem` = SVG `rx 5.5` at `h-14`) sits exactly on it and spins every 3 s. Badge `<img>`s are `display:block`, `width="168" height="56"` (both SVGs are 3:1).
+- **Hero Autoplay:** pills auto-advance every 3.8 s via the same `activateScreenTab()` a click uses. Pauses on hover, keyboard focus, when the phone is <35% visible, and when the tab is hidden; a trusted click/keypress holds the screen for 10 s (`USER_IDLE`). Disabled under `prefers-reduced-motion`. Remaining screenshots preload when the phone first scrolls into view.
 - **Anti-Scraper Email & Bot Protection (Mandatory):**
   - **Never** place any raw email address or literal `m-a-i-l-t-o` URI scheme in HTML, JSON-LD, CSS, JS string literals, `llms.txt`, or markdown files served from the repo.
   - Support email reveal/launch uses shifted character-code arrays decoded only inside `e.isTrusted` click/submit handlers, rendered visually via CSS `::before { content: attr(data-u) "\0040" attr(data-d); }` (`.obf-addr`), paired with the offscreen `#website-url` honeypot field on `contact.html`.
@@ -69,5 +73,6 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
 - **Structured Data (Schema.org JSON-LD):**
   - `index.html` publishes the canonical `@graph`: `Organization` (`#org` with 512x512 logo and App Store / Google Play `sameAs` links), `WebSite` (`#website`), `WebPage` (`#webpage`), `MobileApplication` (`#app`), and `FAQPage` (`#faq-schema`).
   - **Keep `FAQPage` JSON-LD answers synced word-for-word with the visible `#faq` cards.**
+  - No `softwareVersion` (iOS/Android versions differ and go stale). No `aggregateRating`/`review` unless taken from real store data **and** shown on the page (US App Store had 0 ratings as of 2026-11-17).
   - Subpages reference `#website`, `#org`, and `#app` by `@id` and include a `BreadcrumbList`.
 - **Freshness & Crawl Files:** Update `<lastmod>` in `sitemap.xml`, `<time datetime="...">` / `dateModified` on edited legal pages, and `llms.txt` whenever product facts or URLs change.
