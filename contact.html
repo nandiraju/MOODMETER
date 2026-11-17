@@ -52,7 +52,11 @@
         "@type": "Organization",
         "name": "Mood Meter",
         "url": "https://moodmeter.cend.in/",
-        "email": "social@nandiraju.com"
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "url": "https://moodmeter.cend.in/contact.html"
+        }
       }
     }
     </script>
@@ -184,6 +188,19 @@
             border-color: #4f46e5;
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
         }
+
+        .obf-addr[data-u]::before {
+            content: attr(data-u) "\0040" attr(data-d);
+        }
+
+        .hp-trap {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="selection:bg-indigo-500/20 antialiased">
@@ -271,12 +288,22 @@
                             </div>
                         </div>
                         <p class="text-sm leading-relaxed">
-                            Consistent with our privacy-first philosophy, this website uses zero third-party form trackers. Email us directly anytime:
+                            To protect our inbox from automated spam harvesters, click below to reveal or copy our direct support email:
                         </p>
-                        <a href="mailto:social@nandiraju.com" class="flex items-center justify-between px-5 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/25 transition">
-                            <span>social@nandiraju.com</span>
-                            <span>→</span>
-                        </a>
+                        <div class="space-y-2.5">
+                            <button type="button" id="direct-email-btn" class="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/25 transition cursor-pointer">
+                                <span id="direct-email-label">Click to Reveal Support Email</span>
+                                <span id="direct-email-arrow">🔒</span>
+                            </button>
+                            <div id="email-actions" class="hidden grid-cols-2 gap-2.5 pt-1">
+                                <button type="button" id="copy-email-btn" class="py-2.5 px-4 rounded-xl subtle-tile text-xs font-bold hover:border-indigo-500 transition cursor-pointer" style="color: var(--text-heading);">
+                                    Copy Address
+                                </button>
+                                <button type="button" id="launch-email-btn" class="py-2.5 px-4 rounded-xl subtle-tile text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:border-indigo-500 transition cursor-pointer">
+                                    Open Mail App →
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="app-card p-8 rounded-[2rem] space-y-4">
@@ -329,6 +356,12 @@
                         <div>
                             <label for="message" class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--text-heading);">Message</label>
                             <textarea id="message" rows="6" required placeholder="Tell us what's on your mind..." class="form-input"></textarea>
+                        </div>
+
+                        <!-- Anti-bot honeypot trap -->
+                        <div class="hp-trap" aria-hidden="true">
+                            <label for="website-url">Website</label>
+                            <input id="website-url" name="website_url" type="text" tabindex="-1" autocomplete="off">
                         </div>
 
                         <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-indigo-600/25 transition active:scale-[0.99] cursor-pointer">
@@ -387,15 +420,69 @@
             syncThemeIcons();
         });
 
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('sender-name').value.trim();
-            const topic = document.getElementById('topic').value;
-            const msg = document.getElementById('message').value.trim();
-            const subject = encodeURIComponent(`[Mood Meter] ${topic}${name ? ' — ' + name : ''}`);
-            const body = encodeURIComponent(`${msg}${name ? '\n\n— ' + name : ''}`);
-            window.location.href = `mailto:social@nandiraju.com?subject=${subject}&body=${body}`;
-        });
+        // Anti-scraper human-gated email decoder & honeypot-protected form
+        (function() {
+            const dec = (arr) => String.fromCharCode(...arr.map((c) => c - 7));
+            const getParts = () => ({
+                u: dec([122,118,106,112,104,115]),
+                d: dec([117,104,117,107,112,121,104,113,124,53,106,118,116]),
+                p: dec([116,104,112,115,123,118,65])
+            });
+
+            const directBtn = document.getElementById('direct-email-btn');
+            const directLbl = document.getElementById('direct-email-label');
+            const directArr = document.getElementById('direct-email-arrow');
+            const actionsRow = document.getElementById('email-actions');
+            const copyBtn = document.getElementById('copy-email-btn');
+            const launchBtn = document.getElementById('launch-email-btn');
+            let isRevealed = false;
+
+            directBtn.addEventListener('click', (e) => {
+                if (!e.isTrusted) return;
+                const { u, d, p } = getParts();
+                if (!isRevealed) {
+                    isRevealed = true;
+                    directLbl.textContent = '';
+                    directLbl.classList.add('obf-addr');
+                    directLbl.setAttribute('data-u', u);
+                    directLbl.setAttribute('data-d', d);
+                    directArr.textContent = '✉';
+                    actionsRow.classList.remove('hidden');
+                    actionsRow.classList.add('grid');
+                } else {
+                    window.location.href = p + u + String.fromCharCode(64) + d;
+                }
+            });
+
+            copyBtn.addEventListener('click', async (e) => {
+                if (!e.isTrusted) return;
+                const { u, d } = getParts();
+                try {
+                    await navigator.clipboard.writeText(u + String.fromCharCode(64) + d);
+                    copyBtn.textContent = 'Copied ✓';
+                    setTimeout(() => { copyBtn.textContent = 'Copy Address'; }, 2000);
+                } catch (_) {}
+            });
+
+            launchBtn.addEventListener('click', (e) => {
+                if (!e.isTrusted) return;
+                const { u, d, p } = getParts();
+                window.location.href = p + u + String.fromCharCode(64) + d;
+            });
+
+            document.getElementById('contact-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!e.isTrusted) return;
+                if (document.getElementById('website-url').value) return;
+                const { u, d, p } = getParts();
+                const name = document.getElementById('sender-name').value.trim();
+                const topic = document.getElementById('topic').value;
+                const msg = document.getElementById('message').value.trim();
+                const subject = encodeURIComponent(`[Mood Meter] ${topic}${name ? ' — ' + name : ''}`);
+                const body = encodeURIComponent(`${msg}${name ? '\n\n— ' + name : ''}`);
+                window.location.href = `${p}${u}${String.fromCharCode(64)}${d}?subject=${subject}&body=${body}`;
+            });
+        })();
     </script>
 </body>
 </html>
