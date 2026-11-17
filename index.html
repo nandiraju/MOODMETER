@@ -20,15 +20,16 @@
     <link rel="alternate" hreflang="x-default" href="https://moodmeter.cend.in/">
 
     <!-- Icons -->
-    <link rel="icon" type="image/png" sizes="48x48" href="assets/images/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="assets/images/icon-128x128-1.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="assets/images/app-icon.svg?v=2">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/images/favicon-48x48.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="128x128" href="assets/images/icon-128x128-1.png?v=2">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192x192.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png?v=2">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Preload Hero Screenshot -->
-    <link rel="preload" as="image" href="app_screens/01-mood-picker.webp" type="image/webp" fetchpriority="high">
+    <!-- Preload hero screenshot (LCP on desktop). Desktop-only: on phones it sits below the fold and would compete with CSS. -->
+    <link rel="preload" as="image" media="(min-width: 1024px)" href="app_screens/01-mood-picker.webp" imagesrcset="app_screens/01-mood-picker-600.webp 600w, app_screens/01-mood-picker-900.webp 900w, app_screens/01-mood-picker.webp 1080w" imagesizes="292px" type="image/webp" fetchpriority="high">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -37,8 +38,8 @@
     <meta property="og:url" content="https://moodmeter.cend.in/">
     <meta property="og:title" content="Mood Meter — Explore 220+ Moods. Own Your Vibe.">
     <meta property="og:description" content="Capture feelings in seconds, spot 7-day intensity trends, create custom vibes, and keep every journal note 100% on your device. Free forever with zero ads.">
-    <meta property="og:image" content="https://moodmeter.cend.in/assets/images/og-image.png">
-    <meta property="og:image:type" content="image/png">
+    <meta property="og:image" content="https://moodmeter.cend.in/assets/images/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Mood Meter app screens showing 220+ mood picker, Capture Vibe intensity slider, and Intensity Trend analytics">
@@ -48,10 +49,33 @@
     <meta name="twitter:url" content="https://moodmeter.cend.in/">
     <meta name="twitter:title" content="Mood Meter — Explore 220+ Moods. Own Your Vibe.">
     <meta name="twitter:description" content="Free, local-first mood tracker for iOS &amp; Android. 220+ moods, custom vibes, 1–5 intensity slider, searchable history, and rich streak analytics.">
-    <meta name="twitter:image" content="https://moodmeter.cend.in/assets/images/og-image.png">
+    <meta name="twitter:image" content="https://moodmeter.cend.in/assets/images/og-image.jpg">
     <meta name="twitter:image:alt" content="Mood Meter app screens showing mood picker, capture vibe modal, and emotional analytics">
 
-    <!-- Structured Data (JSON-LD for Search & AI Engines) -->
+
+    <!-- Fonts: self-hosted variable woff2 via @font-face in src/css/<page>.css (font-display: swap). Not preloaded on purpose: preloading competed with the render-blocking CSS on slow mobile connections. -->
+
+    <!-- Precompiled Tailwind CSS (source: src/css/index.css) -->
+    <link rel="stylesheet" href="assets/css/index.css?v=7bdeda11b9">
+    <!-- Google tag (GA4, MoodMeter property). Consent defaults + banner live in assets/js/analytics.js, which must load first and synchronously. -->
+    <script src="assets/js/analytics.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HBMC3XJK4X"></script>
+    <noscript>
+        <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
+
+    <!-- Dark theme by default; light only if the visitor chose it (saved as mm-theme=light) -->
+    <script>
+        (function () {
+            let light = false;
+            try { light = localStorage.getItem('mm-theme') === 'light'; } catch (_) {}
+            document.documentElement.classList.toggle('dark', !light);
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', light ? '#f8fbff' : '#0f172a');
+        })();
+    </script>
+
+    <!-- Structured data (JSON-LD), placed after the critical CSS/JS so the stylesheet is discovered first -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -121,7 +145,7 @@
           },
           "primaryImageOfPage": {
             "@type": "ImageObject",
-            "url": "https://moodmeter.cend.in/assets/images/og-image.png",
+            "url": "https://moodmeter.cend.in/assets/images/og-image.jpg",
             "width": 1200,
             "height": 630
           },
@@ -138,7 +162,7 @@
           "inLanguage": "en",
           "isAccessibleForFree": true,
           "url": "https://moodmeter.cend.in/",
-          "image": "https://moodmeter.cend.in/assets/images/og-image.png",
+          "image": "https://moodmeter.cend.in/assets/images/og-image.jpg",
           "screenshot": [
             "https://moodmeter.cend.in/app_screens/01-mood-picker.webp",
             "https://moodmeter.cend.in/app_screens/02-capture-vibe.webp",
@@ -235,33 +259,6 @@
       ]
     }
     </script>
-
-    <!-- Resource Hints & Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Precompiled Tailwind CSS (source: src/css/index.css) -->
-    <link rel="stylesheet" href="assets/css/index.css?v=ad12f6a73c">
-    <!-- Google tag (GA4, MoodMeter property). Consent defaults + banner live in assets/js/analytics.js, which must load first and synchronously. -->
-    <script src="assets/js/analytics.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HBMC3XJK4X"></script>
-    <noscript>
-        <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
-    </noscript>
-
-    <!-- Dark theme by default; light only if the visitor chose it (saved as mm-theme=light) -->
-    <script>
-        (function () {
-            let light = false;
-            try { light = localStorage.getItem('mm-theme') === 'light'; } catch (_) {}
-            document.documentElement.classList.toggle('dark', !light);
-            const meta = document.querySelector('meta[name="theme-color"]');
-            if (meta) meta.setAttribute('content', light ? '#f8fbff' : '#0f172a');
-        })();
-    </script>
-
 </head>
 <body class="selection:bg-indigo-500/20 antialiased">
 
@@ -274,7 +271,7 @@
     <header class="fixed top-0 inset-x-0 z-50 nav-glass">
         <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
             <a href="/" class="flex items-center gap-3 group">
-                <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-sm ring-1 ring-slate-900/10 dark:ring-white/10 group-hover:scale-105 transition-transform">
+                <img src="assets/images/app-icon.svg" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-sm ring-1 ring-slate-900/10 dark:ring-white/10 group-hover:scale-105 transition-transform">
                 <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight" style="color: var(--text-heading);">
                     Mood<span class="text-indigo-600 dark:text-indigo-400">Meter</span>
                 </span>
@@ -358,6 +355,8 @@
                             <div class="iphone-screen">
                                 <img id="hero-screen-img"
                                      src="app_screens/01-mood-picker.webp"
+                                     srcset="app_screens/01-mood-picker-600.webp 600w, app_screens/01-mood-picker-900.webp 900w, app_screens/01-mood-picker.webp 1080w"
+                                     sizes="292px"
                                      alt="Mood Meter app screen showing Explore 220+ moods grid with Energized, Grateful, Focused, Calm, Inspired, and Joyful icons"
                                      width="1080"
                                      height="1920"
@@ -530,7 +529,7 @@
                             <div class="iphone w-full max-w-[300px]">
                                 <div class="iphone-controls" aria-hidden="true"></div>
                                 <div class="iphone-screen">
-                                    <img src="app_screens/01-mood-picker.webp" alt="Mood Meter main screen showing Explore 220+ moods with Energized, Grateful, Focused, Calm, Inspired, Joyful, Playful, Content, and Reflective" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    <img src="app_screens/01-mood-picker.webp" srcset="app_screens/01-mood-picker-600.webp 600w, app_screens/01-mood-picker-900.webp 900w, app_screens/01-mood-picker.webp 1080w" sizes="300px" alt="Mood Meter main screen showing Explore 220+ moods with Energized, Grateful, Focused, Calm, Inspired, Joyful, Playful, Content, and Reflective" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
                                     <div class="iphone-status" aria-hidden="true">
                                         <span>9:41</span>
                                         <span class="iphone-island"></span>
@@ -558,7 +557,7 @@
                             <div class="iphone w-full max-w-[300px]">
                                 <div class="iphone-controls" aria-hidden="true"></div>
                                 <div class="iphone-screen">
-                                    <img src="app_screens/02-capture-vibe.webp" alt="Capture Vibe screen showing Grateful mood, 3/5 intensity slider, and personal dinner reflection" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    <img src="app_screens/02-capture-vibe.webp" srcset="app_screens/02-capture-vibe-600.webp 600w, app_screens/02-capture-vibe-900.webp 900w, app_screens/02-capture-vibe.webp 1080w" sizes="300px" alt="Capture Vibe screen showing Grateful mood, 3/5 intensity slider, and personal dinner reflection" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
                                     <div class="iphone-status" aria-hidden="true">
                                         <span>9:41</span>
                                         <span class="iphone-island"></span>
@@ -586,7 +585,7 @@
                             <div class="iphone w-full max-w-[300px]">
                                 <div class="iphone-controls" aria-hidden="true"></div>
                                 <div class="iphone-screen">
-                                    <img src="app_screens/03-mood-history.webp" alt="Mood Meter History screen listing Energized 5/5, Focused 4/5, Grateful 5/5, and Calm 4/5 entries with journal notes" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    <img src="app_screens/03-mood-history.webp" srcset="app_screens/03-mood-history-600.webp 600w, app_screens/03-mood-history-900.webp 900w, app_screens/03-mood-history.webp 1080w" sizes="300px" alt="Mood Meter History screen listing Energized 5/5, Focused 4/5, Grateful 5/5, and Calm 4/5 entries with journal notes" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
                                     <div class="iphone-status" aria-hidden="true">
                                         <span>9:41</span>
                                         <span class="iphone-island"></span>
@@ -617,19 +616,19 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-2.5 text-xs font-bold">
                                     <div class="h-11 px-2.5 rounded-full subtle-tile text-indigo-700 dark:text-indigo-300 flex items-center gap-2 whitespace-nowrap">
-                                        <ion-icon name="flame" class="text-base shrink-0"></ion-icon>
+                                        <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#flame"></use></svg>
                                         <span>Vibe Streak</span>
                                     </div>
                                     <div class="h-11 px-2.5 rounded-full subtle-tile text-sky-700 dark:text-sky-300 flex items-center gap-2 whitespace-nowrap">
-                                        <ion-icon name="flash" class="text-base shrink-0"></ion-icon>
+                                        <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#flash"></use></svg>
                                         <span>Power Gauge</span>
                                     </div>
                                     <div class="h-11 px-2.5 rounded-full subtle-tile text-pink-700 dark:text-pink-300 flex items-center gap-2 whitespace-nowrap">
-                                        <ion-icon name="analytics" class="text-base shrink-0"></ion-icon>
+                                        <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#analytics"></use></svg>
                                         <span>7-Day Trend</span>
                                     </div>
                                     <div class="h-11 px-2.5 rounded-full subtle-tile text-emerald-700 dark:text-emerald-300 flex items-center gap-2 whitespace-nowrap">
-                                        <ion-icon name="bar-chart" class="text-base shrink-0"></ion-icon>
+                                        <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#bar-chart"></use></svg>
                                         <span>Hourly Bars</span>
                                     </div>
                                 </div>
@@ -638,7 +637,7 @@
                                 <div class="iphone w-full max-w-[210px]">
                                     <div class="iphone-controls" aria-hidden="true"></div>
                                     <div class="iphone-screen">
-                                        <img src="app_screens/04-mood-trends.webp" alt="Mood Meter Analytics screen displaying 14% Inspired and 14% Joyful donut gauges alongside a 7-day Intensity Trend line chart" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        <img src="app_screens/04-mood-trends.webp" srcset="app_screens/04-mood-trends-600.webp 600w, app_screens/04-mood-trends-900.webp 900w, app_screens/04-mood-trends.webp 1080w" sizes="210px" alt="Mood Meter Analytics screen displaying 14% Inspired and 14% Joyful donut gauges alongside a 7-day Intensity Trend line chart" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
                                         <div class="iphone-status" aria-hidden="true">
                                             <span>9:41</span>
                                             <span class="iphone-island"></span>
@@ -667,19 +666,19 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-2.5 text-xs font-bold">
                                     <div class="h-11 px-2.5 rounded-full subtle-tile text-violet-700 dark:text-violet-300 flex items-center gap-2 whitespace-nowrap">
-                                        <ion-icon name="add-circle" class="text-base shrink-0"></ion-icon>
+                                        <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#add-circle"></use></svg>
                                         <span>Name Vibes</span>
                                     </div>
                                     <div class="h-11 px-2.5 rounded-full subtle-tile text-indigo-700 dark:text-indigo-300 flex items-center gap-2 whitespace-nowrap">
-                                        <ion-icon name="happy" class="text-base shrink-0"></ion-icon>
+                                        <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#happy"></use></svg>
                                         <span>220+ Icons</span>
                                     </div>
                                     <div class="h-11 px-2.5 rounded-full subtle-tile text-sky-700 dark:text-sky-300 flex items-center gap-2 whitespace-nowrap">
-                                        <ion-icon name="create" class="text-base shrink-0"></ion-icon>
+                                        <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#create"></use></svg>
                                         <span>Edit Anytime</span>
                                     </div>
                                     <div class="h-11 px-2.5 rounded-full subtle-tile text-emerald-700 dark:text-emerald-300 flex items-center gap-2 whitespace-nowrap">
-                                        <ion-icon name="contrast" class="text-base shrink-0"></ion-icon>
+                                        <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#contrast"></use></svg>
                                         <span>Light &amp; Dark</span>
                                     </div>
                                 </div>
@@ -688,7 +687,7 @@
                                 <div class="iphone w-full max-w-[210px]">
                                     <div class="iphone-controls" aria-hidden="true"></div>
                                     <div class="iphone-screen">
-                                        <img src="app_screens/05-custom-moods.webp" alt="Custom Vibes screen showing Create New Vibe button and personal emotions Energized, Grateful, Focused, Calm, and Inspired" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        <img src="app_screens/05-custom-moods.webp" srcset="app_screens/05-custom-moods-600.webp 600w, app_screens/05-custom-moods-900.webp 900w, app_screens/05-custom-moods.webp 1080w" sizes="210px" alt="Custom Vibes screen showing Create New Vibe button and personal emotions Energized, Grateful, Focused, Calm, and Inspired" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
                                         <div class="iphone-status" aria-hidden="true">
                                             <span>9:41</span>
                                             <span class="iphone-island"></span>
@@ -711,63 +710,63 @@
                                 <h3 class="text-2xl font-extrabold">8 Personal Metrics Computed Locally on Your Phone</h3>
                             </div>
                             <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-1.5 rounded-full bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 self-start sm:self-auto">
-                                <ion-icon name="hardware-chip" class="text-sm"></ion-icon>
+                                <svg class="icon text-sm" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#hardware-chip"></use></svg>
                                 <span>Zero Server Processing</span>
                             </span>
                         </div>
                         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <p class="text-indigo-600 dark:text-indigo-400 font-bold text-sm mb-1 flex items-center gap-2">
-                                    <ion-icon name="calendar" class="text-base shrink-0"></ion-icon>
+                                    <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#calendar"></use></svg>
                                     <span>Days Tracked</span>
                                 </p>
                                 <p class="text-xs">Active days &amp; total sessions</p>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <p class="text-amber-600 dark:text-amber-400 font-bold text-sm mb-1 flex items-center gap-2">
-                                    <ion-icon name="pulse" class="text-base shrink-0"></ion-icon>
+                                    <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#pulse"></use></svg>
                                     <span>Avg Intensity</span>
                                 </p>
                                 <p class="text-xs">Overall 1–5 mean score</p>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <p class="text-pink-600 dark:text-pink-400 font-bold text-sm mb-1 flex items-center gap-2">
-                                    <ion-icon name="heart" class="text-base shrink-0"></ion-icon>
+                                    <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#heart"></use></svg>
                                     <span>Common Mood</span>
                                 </p>
                                 <p class="text-xs">Your signature recurring vibe</p>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm mb-1 flex items-center gap-2">
-                                    <ion-icon name="trending-up" class="text-base shrink-0"></ion-icon>
+                                    <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#trending-up"></use></svg>
                                     <span>7D Average</span>
                                 </p>
                                 <p class="text-xs">Week-over-week % shift</p>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <p class="text-sky-600 dark:text-sky-400 font-bold text-sm mb-1 flex items-center gap-2">
-                                    <ion-icon name="sunny" class="text-base shrink-0"></ion-icon>
+                                    <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#sunny"></use></svg>
                                     <span>Best Day</span>
                                 </p>
                                 <p class="text-xs">Highest average intensity date</p>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <p class="text-slate-700 dark:text-slate-300 font-bold text-sm mb-1 flex items-center gap-2">
-                                    <ion-icon name="cloudy-night" class="text-base shrink-0"></ion-icon>
+                                    <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#cloudy-night"></use></svg>
                                     <span>Worst Day</span>
                                 </p>
                                 <p class="text-xs">Lowest average intensity date</p>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <p class="text-violet-600 dark:text-violet-400 font-bold text-sm mb-1 flex items-center gap-2">
-                                    <ion-icon name="rocket" class="text-base shrink-0"></ion-icon>
+                                    <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#rocket"></use></svg>
                                     <span>High Intensity</span>
                                 </p>
                                 <p class="text-xs">Share of days rated above 4/5</p>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <p class="text-cyan-600 dark:text-cyan-400 font-bold text-sm mb-1 flex items-center gap-2">
-                                    <ion-icon name="color-palette" class="text-base shrink-0"></ion-icon>
+                                    <svg class="icon text-base shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#color-palette"></use></svg>
                                     <span>Mood Diversity</span>
                                 </p>
                                 <p class="text-xs">Unique vibes logged per day</p>
@@ -798,7 +797,7 @@
                     <div class="grid md:grid-cols-3 gap-6 items-stretch reveal">
                         <div class="p-8 rounded-3xl app-card h-full flex flex-col">
                             <div class="w-11 h-11 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-5">
-                                <ion-icon name="lock-closed"></ion-icon>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#lock-closed"></use></svg>
                             </div>
                             <h3 class="text-xl font-bold mb-2.5">100% On-Device</h3>
                             <p class="text-sm leading-relaxed">Your mood history and journal reflections live exclusively in local storage on your phone—never on external servers.</p>
@@ -806,7 +805,7 @@
 
                         <div class="p-8 rounded-3xl app-card h-full flex flex-col">
                             <div class="w-11 h-11 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-5">
-                                <ion-icon name="eye-off"></ion-icon>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#eye-off"></use></svg>
                             </div>
                             <h3 class="text-xl font-bold mb-2.5">Zero SDK Trackers</h3>
                             <p class="text-sm leading-relaxed">The app ships with no ad networks, no behavioral telemetry, no third-party analytics SDKs, and no personal data monetization—ever.</p>
@@ -814,7 +813,7 @@
 
                         <div class="p-8 rounded-3xl app-card h-full flex flex-col">
                             <div class="w-11 h-11 rounded-xl bg-pink-500/10 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl mb-5">
-                                <ion-icon name="gift"></ion-icon>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#gift"></use></svg>
                             </div>
                             <h3 class="text-xl font-bold mb-2.5">Truly Free Forever</h3>
                             <p class="text-sm leading-relaxed">No trial traps, no subscription bills, and no locked insights. Mental self-awareness should be accessible to everyone.</p>
@@ -830,7 +829,7 @@
                             </div>
                             <a href="privacy_policy.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-full subtle-tile text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:border-indigo-500 transition self-start sm:self-auto">
                                 <span>Read Full Privacy Policy</span>
-                                <ion-icon name="arrow-forward" class="text-sm"></ion-icon>
+                                <svg class="icon text-sm" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#arrow-forward"></use></svg>
                             </a>
                         </div>
 
@@ -838,35 +837,35 @@
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <span class="text-xs font-medium mb-2">Account or Email Required</span>
                                 <span class="font-outfit text-base font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                                    <ion-icon name="checkmark-circle" class="text-lg shrink-0"></ion-icon>
+                                    <svg class="icon text-lg shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#checkmark-circle"></use></svg>
                                     <span>Never</span>
                                 </span>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <span class="text-xs font-medium mb-2">Where Notes Are Stored</span>
                                 <span class="font-outfit text-base font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                                    <ion-icon name="checkmark-circle" class="text-lg shrink-0"></ion-icon>
+                                    <svg class="icon text-lg shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#checkmark-circle"></use></svg>
                                     <span>On Device Only</span>
                                 </span>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <span class="text-xs font-medium mb-2">Third-Party Ads / SDKs</span>
                                 <span class="font-outfit text-base font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                                    <ion-icon name="checkmark-circle" class="text-lg shrink-0"></ion-icon>
+                                    <svg class="icon text-lg shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#checkmark-circle"></use></svg>
                                     <span>Zero</span>
                                 </span>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between">
                                 <span class="text-xs font-medium mb-2">Works in Airplane Mode</span>
                                 <span class="font-outfit text-base font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                                    <ion-icon name="checkmark-circle" class="text-lg shrink-0"></ion-icon>
+                                    <svg class="icon text-lg shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#checkmark-circle"></use></svg>
                                     <span>100% Offline</span>
                                 </span>
                             </div>
                             <div class="p-4 rounded-2xl subtle-tile h-full flex flex-col justify-between sm:col-span-2 lg:col-span-1">
                                 <span class="text-xs font-medium mb-2">In-App Subscriptions</span>
                                 <span class="font-outfit text-base font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                                    <ion-icon name="checkmark-circle" class="text-lg shrink-0"></ion-icon>
+                                    <svg class="icon text-lg shrink-0" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#checkmark-circle"></use></svg>
                                     <span>$0.00 Forever</span>
                                 </span>
                             </div>
@@ -919,7 +918,7 @@
         <section id="download" class="pb-20">
             <div class="max-w-6xl mx-auto px-6 reveal">
                 <div class="app-card p-10 sm:p-16 rounded-3xl text-center relative overflow-hidden">
-                    <img src="assets/images/app-icon.webp" alt="Mood Meter app icon" width="72" height="72" loading="lazy" class="w-18 h-18 rounded-2xl mx-auto mb-6 shadow-md ring-1 ring-slate-900/10 dark:ring-white/10">
+                    <img src="assets/images/app-icon.svg" alt="Mood Meter app icon" width="72" height="72" loading="lazy" class="w-18 h-18 rounded-2xl mx-auto mb-6 shadow-md ring-1 ring-slate-900/10 dark:ring-white/10">
                     <h2 class="text-3xl sm:text-5xl font-extrabold mb-4">Start Capturing Your <span class="text-gradient">Vibe Today.</span></h2>
                     <p class="text-lg max-w-xl mx-auto mb-9">
                         220+ moods, custom vibes, searchable reflections, and streak analytics—100% free and private on your device.
@@ -944,7 +943,7 @@
     <footer class="py-12 border-t border-slate-900/8 dark:border-white/10">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-3">
-                <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg ring-1 ring-slate-900/10 dark:ring-white/10">
+                <img src="assets/images/app-icon.svg" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg ring-1 ring-slate-900/10 dark:ring-white/10">
                 <div>
                     <span class="font-outfit font-extrabold" style="color: var(--text-heading);">Mood Meter</span>
                     <span class="text-xs ml-2">© 2026 Mood Meter. All rights reserved.</span>
@@ -958,7 +957,7 @@
                 <a href="terms_of_service.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Terms of Service</a>
                 <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
                 <button id="theme-toggle" type="button" class="w-9 h-9 flex items-center justify-center rounded-full text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-900/5 dark:hover:bg-white/10 transition-colors cursor-pointer" aria-label="Toggle color theme" title="Toggle light/dark theme">
-                    <ion-icon id="theme-toggle-icon" name="moon" class="text-lg"></ion-icon>
+                    <svg id="theme-toggle-icon" class="icon text-lg" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#moon"></use></svg>
                 </button>
             </div>
         </div>
@@ -976,7 +975,7 @@
 
         function syncThemeIcons() {
             const isDark = document.documentElement.classList.contains('dark');
-            themeToggleIcon.setAttribute('name', isDark ? 'sunny' : 'moon');
+            themeToggleIcon.firstElementChild.setAttribute('href', themeToggleIcon.firstElementChild.getAttribute('href').split('#')[0] + '#' + (isDark ? 'sunny' : 'moon'));
         }
         syncThemeIcons();
 
@@ -994,6 +993,12 @@
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         let swapToken = 0;
 
+        // app_screens/NN-name.webp -> "…-600.webp 600w, …-900.webp 900w, ….webp 1080w"
+        function responsiveSet(src) {
+            const base = src.replace(/\.webp$/, '');
+            return base + '-600.webp 600w, ' + base + '-900.webp 900w, ' + src + ' 1080w';
+        }
+
         async function swapHeroScreen(nextSrc, nextAlt) {
             const token = ++swapToken;
             const canAnimate = !prefersReducedMotion.matches && typeof heroImg.animate === 'function';
@@ -1003,6 +1008,7 @@
                     await heroImg.animate([{ opacity: 1 }, { opacity: 0.25 }], { duration: 140, easing: 'ease-out', fill: 'forwards' }).finished;
                 }
                 if (token !== swapToken) return;
+                heroImg.setAttribute('srcset', responsiveSet(nextSrc));
                 heroImg.setAttribute('src', nextSrc);
                 heroImg.setAttribute('alt', nextAlt);
                 if (canAnimate) {
@@ -1014,6 +1020,7 @@
                 }
             } catch (_) {
                 if (token !== swapToken) return;
+                heroImg.setAttribute('srcset', responsiveSet(nextSrc));
                 heroImg.setAttribute('src', nextSrc);
                 heroImg.setAttribute('alt', nextAlt);
             }
@@ -1065,7 +1072,16 @@
             function preloadScreens() {
                 if (preloaded) return;
                 preloaded = true;
-                screenTabs.forEach((t) => { const img = new Image(); img.decoding = 'async'; img.src = t.getAttribute('data-screen'); });
+                const run = () => screenTabs.forEach((t) => {
+                    const img = new Image();
+                    img.decoding = 'async';
+                    img.sizes = '292px';
+                    img.srcset = responsiveSet(t.getAttribute('data-screen'));
+                    img.src = t.getAttribute('data-screen');
+                });
+                // Wait until the page has loaded and the main thread is idle so these never compete with fonts/LCP.
+                const idle = () => ('requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 3000 }) : setTimeout(run, 1200));
+                if (document.readyState === 'complete') idle(); else window.addEventListener('load', idle, { once: true });
             }
 
             function canRun() {
@@ -1171,6 +1187,15 @@
             build();
         })();
 
+        // Pause infinite decorative animations (pill shine, store-badge ring/glow) while they are off-screen.
+        (function () {
+            if (!('IntersectionObserver' in window)) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((e) => e.target.toggleAttribute('data-offscreen', !e.isIntersecting));
+            }, { rootMargin: '100px' });
+            document.querySelectorAll('[role="tablist"], .store-badge').forEach((el) => io.observe(el));
+        })();
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -1181,7 +1206,5 @@
 
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

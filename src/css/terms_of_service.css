@@ -2,6 +2,24 @@
 @import "tailwindcss" source(none);
 @source "../../terms_of_service.html";
 
+/* Self-hosted variable fonts (Google Fonts latin subset, SIL OFL 1.1). Preloaded in each page <head>. */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('../fonts/inter-latin-var.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600 900;
+    font-display: swap;
+    src: url('../fonts/outfit-latin-var.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -147,10 +165,37 @@ h1, h2, h3, h4 {
     .reveal { opacity: 1; transform: none; }
 }
 
-ion-icon {
+/* Icons: local SVG sprite (assets/icons/sprite.svg), sized by font-size like the old <ion-icon> (1em box). */
+.icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    flex-shrink: 0;
     pointer-events: none;
     vertical-align: middle;
+    overflow: visible;
 }
-ion-icon:not(.hidden) {
+.icon:not(.hidden) {
     display: inline-block;
+}
+
+/* Touch devices (phones/tablets): no live backdrop blur on cards/tiles. With dark as the default theme,
+   ~70 blurred surfaces re-sampled the background on every scroll frame and caused jank on mid/low-end GPUs.
+   The orbs behind are already heavily blurred, so a slightly denser static gradient keeps the glass look.
+   The nav keeps its blur (one element). Desktop (fine pointer + hover) keeps full liquid glass. */
+@media (hover: none) and (pointer: coarse) {
+    .dark .app-card {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.07) 45%, rgba(255, 255, 255, 0.10) 100%);
+    }
+    .dark .subtle-tile {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+    }
+    .app-card {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
 }

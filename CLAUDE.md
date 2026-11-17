@@ -9,19 +9,21 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
   - Watch during local edits: `npm run watch:css` (does **not** cache-bust; run `build:css` before committing).
   - `build:css` runs `scripts/build-css.mjs`: compiles each page, then stamps a content hash onto that page's stylesheet link (`assets/css/<page>.css?v=<hash>`) so browsers and the CDN never serve stale CSS. Adding a page means adding it to `PAGES` in that script.
   - Do **not** edit `assets/css/*.css` by hand, and do **not** reintroduce the runtime `@tailwindcss/browser` script tag.
-- **Icons:** Ionicons 7.1.0 (`<ion-icon>`) loaded at the end of `<body>` (`module` + `nomodule`) with `<link rel="preconnect" href="https://unpkg.com" crossorigin>`. **Strict rule: never use emojis or Unicode dingbats anywhere in UI markup, CSS, JS, or docs.**
-- **Typography:** Google Fonts `Outfit` (600–900, headings) and `Inter` (400–700, body) loaded with `display=swap` and `preconnect` hints.
-- **Discovery & SEO Files:** `robots.txt` (welcomes search and AI crawlers), `sitemap.xml` (canonical URLs + Google Image Sitemap entries), `llms.txt` (structured AI/LLM fact sheet), `site.webmanifest` (PWA & site icon metadata).
+- **Icons:** local SVG sprite `assets/icons/sprite.svg` (Ionicons 7.1.0 artwork, MIT, only the ~34 icons used). Markup: `<svg class="icon …" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#name"></use></svg>` (root-absolute `/assets/...` on `404.html`). `.icon` is a 1em box with `fill: currentColor`, so `text-*` classes size it like the old `<ion-icon>`. To swap an icon at runtime, change the `<use>` `href` fragment (see the theme toggle and contact mail icon). To add an icon, append its `<symbol id="name" viewBox="0 0 512 512">` from `https://unpkg.com/ionicons@7.1.0/dist/svg/<name>.svg` to the sprite. No Ionicons script, no unpkg. **Strict rule: never use emojis or Unicode dingbats anywhere in UI markup, CSS, JS, or docs.**
+- **Typography:** self-hosted variable fonts in `assets/fonts/` (`outfit-latin-var.woff2` 600–900 for headings, `inter-latin-var.woff2` 400–700 for body; Google Fonts latin subset, SIL OFL, see `assets/fonts/LICENSE.txt`). `@font-face` (with `font-display: swap` and the latin `unicode-range`) is at the top of every `src/css/<page>.css`. **Do not preload the fonts**: measured on throttled mobile, preloading both delayed first paint by ~0.4 s because they competed with the render-blocking CSS. No Google Fonts requests.
+- **Discovery & SEO Files:** `favicon.ico` (16/32/48, site root), `robots.txt` (welcomes search and AI crawlers), `sitemap.xml` (canonical URLs + Google Image Sitemap entries), `llms.txt` (structured AI/LLM fact sheet), `site.webmanifest` (PWA & site icon metadata).
 
 ## Assets
-- `app_screens/01-mood-picker.webp` through `05-custom-moods.webp`: Official 1080x1920 WebP app screenshots (`screen_1.webp`–`screen_4.webp` are legacy duplicates).
+- `app_screens/01-mood-picker.webp` through `05-custom-moods.webp`: official 1080x1920 WebP app screenshots, each with `-600.webp` and `-900.webp` variants (Pillow LANCZOS, WebP q82) used through `srcset`. Regenerate the variants whenever a screenshot changes. (Legacy duplicates `screen_1-4.webp` were deleted.)
 - `app_screens/apple_store.svg`, `app_screens/android_store.svg`: Store download badges.
 - `assets/moods/*.svg`: 20 expressive mood SVGs (~52 KB total) powering the `#vibes` horizontal ticker. Footer attribution to *Emoticon Set Pack by Smashicons on Flaticon* is required on every page.
-- `assets/images/`:
-  - `app-icon.webp` (256x256): Nav/CTA/footer app icon.
-  - `favicon-48x48.png` (48x48), `icon-192x192.png` (192x192), `icon-512x512.png` (512x512): Multiples of 48px required for Google Search favicon indexing, Schema.org `Organization.logo`, and `site.webmanifest`.
-  - `favicon-32x32.png` (32x32), `icon-128x128-1.png` (128x128), `apple-touch-icon.png` (180x180).
-  - `og-image.png` / `og-image.webp` (1200x630): Open Graph and Twitter/X social card banner.
+- `assets/images/` (app icon = purple gradient "smiling dial", source files in `~/Documents/ChatGPT/Mobile Apps Reinvent/MoodMeter Icons/`):
+  - `app-icon.svg` (1.5 KB): nav/CTA/footer logo **and** the SVG favicon. `app-icon.webp` (256) is only a raster fallback.
+  - `favicon-48x48.png`, `favicon-32x32.png`, `icon-128x128-1.png`, `icon-192x192.png`, `icon-512x512.png` (rounded, transparent corners; 512 is `Organization.logo`), `apple-touch-icon.png` (180, square, iOS rounds it).
+  - `icon-maskable-512x512.png`: full-bleed tile with the dial scaled into Android's 80% safe zone (rendered from a modified `app-icon.svg` in Chrome).
+  - `og-image.jpg` (1200x630, ~80 KB, JPEG q86): Open Graph / Twitter card. JPEG on purpose: 256-colour PNG quantisation visibly shifted colours. If the icon or design changes, regenerate it and keep it < 100 KB.
+  - Icon `<link>`s carry `?v=2`; bump it when icons change (browsers cache favicons aggressively).
+- `assets/fonts/`: self-hosted woff2 (see Typography). `assets/icons/sprite.svg`: icon sprite (see Icons).
 
 ## Design System & Layout Conventions
 - **Dark Theme by Default:** Every page ships `<html lang="en" class="dark">` (so no-JS visitors and crawlers get dark too). A synchronous `<head>` script removes `dark` only when `localStorage['mm-theme'] === 'light'` (the visitor chose light via the toggle), and sets the single `<meta name="theme-color">` to `#0f172a` (dark) or `#f8fbff` (light); the toggle updates both and saves `mm-theme`. `localStorage` access is wrapped in `try/catch`. `site.webmanifest` `background_color` is `#0f172a`.
@@ -31,8 +33,9 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
   - `.dark .app-card`: 145deg white-alpha gradient, `backdrop-filter: blur(26px) saturate(170%)`, 1px translucent border, and inset specular highlights.
   - `.dark .subtle-tile`: `backdrop-filter: blur(14px) saturate(150%)` with subtle top highlight.
   - `.dark .nav-glass`: `rgba(15, 23, 42, 0.45)` with `backdrop-filter: blur(24px) saturate(170%)`.
+  - **Touch devices** (`@media (hover: none) and (pointer: coarse)`, last block of every `src/css/*.css`): cards and tiles drop `backdrop-filter` and use a slightly denser static gradient (orbs are already blurred, so the glass look holds). Only the nav keeps live blur. Desktop keeps full liquid glass.
   - Dark body text uses `#aab6cb` (`--text-main`) and `#ffffff` (`--text-heading`) for comfortable contrast.
-- **Footer Theme Toggle:** The light/dark theme toggle (`#theme-toggle` with `<ion-icon id="theme-toggle-icon">`) lives as a circular icon button at the end of the footer navigation links on all four pages—never in the top header. Keep `ion-icon:not(.hidden) { display: inline-block; }` intact.
+- **Footer Theme Toggle:** The light/dark theme toggle (`#theme-toggle` with the sprite icon `<svg id="theme-toggle-icon" class="icon">`, `#sunny`/`#moon`) lives as a circular icon button at the end of the footer navigation links on all five pages (including `404.html`)—never in the top header. Keep `.icon:not(.hidden) { display: inline-block; }` intact (Tailwind's `.hidden` must still win).
 - **Plumb-Line Symmetry & Card Geometry:**
   - All sections, headers, and footers align to a single `max-w-6xl mx-auto px-6` container.
   - Multi-column card grids use `gap-6 items-stretch` with `h-full` on `.app-card` (`rounded-3xl p-8`) so sibling cards always match height.
@@ -48,20 +51,23 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
 - **Anti-Scraper Email & Bot Protection (Mandatory):**
   - **Never** place any raw email address or literal `m-a-i-l-t-o` URI scheme in HTML, JSON-LD, CSS, JS string literals, `llms.txt`, or markdown files served from the repo.
   - Support email reveal/launch uses shifted character-code arrays decoded only inside `e.isTrusted` click/submit handlers, rendered visually via CSS `::before { content: attr(data-u) "\0040" attr(data-d); }` (`.obf-addr`), paired with the offscreen `#website-url` honeypot field on `contact.html`.
+- **Footer Credits (every page):** a developer credit line (see Developer credit under SEO rules) above the required Smashicons/Flaticon attribution line.
 - **Factual Integrity:** Never invent user counts, star ratings, `aggregateRating` schema, or fake testimonials. Use verified product terms from the companion app (`Capture Vibe`, `Custom Vibes` / `Custom Vibemojis`, `Current Vibe Streak`, `Vibe Power Gauge`, `Intensity Trend`, `Hourly Activity`).
 
 ## Performance Optimizations
-- **Zero Runtime CSS Compilation:** Replacing `@tailwindcss/browser` (~100+ KB render-blocking JS) with precompiled, minified per-page stylesheets (`28–43 KB` raw, ~6–8 KB brotli) eliminates FOUC, main-thread CSS compilation, and third-party CSS CDN dependency.
-- **LCP Prioritization:** `index.html` preloads `app_screens/01-mood-picker.webp` (`<link rel="preload" as="image" type="image/webp" fetchpriority="high">`) and sets `fetchpriority="high" decoding="sync"` without `loading="lazy"` on `#hero-screen-img`.
-- **Zero CLS & Lazy Media:** Every `<img>` declares explicit `width` and `height`. Below-the-fold screenshots and badges use `loading="lazy" decoding="async"`.
-- **Hero Screen Cross-Fade (WAAPI):** Switching tabs runs a compositor-friendly Web Animations API fade (`opacity`), awaits `heroImg.decode()` before fading back in, guards rapid clicks with a monotonic `swapToken`, supports WAI-ARIA `tablist` Left/Right/Home/End keys, and swaps instantaneously under `prefers-reduced-motion: reduce`.
-- **60fps Auto-Scrolling Mood Ticker (`#vibes`):**
-  - Renders a curated set of 20 lightweight SVGs (`assets/moods/*.svg`) once in HTML (`alt=""` next to visible mood labels to avoid duplicate screen-reader speech).
-  - Runtime JS clones `.ticker-set` (`aria-hidden="true" data-clone`) only `Math.ceil(viewportWidth / setWidth) + 1` times and animates `.ticker-track` via a single GPU-composited `translate3d` WAAPI timeline (`55px/s`).
-  - **No `backdrop-filter` on moving elements:** `.ticker .ticker-tile` explicitly disables `backdrop-filter` (`none`) and uses a flat translucent gradient in dark mode so the browser never re-blurs moving layers each frame.
-  - Uses `contain: layout paint style` and CSS `mask-image` edge fades.
-  - Automatically pauses via `IntersectionObserver` when scrolled offscreen, on `document.visibilitychange`, and on pointer hover or keyboard focus; preserves playback progress across debounced (`150ms`) window resizes; degrades to a static scrollable strip (`[data-static]`) under `prefers-reduced-motion: reduce`.
-- **Non-JS & Reduced-Motion Resilience:** `<noscript>` forces `.reveal { opacity: 1 !important; transform: none !important; }` so crawlers and non-JS browsers see all content immediately, and `@media (prefers-reduced-motion: reduce)` collapses transitions/animations site-wide.
+Measured 2026-11-17 on the home page (local, Chrome): **57-61 -> 31-35 requests, 207 -> 112 KB on mobile, 4 origins -> 1** (plus Google Analytics). Throttled mobile (slow 4G, 4x CPU) first paint 1.25 s -> 1.19 s; desktop LCP (hero screenshot) ~330 ms -> ~230 ms. Re-measure with the same method before/after any performance change; don't trust a single run.
+- **Zero runtime CSS compilation:** precompiled per-page Tailwind stylesheets (see Stack); no `@tailwindcss/browser`.
+- **No third-party origins except GA:** fonts self-hosted, icons from the local sprite, no unpkg, no Google Fonts. Keep it that way (it also keeps the privacy policy's website claims true).
+- **LCP:** on desktop the hero screenshot is the LCP element: `<link rel="preload" as="image" media="(min-width: 1024px)" imagesrcset=… imagesizes="292px" fetchpriority="high">` + `fetchpriority="high"` on `#hero-screen-img`, never lazy. The preload is **desktop-only** because on phones the hero phone sits below the fold and preloading it competed with CSS. On mobile the LCP is the H1 text.
+- **Responsive screenshots:** every app screenshot uses `srcset` (`-600w`, `-900w`, original `1080w`) with `sizes` = rendered width (`292px` hero, `300px` 3-col row, `210px` 2-col cards); 1x screens get the 600w file, 3x phones the 900w. The hero switcher sets `srcset` together with `src` (`responsiveSet()`), and the other screens preload via `new Image()` with `srcset` **after `load` and on `requestIdleCallback`**, so they never compete with first paint.
+- **Zero CLS & lazy media:** every `<img>` declares `width`/`height`; below-the-fold images use `loading="lazy" decoding="async"`.
+- **Head order:** charset/viewport/meta, icons, preload, OG/Twitter, stylesheet, `analytics.js` (sync, tiny), `gtag.js` (async), theme bootstrap, then the JSON-LD blocks **last** in `<head>` so the stylesheet is discovered first.
+- **Hero screen cross-fade (WAAPI):** compositor-friendly opacity fade, `await heroImg.decode()` before fading in, monotonic `swapToken` guards rapid clicks, WAI-ARIA tablist keys, instant swap under `prefers-reduced-motion`.
+- **60fps mood ticker (`#vibes`):** 20 SVGs rendered once; JS clones the set only as needed (`aria-hidden` clones) and animates one `translate3d` WAAPI timeline (55 px/s); `contain: layout paint style`, `mask-image` edge fades; pauses offscreen / hidden tab / hover / focus; static scrollable strip under reduced motion. **No `backdrop-filter` on moving elements.**
+- **Infinite decorative animations pause offscreen:** an IntersectionObserver toggles `[data-offscreen]` on the hero tablist and each `.store-badge`; CSS sets `animation-play-state: paused` for the selected-pill shine and the badge ring/glow. (The pill still animates `--shine-angle` on the main thread while visible; a transform-based rewrite like the badges would make it compositor-only.)
+- **Dark glass cost on touch devices:** see Design System (no per-frame backdrop blur on phones/tablets).
+- **Non-JS & reduced-motion resilience:** `<noscript>` forces `.reveal` visible; `@media (prefers-reduced-motion: reduce)` collapses transitions/animations site-wide.
+- **Platform limits (GitHub Pages):** `cache-control: max-age=600` for everything and no custom headers; content-hashed CSS URLs and `?v=` on icons work around staleness. Long-lived caching or security headers would need a CDN/proxy (e.g. Cloudflare) in front.
 
 ## SEO & AI-Search (GEO / AEO): Rules for This Site
 - **Canonical URL Hygiene:** Always link to home with `href="/"` or `href="/#section"`, never `index.html`, so crawlers only ever index `https://moodmeter.cend.in/`. GitHub Pages also answers `/index.html`, `/index`, `/contact`; the self-referencing canonicals handle those duplicates.
@@ -70,8 +76,8 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
   - `<title>` <= 60 chars and `<meta name="description">` ~140–155 chars, unique per page.
   - Self-referencing `<link rel="canonical">`, `hreflang="en"`, and `hreflang="x-default"`.
   - `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">` and `<meta name="apple-itunes-app" content="app-id=391278676">`.
-  - Complete Open Graph (`og:type`, `og:site_name`, `og:locale`, `og:url`, `og:title`, `og:description`, `og:image`, `og:image:type`, `og:image:width`, `og:image:height`, `og:image:alt`) and Twitter/X `summary_large_image` tags (`twitter:url`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt`).
-  - `<link rel="manifest" href="site.webmanifest">`, 32px and 48px PNG favicons, 180px apple-touch-icon.
+  - Complete Open Graph (`og:type`, `og:site_name`, `og:locale`, `og:url`, `og:title`, `og:description`, `og:image`, `og:image:type` = `image/jpeg`, `og:image:width`, `og:image:height`, `og:image:alt`) and Twitter/X `summary_large_image` tags (`twitter:url`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt`).
+  - `<link rel="manifest" href="site.webmanifest">`, SVG favicon (`app-icon.svg`) + 48/32/128/192 PNG favicons + `/favicon.ico`, 180px apple-touch-icon. Manifest icons: SVG (any), 48, 192, 512 (any) and `icon-maskable-512x512.png` (maskable).
   - `404.html` is `noindex, follow`, uses root-absolute URLs, and is excluded from the sitemap.
 - **Structured Data (Schema.org JSON-LD):**
   - `index.html` publishes the canonical `@graph`: `Organization` (`#org` with 512x512 logo and App Store / Google Play `sameAs` links), `WebSite` (`#website`), `WebPage` (`#webpage`), `MobileApplication` (`#app`), and `FAQPage` (`#faq-schema`).
@@ -84,21 +90,29 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
 
 - **Developer credit:** every page footer says "Mood Meter app & website designed and developed by Srikanth Nandiraju" (followed link to `https://srikanth.nandiraju.com/`, `rel="author"`) plus a "Talk to the digital twin of Srikanth Nandiraju" link to `https://ai.nandiraju.com/`. The index JSON-LD has a `Person` node `#developer` (name, url, jobTitle, `sameAs` both personal sites) referenced as `Organization.founder` and `MobileApplication.author`; `llms.txt` and the privacy policy (website operator) name him too. Keep these consistent.
 
+## Workflow: Git, Deploy, Verify
+- `gh-pages` is the main branch **and** what GitHub Pages publishes; a push goes live in about a minute. There is no `main` branch (`master`, `gh-page` and `glass-effects` on the remote are old/stale). Commit on `gh-pages`; end commit messages with the `Co-Authored-By` line.
+- **Before every commit, check for stale editor buffers:** run `git status` / `git diff --stat` and confirm the diff contains only the intended change. Twice an IDE tab holding an old copy was saved over newer files (reverting the precompiled CSS back to the Tailwind CDN, dropping badge rings, Analytics, schema). Signs: big unexpected line counts, `tailwindcss/browser`, missing `?v=` stamps. Never commit such a diff; restore `HEAD` (after saving a backup patch) and close stale tabs without saving.
+- Run `npm run build:css` after any class/CSS change and commit `assets/css/*` plus the updated `?v=` stamps in the HTML.
+- After pushing, confirm the live site: poll `curl https://moodmeter.cend.in/<page>?nc=<random>` until the new content appears, then hash-compare live files with `git show origin/gh-pages:<file>`; for UI changes, load the live page in a real browser (Playwright with `channel: 'chrome'`) and check console errors.
+
 ## SEO Status Log (moodmeter.cend.in)
 - **2026-11-17 done:** shorter titles/descriptions; keyword line in the hero H1; `/` home links; Organization `sameAs`; subpage `BreadcrumbList` + `@id` links; OG/Twitter image alts; image sitemap; web manifest + 48/192/512 icons; 404 page; removed stale `softwareVersion`; precompiled Tailwind with hashed CSS URLs; dark theme default (`class="dark"` in HTML).
 - **2026-11-17 Analytics:** GA4 `G-HBMC3XJK4X` live on all pages with Consent Mode v2 (analytics granted globally, denied by default in EEA/UK/CH with a banner; ads always denied), `store_click` key event, Play referrer UTM, privacy policy updated (website uses GA cookies; app collects nothing).
 - **2026-11-17 Backlinks/E-E-A-T:** developer credit + `Person` schema added. Store listing links to fix (owner action): App Store "Developer Website" -> `https://moodmeter.cend.in/` (now an old github.io URL that 301s), App Store "Privacy Policy" -> `https://moodmeter.cend.in/privacy_policy.html` (now points to a stale separate Mobirise site at `srikanthnandiraju.github.io/moodmeter/`, which should be retired/redirected), Play privacy URL -> direct new URL; set the GitHub repo "Website" field; add Mood Meter as a project on `srikanth.nandiraju.com`.
+- **2026-11-17 Performance + new app icon:** self-hosted variable fonts (no preload, measured), Ionicons replaced by a local SVG sprite, touch-device glass without backdrop blur, `srcset` screenshots (600/900/1080) with idle preloading, desktop-only hero preload, JSON-LD moved after the CSS, offscreen pause for infinite animations, duplicates deleted. New purple "smiling dial" app icon everywhere (SVG logo + favicon, PNG favicons, apple-touch, 192/512, maskable 512, `favicon.ico`, share image patched and re-encoded as `og-image.jpg`). Result: 57 -> 31 requests, 207 -> 112 KB (mobile), 1 origin.
+- **2026-11-17 Seobility check:** 21/28 passed. Only real issue: **backlinks** (1 referring domain, the Google Play listing). "20 images without alt" = the decorative ticker icons with intentional `alt=""` (ignore). "H1 words not in content" is cosmetic and fades as keyword-led H2s/FAQs are added.
 - **2026-11-17 Search Console:** `cend.in` verified as a **domain property** (covers this subdomain); `sitemap.xml` submitted and accepted (4 pages discovered); indexing requested for the homepage.
 - **2026-11-17 audit (claude-seo method), health 78/100:** Technical 91, Content 62, On-page 78, Schema 86, Performance 76, AI search 78, Images 84. No critical issues.
 - **Open items (priority order):**
   1. Developer is now named (see Developer credit). Still open: a plain-text support role address in `contactPoint`, the owner's LinkedIn URL in the Person `sameAs`, and a disambiguation line vs Yale RULER's "Mood Meter" (wording to be confirmed by the owner).
   2. FAQ additions that answer real objections, mirrored in JSON-LD: works offline, no account needed, not a medical app, what happens when changing phones/backups (verify app behaviour first).
   3. Keyword-led H2s (keep slogans as eyebrow text); contact H1 "Mood Meter Support & Contact".
-  4. Self-host fonts (2 variable woff2 instead of 8 Google files) and replace Ionicons with a local SVG sprite (removes two third-party origins; makes "no IP addresses shared" true for the website).
-  5. Reduce dark-mode `backdrop-filter` cost on touch devices (about 70 blurred cards); keep glass on desktop.
-  6. Responsive screenshot variants (`srcset`, 540w/810w) incl. the hero preload; compress `og-image.png` (236 KB) to under 100 KB; delete unused `app_screens/screen_1-4.webp` and `og-image.webp`; maskable 512 manifest icon; `favicon.ico`.
+  4. ~~Self-host fonts, local icon sprite~~ (done 2026-11-17).
+  5. ~~Dark-mode blur cost on touch devices~~ (done 2026-11-17).
+  6. ~~Responsive screenshots, og-image < 100 KB, delete duplicates, maskable icon, favicon.ico~~ (done 2026-11-17). Optional next: transform-based pill shine (compositor-only), AVIF screenshot variants.
   7. Schema polish: screenshots as `ImageObject`s, `applicationSubCategory`, `offers.availability`, ContactPage `mainEntity` as an `@id` reference.
-  8. Off-site: set this URL as the website on both store listings; earn genuine store ratings; list on AlternativeTo / Product Hunt / privacy-app directories with the same name and developer everywhere.
+  8. Off-site backlinks (owner actions): fix the store listing URLs listed in the Backlinks log entry; retire the old Mobirise site `srikanthnandiraju.github.io/moodmeter/` (redirect to this site); set the GitHub repo "Website" field; add a Mood Meter project card on `srikanth.nandiraju.com` with a followed, descriptive link; earn genuine store ratings; list on AlternativeTo / Product Hunt / privacy-app directories and answer relevant Reddit threads, with the same name and developer everywhere.
   9. Content investments: data-protection explainer page, factual comparison page (vs Daylio / How We Feel / Bearable), small guide/blog cluster with Article schema and a named author.
 
 ## New-Site SEO Playbook (reuse for any new static site)
@@ -111,26 +125,37 @@ Work through these in order. Verify each step with a command or a real browser, 
 2. **Build fast by default.**
    - Static HTML with all content in the raw HTML (no client-side rendering for text).
    - Precompile CSS (e.g. Tailwind CLI) instead of runtime CDN builds; stamp a content hash on asset URLs (`?v=<hash>`) via a build script so caches never serve stale files.
-   - Self-host fonts (variable woff2, `font-display: swap`, preload the heading font) and icons (inline SVG sprite). Every third-party origin costs speed and leaks visitor IPs.
-   - Identify the LCP element: preload it, `fetchpriority="high"`, never lazy. Everything below the fold: `loading="lazy" decoding="async"`.
+   - Self-host fonts (variable woff2, latin subset, `font-display: swap`) and icons (one SVG sprite with `<use>`). Every third-party origin costs speed and leaks visitor IPs. Only preload a font if a throttled measurement proves it helps; with `swap`, preloads usually compete with the render-blocking CSS.
+   - Identify the LCP element **per viewport**: preload it (`imagesrcset`/`imagesizes`, `fetchpriority="high"`), never lazy. If it's an image only on desktop, scope the preload with `media=`. Everything below the fold: `loading="lazy" decoding="async"`; preload extra images only after `load` on `requestIdleCallback`.
    - Every `<img>` gets `width`/`height` matching its real aspect ratio; serve WebP/AVIF with `srcset`/`sizes` sized to the rendered width.
    - Animate only `transform`/`opacity`; never put `backdrop-filter` on moving or numerous elements; pause infinite animations offscreen; honour `prefers-reduced-motion`.
-   - Put the stylesheet link before large JSON-LD blocks in `<head>`.
+   - Put the stylesheet link before large JSON-LD blocks in `<head>` (JSON-LD can go last).
+   - Measure before and after every change: request count, bytes, origins, FCP/LCP medians over several runs with network + CPU throttling (Playwright + CDP), and a full-page screenshot diff in both themes and widths to prove nothing changed visually.
+   - Icons: SVG favicon + PNG sizes (multiples of 48), `favicon.ico` at the root, 180px apple-touch-icon, manifest with a **maskable** icon (art inside the 80% safe zone); version icon URLs (`?v=`) when they change. Share image: 1200x630 JPEG < 100 KB (PNG palette quantisation shifts colours); a new filename forces social sites to refetch.
 3. **Head tags on every indexable page:** unique `<title>` (<= 60 chars, keyword first, brand last), unique meta description (140–155 chars), self-referencing absolute canonical, `robots` (`index, follow, max-image-preview:large`), `hreflang` if multilingual, theme-color, favicons (48px multiple), apple-touch-icon, manifest, full Open Graph + Twitter card with a 1200x630 image (< 100 KB) and alt text. Skip `meta keywords` (ignored).
 4. **Page structure:** one H1 containing the main keyword; H2s that say what the section is about (slogans go in eyebrow text, not headings); question-shaped headings where people ask questions; landmarks (`header`, `nav aria-label`, `main id` + skip link, `footer`); descriptive link text; `alt=""` for decorative images and for logos next to the same visible text.
 5. **Structured data:** one `@graph` on the home page with stable `@id`s (`#org`, `#website`, `#webpage`, plus the product type: `MobileApplication`/`SoftwareApplication`, `Product`, `LocalBusiness`, etc.). Subpages reference those `@id`s and add `BreadcrumbList`. Only mark up what is visible on the page. Never invent ratings, reviews, user counts or versions. Validate with Google's Rich Results Test and a JSON parser.
-6. **Trust (E-E-A-T):** name who makes the product (legal name, country), give a real contact route, date legal pages with `<time>`, and add a disclaimer for health/finance-adjacent topics. Make privacy claims precise and true for both the product **and** the website (fonts, CDNs and analytics count).
+6. **Trust (E-E-A-T):** name who makes the product (legal name, country) in a visible footer credit and as a `Person`/`Organization` node in JSON-LD (`founder`, `author`, `sameAs` to the maker's own sites and profiles), give a real contact route, date legal pages with `<time>`, and add a disclaimer for health/finance-adjacent topics. Make privacy claims precise and true for both the product **and** the website (fonts, CDNs and analytics count).
 7. **Crawl files:**
    - `robots.txt`: allow everything you want indexed, add named groups for AI crawlers you welcome, include the `Sitemap:` line, and remember named groups don't inherit `*` rules.
    - `sitemap.xml`: canonical URLs only (no 404/noindex pages), real per-page `<lastmod>`, image entries for key images. `changefreq`/`priority` are ignored by Google.
    - `llms.txt`: short fact sheet (H1, blockquote summary, key facts, links). Optional, cheap.
    - A real `404.html` (returns 404, `noindex, follow`, root-absolute links).
    - On GitHub Pages, keep build/source files out of the public site (Jekyll `_config.yml` `exclude:` list, or deploy only the built folder).
-8. **Analytics and privacy:** create a dedicated GA4 property per site (free; up to 2,000 per account); set retention to 14 months; load with Consent Mode v2 default-denied unless you add a consent banner; track the main conversion (e.g. store clicks) as a key event; update the privacy policy in the same release.
+8. **Analytics and privacy:**
+   - Create a dedicated GA4 property per site (free; up to 2,000 per account; never reuse another site's stream). Set data retention to 14 months.
+   - Set Consent Mode v2 defaults **before** the tag loads, from one shared JS file loaded synchronously ahead of the async `gtag.js`. Pattern used here: `analytics_storage` granted globally; everything denied by default for the EEA/UK/CH (region-scoped default); ad storage, ad user data and ad personalization always denied; a small accept/decline banner only for those regions, choice saved and replayed as `consent update`, reopenable from the privacy policy. On static hosting, decide banner visibility by browser time zone and let Google's IP-based region default be the safety net.
+   - Track the main conversion as a key event (e.g. `store_click` with a `store` parameter) and add campaign attribution to store links (Play `referrer` UTM; App Store campaign links from App Store Connect).
+   - Update the privacy policy in the same release: say the **website** uses analytics with cookies, name the operator, and scope any "no tracking" claims to the product.
+   - Test locally with Google's domains blocked so test hits never reach the property; after deploy, confirm a live `/g/collect` hit with the right `tid` and consent state.
 9. **Launch checks (run every time):**
    - Live status codes: pages 200, unknown path 404, `http` -> `https` single 301.
    - Deployed files match the repo (hash compare), CSS loads, no console errors or failed requests, no horizontal scroll at 390px and 1280px, both themes.
    - Titles/descriptions lengths, one H1 per page, canonical present, JSON-LD parses, FAQ schema matches visible text, no broken local `src`/`href`, sitemap valid XML.
 10. **Get indexed:** verify in Google Search Console (a **domain** property via DNS covers all subdomains), submit the sitemap, request indexing for the homepage; do the same in Bing Webmaster Tools (can import from Search Console); link Search Console to GA4.
-11. **Off-site:** point app-store/marketplace listings and social profiles at the site, use the identical name and developer everywhere, earn genuine reviews, and list in relevant directories.
+11. **Off-site (backlinks are the hardest gap for a new site):**
+   - Audit every existing listing first: app-store "Developer Website" / "Privacy Policy" / support URLs often still point at old hosts or stale copies. Point them straight at the new canonical URLs and retire or redirect old sites.
+   - Link from the maker's own sites (personal site project card with a followed, descriptive anchor; repo "Website" field). Subdomains of one root domain count as roughly one referring domain; LinkedIn links are `nofollow` (trust value, little ranking value).
+   - Use the identical product name and developer everywhere, earn genuine reviews, list in relevant directories (AlternativeTo, Product Hunt, niche lists), and answer real community questions without spamming.
+   - Read third-party SEO checkers critically: an intentional `alt=""` on decorative images is correct even if flagged.
 12. **Keep it fresh:** re-run the launch checks after every deploy, re-audit quarterly, update `lastmod`/dates/`llms.txt` only when content really changes, and add focused pages (how it works, comparisons, guides) to reach more queries.
