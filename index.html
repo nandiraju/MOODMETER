@@ -436,15 +436,7 @@
             pointer-events: none;
         }
 
-        .phone-stage {
-            background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.08) 0%, rgba(56, 189, 248, 0.04) 55%, transparent 100%), var(--surface-subtle);
-            border: 1px solid var(--surface-border);
-        }
 
-        .dark .phone-stage {
-            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.16) 0%, rgba(15, 23, 42, 0.3) 65%, transparent 100%), rgba(15, 23, 42, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
 
         .screen-tab[aria-selected="true"] {
             background-color: #4f46e5;
@@ -501,13 +493,6 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
         }
 
-        .dark .phone-stage {
-            background:
-                radial-gradient(circle at 50% 0%, rgba(129, 140, 248, 0.20) 0%, rgba(255, 255, 255, 0.03) 70%),
-                rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.10);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-        }
 
         .dark .nav-glass {
             background: rgba(15, 23, 42, 0.45);
@@ -826,19 +811,17 @@
                                     Browse expressive emoticons in a smooth grid that adapts to phones and tablets, or tap search to find the exact vibe in seconds.
                                 </p>
                             </div>
-                            <div class="phone-stage rounded-2xl p-6">
-                                <div class="iphone w-full max-w-[236px]">
-                                    <div class="iphone-controls" aria-hidden="true"></div>
-                                    <div class="iphone-screen">
-                                        <img src="app_screens/01-mood-picker.webp" alt="Mood Meter main screen showing Explore 220+ moods with Energized, Grateful, Focused, Calm, Inspired, Joyful, Playful, Content, and Reflective" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
-                                        <div class="iphone-status" aria-hidden="true">
-                                            <span>9:41</span>
-                                            <span class="iphone-island"></span>
-                                            <span class="iphone-icons">
-                                                <span class="iphone-signal"></span>
-                                                <span class="iphone-battery"></span>
-                                            </span>
-                                        </div>
+                            <div class="iphone w-full max-w-[300px]">
+                                <div class="iphone-controls" aria-hidden="true"></div>
+                                <div class="iphone-screen">
+                                    <img src="app_screens/01-mood-picker.webp" alt="Mood Meter main screen showing Explore 220+ moods with Energized, Grateful, Focused, Calm, Inspired, Joyful, Playful, Content, and Reflective" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    <div class="iphone-status" aria-hidden="true">
+                                        <span>9:41</span>
+                                        <span class="iphone-island"></span>
+                                        <span class="iphone-icons">
+                                            <span class="iphone-signal"></span>
+                                            <span class="iphone-battery"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -856,19 +839,17 @@
                                     Slide from subtle <code class="text-xs font-bold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">1/5</code> to peak <code class="text-xs font-bold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">5/5</code> intensity with dynamic pulse feedback, voice-type reflections, and backdate any moment.
                                 </p>
                             </div>
-                            <div class="phone-stage rounded-2xl p-6">
-                                <div class="iphone w-full max-w-[236px]">
-                                    <div class="iphone-controls" aria-hidden="true"></div>
-                                    <div class="iphone-screen">
-                                        <img src="app_screens/02-capture-vibe.webp" alt="Capture Vibe screen showing Grateful mood, 3/5 intensity slider, and personal dinner reflection" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
-                                        <div class="iphone-status" aria-hidden="true">
-                                            <span>9:41</span>
-                                            <span class="iphone-island"></span>
-                                            <span class="iphone-icons">
-                                                <span class="iphone-signal"></span>
-                                                <span class="iphone-battery"></span>
-                                            </span>
-                                        </div>
+                            <div class="iphone w-full max-w-[300px]">
+                                <div class="iphone-controls" aria-hidden="true"></div>
+                                <div class="iphone-screen">
+                                    <img src="app_screens/02-capture-vibe.webp" alt="Capture Vibe screen showing Grateful mood, 3/5 intensity slider, and personal dinner reflection" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    <div class="iphone-status" aria-hidden="true">
+                                        <span>9:41</span>
+                                        <span class="iphone-island"></span>
+                                        <span class="iphone-icons">
+                                            <span class="iphone-signal"></span>
+                                            <span class="iphone-battery"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -886,19 +867,17 @@
                                     Every reflection lives in a chronological timeline with intensity badges and timestamps. Filter by keyword or mood name, and tap to edit or delete.
                                 </p>
                             </div>
-                            <div class="phone-stage rounded-2xl p-6">
-                                <div class="iphone w-full max-w-[236px]">
-                                    <div class="iphone-controls" aria-hidden="true"></div>
-                                    <div class="iphone-screen">
-                                        <img src="app_screens/03-mood-history.webp" alt="Mood Meter History screen listing Energized 5/5, Focused 4/5, Grateful 5/5, and Calm 4/5 entries with journal notes" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
-                                        <div class="iphone-status" aria-hidden="true">
-                                            <span>9:41</span>
-                                            <span class="iphone-island"></span>
-                                            <span class="iphone-icons">
-                                                <span class="iphone-signal"></span>
-                                                <span class="iphone-battery"></span>
-                                            </span>
-                                        </div>
+                            <div class="iphone w-full max-w-[300px]">
+                                <div class="iphone-controls" aria-hidden="true"></div>
+                                <div class="iphone-screen">
+                                    <img src="app_screens/03-mood-history.webp" alt="Mood Meter History screen listing Energized 5/5, Focused 4/5, Grateful 5/5, and Calm 4/5 entries with journal notes" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    <div class="iphone-status" aria-hidden="true">
+                                        <span>9:41</span>
+                                        <span class="iphone-island"></span>
+                                        <span class="iphone-icons">
+                                            <span class="iphone-signal"></span>
+                                            <span class="iphone-battery"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -940,19 +919,17 @@
                                 </div>
                             </div>
                             <div class="sm:col-span-5">
-                                <div class="phone-stage rounded-2xl p-4">
-                                    <div class="iphone w-full max-w-[188px]">
-                                        <div class="iphone-controls" aria-hidden="true"></div>
-                                        <div class="iphone-screen">
-                                            <img src="app_screens/04-mood-trends.webp" alt="Mood Meter Analytics screen displaying 14% Inspired and 14% Joyful donut gauges alongside a 7-day Intensity Trend line chart" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
-                                            <div class="iphone-status" aria-hidden="true">
-                                                <span>9:41</span>
-                                                <span class="iphone-island"></span>
-                                                <span class="iphone-icons">
-                                                    <span class="iphone-signal"></span>
-                                                    <span class="iphone-battery"></span>
-                                                </span>
-                                            </div>
+                                <div class="iphone w-full max-w-[210px]">
+                                    <div class="iphone-controls" aria-hidden="true"></div>
+                                    <div class="iphone-screen">
+                                        <img src="app_screens/04-mood-trends.webp" alt="Mood Meter Analytics screen displaying 14% Inspired and 14% Joyful donut gauges alongside a 7-day Intensity Trend line chart" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        <div class="iphone-status" aria-hidden="true">
+                                            <span>9:41</span>
+                                            <span class="iphone-island"></span>
+                                            <span class="iphone-icons">
+                                                <span class="iphone-signal"></span>
+                                                <span class="iphone-battery"></span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -992,19 +969,17 @@
                                 </div>
                             </div>
                             <div class="sm:col-span-5">
-                                <div class="phone-stage rounded-2xl p-4">
-                                    <div class="iphone w-full max-w-[188px]">
-                                        <div class="iphone-controls" aria-hidden="true"></div>
-                                        <div class="iphone-screen">
-                                            <img src="app_screens/05-custom-moods.webp" alt="Custom Vibes screen showing Create New Vibe button and personal emotions Energized, Grateful, Focused, Calm, and Inspired" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
-                                            <div class="iphone-status" aria-hidden="true">
-                                                <span>9:41</span>
-                                                <span class="iphone-island"></span>
-                                                <span class="iphone-icons">
-                                                    <span class="iphone-signal"></span>
-                                                    <span class="iphone-battery"></span>
-                                                </span>
-                                            </div>
+                                <div class="iphone w-full max-w-[210px]">
+                                    <div class="iphone-controls" aria-hidden="true"></div>
+                                    <div class="iphone-screen">
+                                        <img src="app_screens/05-custom-moods.webp" alt="Custom Vibes screen showing Create New Vibe button and personal emotions Energized, Grateful, Focused, Calm, and Inspired" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        <div class="iphone-status" aria-hidden="true">
+                                            <span>9:41</span>
+                                            <span class="iphone-island"></span>
+                                            <span class="iphone-icons">
+                                                <span class="iphone-signal"></span>
+                                                <span class="iphone-battery"></span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
