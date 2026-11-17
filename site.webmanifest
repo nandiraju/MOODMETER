@@ -1,0 +1,39 @@
+{
+  "name": "Mood Meter — Free, Private Mood Tracker",
+  "short_name": "Mood Meter",
+  "description": "100% free, local-first mood tracker and emotional journal for iOS and Android. 220+ moods, custom vibes, and on-device analytics.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fbff",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "assets/images/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icon-128x128-1.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/app-icon.webp",
+      "sizes": "256x256",
+      "type": "image/webp"
+    },
+    {
+      "src": "assets/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

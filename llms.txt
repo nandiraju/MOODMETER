@@ -17,6 +17,7 @@
 - [Privacy Policy](https://moodmeter.cend.in/privacy_policy.html): Complete details on local-first on-device data custody
 - [Terms of Service](https://moodmeter.cend.in/terms_of_service.html): Free license terms, user content ownership, and wellness disclaimer
 - [Contact & Support](https://moodmeter.cend.in/contact.html): Support answers, feedback composer, and direct email contact
+- [XML Sitemap](https://moodmeter.cend.in/sitemap.xml): Canonical page and image index
 
 ## App Downloads & Contact
 - [Download on the Apple App Store](https://apps.apple.com/us/app/mood-meter/id391278676)
