@@ -201,6 +201,13 @@
             opacity: 0;
             pointer-events: none;
         }
+        ion-icon {
+            pointer-events: none;
+            vertical-align: middle;
+        }
+        ion-icon:not(.hidden) {
+            display: inline-block;
+        }
     </style>
 </head>
 <body class="selection:bg-indigo-500/20 antialiased">
@@ -224,9 +231,8 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" type="button" class="p-2.5 rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                <button id="theme-toggle" type="button" class="w-10 h-10 flex items-center justify-center rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
+                    <ion-icon id="theme-toggle-icon" name="moon" class="text-lg text-slate-700 dark:text-amber-400"></ion-icon>
                 </button>
                 <a href="index.html#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
                     Get the App
@@ -254,21 +260,21 @@
             <!-- 3 Quick Topic Cards -->
             <section aria-label="Support Topics" class="grid md:grid-cols-3 gap-6 mb-10">
                 <div class="app-card rounded-3xl p-6 flex items-start gap-4">
-                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-xl">✨</div>
+                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl"><ion-icon name="sparkles"></ion-icon></div>
                     <div>
                         <h2 class="text-lg font-bold mb-1">Feature &amp; Vibe Ideas</h2>
                         <p class="text-xs leading-relaxed">Suggest new mood icons, chart types, or workflow improvements.</p>
                     </div>
                 </div>
                 <div class="app-card rounded-3xl p-6 flex items-start gap-4">
-                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-sky-500/10 flex items-center justify-center text-xl">📱</div>
+                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl"><ion-icon name="phone-portrait"></ion-icon></div>
                     <div>
                         <h2 class="text-lg font-bold mb-1">iOS &amp; Android Help</h2>
                         <p class="text-xs leading-relaxed">Get quick help with app behavior on iPhone, iPad, or Android.</p>
                     </div>
                 </div>
                 <div class="app-card rounded-3xl p-6 flex items-start gap-4">
-                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-xl">🔒</div>
+                    <div class="w-11 h-11 shrink-0 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl"><ion-icon name="lock-closed"></ion-icon></div>
                     <div>
                         <h2 class="text-lg font-bold mb-1">Privacy Inquiries</h2>
                         <p class="text-xs leading-relaxed">Questions about Mood Meter's 100% local-first data architecture.</p>
@@ -281,7 +287,7 @@
                 <div class="lg:col-span-5 space-y-6">
                     <div class="app-card p-8 rounded-[2rem] space-y-5">
                         <div class="flex items-center gap-3.5">
-                            <img src="assets/moods/in-love.svg" alt="" width="44" height="44" class="w-11 h-11">
+                            <div class="w-11 h-11 shrink-0 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl"><ion-icon name="mail"></ion-icon></div>
                             <div>
                                 <h2 class="text-xl font-extrabold">Direct Email</h2>
                                 <p class="text-xs opacity-75">Typical reply within 1–2 business days</p>
@@ -293,14 +299,14 @@
                         <div class="space-y-2.5">
                             <button type="button" id="direct-email-btn" class="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/25 transition cursor-pointer">
                                 <span id="direct-email-label">Click to Reveal Support Email</span>
-                                <span id="direct-email-arrow">🔒</span>
+                                <ion-icon id="direct-email-icon" name="lock-closed" class="text-lg"></ion-icon>
                             </button>
                             <div id="email-actions" class="hidden grid-cols-2 gap-2.5 pt-1">
                                 <button type="button" id="copy-email-btn" class="py-2.5 px-4 rounded-xl subtle-tile text-xs font-bold hover:border-indigo-500 transition cursor-pointer" style="color: var(--text-heading);">
-                                    Copy Address
+                                    <span class="inline-flex items-center gap-1.5"><ion-icon name="copy-outline" class="text-sm"></ion-icon><span id="copy-email-text">Copy Address</span></span>
                                 </button>
                                 <button type="button" id="launch-email-btn" class="py-2.5 px-4 rounded-xl subtle-tile text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:border-indigo-500 transition cursor-pointer">
-                                    Open Mail App →
+                                    <span class="inline-flex items-center gap-1.5"><span>Open Mail App</span><ion-icon name="arrow-forward" class="text-sm"></ion-icon></span>
                                 </button>
                             </div>
                         </div>
@@ -365,7 +371,7 @@
                         </div>
 
                         <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-indigo-600/25 transition active:scale-[0.99] cursor-pointer">
-                            Open in Email App →
+                            <span class="inline-flex items-center justify-center gap-2"><span>Open in Email App</span><ion-icon name="send" class="text-base"></ion-icon></span>
                         </button>
                     </form>
                 </div>
@@ -400,17 +406,11 @@
 
     <script>
         const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleIcon = document.getElementById('theme-toggle-icon');
 
         function syncThemeIcons() {
-            if (document.documentElement.classList.contains('dark')) {
-                themeToggleLightIcon.classList.remove('hidden');
-                themeToggleDarkIcon.classList.add('hidden');
-            } else {
-                themeToggleDarkIcon.classList.remove('hidden');
-                themeToggleLightIcon.classList.add('hidden');
-            }
+            const isDark = document.documentElement.classList.contains('dark');
+            themeToggleIcon.setAttribute('name', isDark ? 'sunny' : 'moon');
         }
         syncThemeIcons();
 
@@ -431,7 +431,7 @@
 
             const directBtn = document.getElementById('direct-email-btn');
             const directLbl = document.getElementById('direct-email-label');
-            const directArr = document.getElementById('direct-email-arrow');
+            const directIcon = document.getElementById('direct-email-icon');
             const actionsRow = document.getElementById('email-actions');
             const copyBtn = document.getElementById('copy-email-btn');
             const launchBtn = document.getElementById('launch-email-btn');
@@ -446,7 +446,7 @@
                     directLbl.classList.add('obf-addr');
                     directLbl.setAttribute('data-u', u);
                     directLbl.setAttribute('data-d', d);
-                    directArr.textContent = '✉';
+                    directIcon.setAttribute('name', 'mail');
                     actionsRow.classList.remove('hidden');
                     actionsRow.classList.add('grid');
                 } else {
@@ -459,8 +459,9 @@
                 const { u, d } = getParts();
                 try {
                     await navigator.clipboard.writeText(u + String.fromCharCode(64) + d);
-                    copyBtn.textContent = 'Copied ✓';
-                    setTimeout(() => { copyBtn.textContent = 'Copy Address'; }, 2000);
+                    const copyTxt = document.getElementById('copy-email-text');
+                    copyTxt.textContent = 'Copied';
+                    setTimeout(() => { copyTxt.textContent = 'Copy Address'; }, 2000);
                 } catch (_) {}
             });
 
@@ -484,5 +485,7 @@
             });
         })();
     </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -432,6 +432,13 @@
         .animate-float {
             animation: floatSlow 5s ease-in-out infinite;
         }
+        ion-icon {
+            pointer-events: none;
+            vertical-align: middle;
+        }
+        ion-icon:not(.hidden) {
+            display: inline-block;
+        }
     </style>
 </head>
 <body class="selection:bg-indigo-500/20 antialiased">
@@ -456,9 +463,8 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="theme-toggle" type="button" class="p-2.5 rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                <button id="theme-toggle" type="button" class="w-10 h-10 flex items-center justify-center rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
+                    <ion-icon id="theme-toggle-icon" name="moon" class="text-lg text-slate-700 dark:text-amber-400"></ion-icon>
                 </button>
                 <a href="#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 whitespace-nowrap text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
                     Get the App
@@ -530,7 +536,7 @@
 
                         <!-- Floating Privacy Pill (Bottom Left) -->
                         <div class="hidden xl:flex items-center gap-3 app-card px-4 py-3 rounded-2xl absolute -left-24 bottom-24 z-20 animate-float [animation-delay:2.2s]">
-                            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg">🛡️</div>
+                            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl"><ion-icon name="shield-checkmark"></ion-icon></div>
                             <div>
                                 <p class="text-xs font-bold" style="color: var(--text-heading);">Zero Cloud Sync</p>
                                 <p class="text-[11px]">Stays on your phone</p>
@@ -728,10 +734,10 @@
                                 Turn daily check-ins into self-awareness. Track your <strong>Current Vibe Streak</strong>, check your <strong>Vibe Power Gauge</strong> (<em>Low Hum</em> to <em>Supernova</em>), and inspect 7-day intensity curves and hourly check-in patterns.
                             </p>
                             <div class="grid grid-cols-2 gap-2 pt-2 text-xs font-bold">
-                                <div class="p-3 rounded-2xl subtle-tile text-indigo-700 dark:text-indigo-300">🔥 Vibe Streak</div>
-                                <div class="p-3 rounded-2xl subtle-tile text-sky-700 dark:text-sky-300">⚡ Power Gauge</div>
-                                <div class="p-3 rounded-2xl subtle-tile text-pink-700 dark:text-pink-300">📈 7-Day Trend</div>
-                                <div class="p-3 rounded-2xl subtle-tile text-emerald-700 dark:text-emerald-300">🕒 Hourly Bars</div>
+                                <div class="p-3 rounded-2xl subtle-tile text-indigo-700 dark:text-indigo-300 flex items-center gap-2"><ion-icon name="flame" class="text-base shrink-0"></ion-icon><span>Vibe Streak</span></div>
+                                <div class="p-3 rounded-2xl subtle-tile text-sky-700 dark:text-sky-300 flex items-center gap-2"><ion-icon name="flash" class="text-base shrink-0"></ion-icon><span>Power Gauge</span></div>
+                                <div class="p-3 rounded-2xl subtle-tile text-pink-700 dark:text-pink-300 flex items-center gap-2"><ion-icon name="analytics" class="text-base shrink-0"></ion-icon><span>7-Day Trend</span></div>
+                                <div class="p-3 rounded-2xl subtle-tile text-emerald-700 dark:text-emerald-300 flex items-center gap-2"><ion-icon name="bar-chart" class="text-base shrink-0"></ion-icon><span>Hourly Bars</span></div>
                             </div>
                         </div>
                         <div class="sm:col-span-6">
@@ -759,9 +765,9 @@
                                 Have a specific feeling only you know—like <em>Post-Run Glow</em>, <em>Deep Flow</em>, or <em>Sunday Reset</em>? Create unlimited <strong>Custom Vibes</strong>, pair them with any icon, and track them seamlessly in History and Analytics.
                             </p>
                             <ul class="space-y-2 pt-2 text-sm font-medium">
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Unlimited personal emotions</li>
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Pair with 220+ expressive icons</li>
-                                <li class="flex items-center gap-2.5"><span class="text-indigo-600 dark:text-indigo-400 font-bold">✓</span> Light &amp; Dark themes built in</li>
+                                <li class="flex items-center gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0"></ion-icon> Unlimited personal emotions</li>
+                                <li class="flex items-center gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0"></ion-icon> Pair with 220+ expressive icons</li>
+                                <li class="flex items-center gap-2.5"><ion-icon name="checkmark-circle" class="text-indigo-600 dark:text-indigo-400 text-lg shrink-0"></ion-icon> Light &amp; Dark themes built in</li>
                             </ul>
                         </div>
                         <div class="sm:col-span-6">
@@ -791,35 +797,35 @@
                     </div>
                     <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
                         <div class="p-4 rounded-2xl subtle-tile">
-                            <p class="text-indigo-600 dark:text-indigo-400 font-bold text-sm mb-1">📅 Days Tracked</p>
+                            <p class="text-indigo-600 dark:text-indigo-400 font-bold text-sm mb-1"><span class="inline-flex items-center gap-1.5"><ion-icon name="calendar" class="text-base shrink-0"></ion-icon><span>Days Tracked</span></span></p>
                             <p class="text-xs">Active days &amp; total sessions</p>
                         </div>
                         <div class="p-4 rounded-2xl subtle-tile">
-                            <p class="text-amber-600 dark:text-amber-400 font-bold text-sm mb-1">⚡ Avg Intensity</p>
+                            <p class="text-amber-600 dark:text-amber-400 font-bold text-sm mb-1"><span class="inline-flex items-center gap-1.5"><ion-icon name="pulse" class="text-base shrink-0"></ion-icon><span>Avg Intensity</span></span></p>
                             <p class="text-xs">Overall 1–5 mean score</p>
                         </div>
                         <div class="p-4 rounded-2xl subtle-tile">
-                            <p class="text-pink-600 dark:text-pink-400 font-bold text-sm mb-1">💗 Common Mood</p>
+                            <p class="text-pink-600 dark:text-pink-400 font-bold text-sm mb-1"><span class="inline-flex items-center gap-1.5"><ion-icon name="heart" class="text-base shrink-0"></ion-icon><span>Common Mood</span></span></p>
                             <p class="text-xs">Your signature vibe</p>
                         </div>
                         <div class="p-4 rounded-2xl subtle-tile">
-                            <p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm mb-1">📈 7D Average</p>
+                            <p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm mb-1"><span class="inline-flex items-center gap-1.5"><ion-icon name="trending-up" class="text-base shrink-0"></ion-icon><span>7D Average</span></span></p>
                             <p class="text-xs">Week-over-week % shift</p>
                         </div>
                         <div class="p-4 rounded-2xl subtle-tile">
-                            <p class="text-sky-600 dark:text-sky-400 font-bold text-sm mb-1">☀️ Best Day</p>
+                            <p class="text-sky-600 dark:text-sky-400 font-bold text-sm mb-1"><span class="inline-flex items-center gap-1.5"><ion-icon name="sunny" class="text-base shrink-0"></ion-icon><span>Best Day</span></span></p>
                             <p class="text-xs">Peak intensity date</p>
                         </div>
                         <div class="p-4 rounded-2xl subtle-tile">
-                            <p class="text-slate-700 dark:text-slate-300 font-bold text-sm mb-1">🌙 Worst Day</p>
+                            <p class="text-slate-700 dark:text-slate-300 font-bold text-sm mb-1"><span class="inline-flex items-center gap-1.5"><ion-icon name="cloudy-night" class="text-base shrink-0"></ion-icon><span>Worst Day</span></span></p>
                             <p class="text-xs">Lowest intensity date</p>
                         </div>
                         <div class="p-4 rounded-2xl subtle-tile">
-                            <p class="text-violet-600 dark:text-violet-400 font-bold text-sm mb-1">🚀 High Intensity</p>
+                            <p class="text-violet-600 dark:text-violet-400 font-bold text-sm mb-1"><span class="inline-flex items-center gap-1.5"><ion-icon name="rocket" class="text-base shrink-0"></ion-icon><span>High Intensity</span></span></p>
                             <p class="text-xs">% of days above 4/5</p>
                         </div>
                         <div class="p-4 rounded-2xl subtle-tile">
-                            <p class="text-cyan-600 dark:text-cyan-400 font-bold text-sm mb-1">🎨 Mood Diversity</p>
+                            <p class="text-cyan-600 dark:text-cyan-400 font-bold text-sm mb-1"><span class="inline-flex items-center gap-1.5"><ion-icon name="color-palette" class="text-base shrink-0"></ion-icon><span>Mood Diversity</span></span></p>
                             <p class="text-xs">Unique vibes per day</p>
                         </div>
                     </div>
@@ -843,17 +849,17 @@
 
                     <div class="grid sm:grid-cols-3 gap-5 pt-2">
                         <div class="p-6 rounded-3xl app-card">
-                            <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-xl mb-4">🔒</div>
+                            <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4"><ion-icon name="lock-closed"></ion-icon></div>
                             <h3 class="text-lg font-bold mb-2">100% On-Device</h3>
                             <p class="text-sm leading-relaxed">Your mood history and journal reflections live exclusively in local storage on your phone—never on external servers.</p>
                         </div>
                         <div class="p-6 rounded-3xl app-card">
-                            <div class="w-11 h-11 rounded-2xl bg-sky-500/10 flex items-center justify-center text-xl mb-4">🚫</div>
+                            <div class="w-11 h-11 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-4"><ion-icon name="eye-off"></ion-icon></div>
                             <h3 class="text-lg font-bold mb-2">Zero SDK Trackers</h3>
                             <p class="text-sm leading-relaxed">No ad networks, no behavioral telemetry, no third-party analytics SDKs, and no personal data monetization—ever.</p>
                         </div>
                         <div class="p-6 rounded-3xl app-card">
-                            <div class="w-11 h-11 rounded-2xl bg-pink-500/10 flex items-center justify-center text-xl mb-4">🎁</div>
+                            <div class="w-11 h-11 rounded-2xl bg-pink-500/10 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl mb-4"><ion-icon name="gift"></ion-icon></div>
                             <h3 class="text-lg font-bold mb-2">Truly Free Forever</h3>
                             <p class="text-sm leading-relaxed">No trial traps, no subscription bills, and no locked insights. Mental self-awareness should be accessible to everyone.</p>
                         </div>
@@ -886,7 +892,7 @@
                             </li>
                         </ul>
                         <a href="privacy_policy.html" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
-                            Read the full Privacy Policy →
+                            <span>Read the full Privacy Policy</span><ion-icon name="arrow-forward" class="text-base"></ion-icon>
                         </a>
                     </div>
                 </div>
@@ -982,17 +988,11 @@
     <script>
         // Theme Switcher (Default: Crisp Light Mode)
         const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleIcon = document.getElementById('theme-toggle-icon');
 
         function syncThemeIcons() {
-            if (document.documentElement.classList.contains('dark')) {
-                themeToggleLightIcon.classList.remove('hidden');
-                themeToggleDarkIcon.classList.add('hidden');
-            } else {
-                themeToggleDarkIcon.classList.remove('hidden');
-                themeToggleLightIcon.classList.add('hidden');
-            }
+            const isDark = document.documentElement.classList.contains('dark');
+            themeToggleIcon.setAttribute('name', isDark ? 'sunny' : 'moon');
         }
         syncThemeIcons();
 
@@ -1034,5 +1034,7 @@
 
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
