@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Contact &amp; Support | Mood Meter</title>
+    <meta name="title" content="Contact & Support | Mood Meter">
+    <meta name="description" content="Get in touch with the Mood Meter team for app support, feature ideas, custom vibe suggestions, or privacy questions.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#FDF5E6" media="(prefers-color-scheme: light)">
+
+    <link rel="canonical" href="https://moodmeter.cend.in/contact.html">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="assets/images/icon-128x128-1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mood Meter">
+    <meta property="og:title" content="Contact & Support | Mood Meter">
+    <meta property="og:description" content="Questions, feedback, or feature requests for Mood Meter on iOS and Android? Reach out to our team.">
+    <meta property="og:url" content="https://moodmeter.cend.in/contact.html">
+    <meta property="og:image" content="https://moodmeter.cend.in/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact & Support | Mood Meter">
+    <meta name="twitter:description" content="Reach the Mood Meter team for iOS & Android app support, feedback, or questions.">
+    <meta name="twitter:image" content="https://moodmeter.cend.in/assets/images/og-image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "@id": "https://moodmeter.cend.in/contact.html#contactpage",
+      "name": "Contact & Support | Mood Meter",
+      "description": "Official support and contact page for the Mood Meter iOS and Android app.",
+      "url": "https://moodmeter.cend.in/contact.html",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Mood Meter",
+        "url": "https://moodmeter.cend.in/"
+      },
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Mood Meter",
+        "url": "https://moodmeter.cend.in/",
+        "email": "social@nandiraju.com"
+      }
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <script>
+        if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --font-outfit: 'Outfit', sans-serif;
+            --font-inter: 'Inter', sans-serif;
+        }
+        :root {
+            --bg-color: #FDF5E6;
+            --bg-gradient: radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.10) 0%, transparent 45%),
+                           radial-gradient(circle at 90% 90%, rgba(245, 158, 11, 0.10) 0%, transparent 45%);
+            --surface-card: rgba(255, 255, 255, 0.90);
+            --surface-border: rgba(15, 23, 42, 0.08);
+            --text-main: #475569;
+            --text-heading: #0f172a;
+        }
+        .dark {
+            --bg-color: #0f172a;
+            --bg-gradient: radial-gradient(circle at 12% 8%, rgba(99, 102, 241, 0.20) 0%, transparent 45%),
+                           radial-gradient(circle at 88% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%);
+            --surface-card: rgba(30, 41, 59, 0.58);
+            --surface-border: rgba(255, 255, 255, 0.07);
+            --text-main: #cbd5e1;
+            --text-heading: #ffffff;
+        }
+        body {
+            @apply font-inter transition-colors duration-300 min-h-screen;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            background-image: var(--bg-gradient);
+            background-attachment: fixed;
+        }
+        h1, h2, h3 {
+            @apply font-outfit;
+            color: var(--text-heading);
+        }
+        .text-gradient {
+            @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
+        }
+        .dark .text-gradient {
+            @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent;
+        }
+        .app-card {
+            background-color: var(--surface-card);
+            border: 1px solid var(--surface-border);
+            @apply backdrop-blur-xl shadow-lg dark:shadow-2xl;
+        }
+        .nav-glass {
+            background-color: rgba(253, 245, 230, 0.82);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+            @apply backdrop-blur-xl;
+        }
+        .dark .nav-glass {
+            background-color: rgba(15, 23, 42, 0.82);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .nav-link {
+            @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
+        }
+        .form-input {
+            @apply w-full px-4 py-3.5 rounded-2xl border bg-white/80 dark:bg-slate-900/70 border-slate-900/10 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition;
+        }
+    </style>
+</head>
+<body class="selection:bg-indigo-500/30 antialiased">
+
+    <header class="fixed top-0 inset-x-0 z-50 nav-glass">
+        <nav class="container mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-md group-hover:scale-105 transition-transform">
+                <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight" style="color: var(--text-heading);">
+                    Mood<span class="text-indigo-500">Meter</span>
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="index.html#analytics" class="nav-link">Analytics</a>
+                <a href="privacy_policy.html" class="nav-link">Privacy</a>
+                <a href="terms_of_service.html" class="nav-link">Terms</a>
+                <a href="contact.html" class="text-sm font-bold text-indigo-600 dark:text-indigo-400">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" type="button" class="p-2.5 rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+                <a href="index.html#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 whitespace-nowrap hover:bg-indigo-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
+                    Get the App
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-32 pb-24">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <header class="text-center mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full app-card text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-4">
+                    Support &amp; Feedback
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black mb-4">
+                    Say <span class="text-gradient">Hello.</span>
+                </h1>
+                <p class="text-lg max-w-2xl mx-auto">
+                    Have a feature idea, a new Vibemoji request, a bug report, or a privacy question? We read every note personally—with zero tracking forms in between.
+                </p>
+            </header>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Left Column: Direct Channels & Support Quick Answers -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="app-card p-8 rounded-[2.5rem] space-y-5">
+                        <div class="flex items-center gap-3.5">
+                            <img src="assets/moods/in-love.svg" alt="" width="44" height="44" class="w-11 h-11">
+                            <div>
+                                <h2 class="text-xl font-bold">Direct Email</h2>
+                                <p class="text-xs opacity-75">Typical reply within 1–2 business days</p>
+                            </div>
+                        </div>
+                        <p class="text-sm leading-relaxed">
+                            Consistent with our local-first privacy stance, this website uses zero third-party form trackers. Email us directly anytime:
+                        </p>
+                        <a href="mailto:social@nandiraju.com" class="flex items-center justify-between px-5 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/25 transition">
+                            <span>social@nandiraju.com</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+
+                    <div class="app-card p-8 rounded-[2.5rem] space-y-4">
+                        <h2 class="text-xl font-bold">Quick Support Answers</h2>
+                        <div class="space-y-4 text-sm">
+                            <div class="pb-3.5 border-b border-slate-900/10 dark:border-white/10">
+                                <p class="font-bold mb-1" style="color: var(--text-heading);">How do I cancel a subscription?</p>
+                                <p class="text-xs leading-relaxed">There is nothing to cancel! Mood Meter has zero subscriptions, zero trials, and zero in-app charges.</p>
+                            </div>
+                            <div class="pb-3.5 border-b border-slate-900/10 dark:border-white/10">
+                                <p class="font-bold mb-1" style="color: var(--text-heading);">Can you reset my account or recover entries?</p>
+                                <p class="text-xs leading-relaxed">Mood Meter has no accounts or cloud servers. All entries live locally on your phone, so only you have access to them.</p>
+                            </div>
+                            <div>
+                                <p class="font-bold mb-1" style="color: var(--text-heading);">Reporting a bug?</p>
+                                <p class="text-xs leading-relaxed">Let us know whether you're on iOS or Android and what screen you were viewing—screenshots are always welcome!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Privacy-Preserving Message Composer -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" class="app-card p-8 sm:p-10 rounded-[2.5rem] space-y-5">
+                        <div>
+                            <h2 class="text-2xl font-extrabold mb-1">Compose a Message</h2>
+                            <p class="text-xs opacity-75">Opens directly in your default email app—nothing is stored on a web server.</p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="sender-name" class="block text-xs font-bold uppercase tracking-wider mb-2">Your Name (Optional)</label>
+                                <input id="sender-name" type="text" placeholder="Alex" class="form-input">
+                            </div>
+                            <div>
+                                <label for="topic" class="block text-xs font-bold uppercase tracking-wider mb-2">Topic</label>
+                                <select id="topic" class="form-input">
+                                    <option value="Feature / Custom Vibe Idea">Feature or Vibe Idea</option>
+                                    <option value="iOS App Support">iOS App Support</option>
+                                    <option value="Android App Support">Android App Support</option>
+                                    <option value="Privacy Question">Privacy Question</option>
+                                    <option value="General Feedback">General Feedback</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-bold uppercase tracking-wider mb-2">Message</label>
+                            <textarea id="message" rows="5" required placeholder="Tell us what's on your mind..." class="form-input"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-indigo-600/25 transition active:scale-[0.99] cursor-pointer">
+                            Open in Email App
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-900/10 dark:border-white/10">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg">
+                <div>
+                    <span class="font-outfit font-extrabold" style="color: var(--text-heading);">Mood Meter</span>
+                    <span class="text-xs ml-2">© 2026 Mood Meter. All rights reserved.</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
+                <a href="index.html" class="hover:text-indigo-500 transition-colors">Home</a>
+                <a href="privacy_policy.html" class="hover:text-indigo-500 transition-colors">Privacy Policy</a>
+                <a href="terms_of_service.html" class="hover:text-indigo-500 transition-colors">Terms of Service</a>
+                <a href="contact.html" class="text-indigo-600 dark:text-indigo-400">Contact</a>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-6 text-center md:text-left">
+            <p class="text-[11px] opacity-60">
+                Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-500">Emoticon Set Pack by Smashicons on Flaticon</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function syncThemeIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+        }
+        syncThemeIcons();
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+            syncThemeIcons();
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('sender-name').value.trim();
+            const topic = document.getElementById('topic').value;
+            const msg = document.getElementById('message').value.trim();
+            const subject = encodeURIComponent(`[Mood Meter] ${topic}${name ? ' — ' + name : ''}`);
+            const body = encodeURIComponent(`${msg}${name ? '\n\n— ' + name : ''}`);
+            window.location.href = `mailto:social@nandiraju.com?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>

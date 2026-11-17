@@ -10,6 +10,18 @@
     <loc>https://moodmeter.cend.in/privacy_policy.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://moodmeter.cend.in/terms_of_service.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://moodmeter.cend.in/contact.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

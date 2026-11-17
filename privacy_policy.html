@@ -3,34 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Primary Meta Tags -->
-    <title>Privacy Policy | Mood Meter</title>
-    <meta name="title" content="Privacy Policy | Mood Meter">
+    <title>Privacy Policy | Mood Meter — 100% Local-First Mood Tracker</title>
+    <meta name="title" content="Privacy Policy | Mood Meter — 100% Local-First Mood Tracker">
+    <meta name="description" content="Read the Mood Meter Privacy Policy. All mood entries, custom vibes, and journal reflections stay 100% on your device with zero cloud servers, zero ads, and zero third-party analytics.">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#FDF5E6" media="(prefers-color-scheme: light)">
+
     <link rel="canonical" href="https://moodmeter.cend.in/privacy_policy.html">
-    <link rel="icon" type="image/png" href="assets/images/icon-128x128-1.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="assets/images/icon-128x128-1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+
+    <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Mood Meter">
     <meta property="og:title" content="Privacy Policy | Mood Meter">
+    <meta property="og:description" content="Your emotions are not for sale. Learn how Mood Meter keeps 100% of your mood entries and reflections stored strictly on your device.">
     <meta property="og:url" content="https://moodmeter.cend.in/privacy_policy.html">
-    <meta property="og:image" content="https://moodmeter.cend.in/app_screens/screen_1.webp">
-    <meta name="description" content="Privacy is our priority. Read the Mood Meter Privacy Policy to understand how we protect your emotional data.">
-    
+    <meta property="og:image" content="https://moodmeter.cend.in/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Privacy Policy | Mood Meter">
+    <meta name="twitter:description" content="100% on-device storage, zero accounts, zero ads, and zero third-party tracking.">
+    <meta name="twitter:image" content="https://moodmeter.cend.in/assets/images/og-image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://moodmeter.cend.in/privacy_policy.html#webpage",
+      "name": "Privacy Policy | Mood Meter",
+      "description": "Mood Meter Privacy Policy detailing 100% local on-device storage, zero third-party tracking, and full user control.",
+      "url": "https://moodmeter.cend.in/privacy_policy.html",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Mood Meter",
+        "url": "https://moodmeter.cend.in/"
+      }
+    }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS v4 CDN -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
     <script>
-        // Immediate Theme Initialization (Head)
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage))) {
-            document.documentElement.classList.add('dark');
-        } else {
+        if (localStorage.getItem('color-theme') === 'light') {
             document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
         }
     </script>
 
@@ -38,259 +71,230 @@
         @theme {
             --font-outfit: 'Outfit', sans-serif;
             --font-inter: 'Inter', sans-serif;
-            --color-primary: #6366f1;
-            --color-secondary: #ec4899;
         }
-
         :root {
-            --bg-gradient: radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-                           radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
-            --bg-color: #f8fafc;
-            --text-main: #334155;
+            --bg-color: #FDF5E6;
+            --bg-gradient: radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.10) 0%, transparent 45%),
+                           radial-gradient(circle at 90% 90%, rgba(245, 158, 11, 0.10) 0%, transparent 45%);
+            --surface-card: rgba(255, 255, 255, 0.90);
+            --surface-border: rgba(15, 23, 42, 0.08);
+            --text-main: #475569;
             --text-heading: #0f172a;
         }
-
         .dark {
-            --bg-gradient: radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                           radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
-            --bg-color: #020617;
+            --bg-color: #0f172a;
+            --bg-gradient: radial-gradient(circle at 12% 8%, rgba(99, 102, 241, 0.20) 0%, transparent 45%),
+                           radial-gradient(circle at 88% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%);
+            --surface-card: rgba(30, 41, 59, 0.58);
+            --surface-border: rgba(255, 255, 255, 0.07);
             --text-main: #cbd5e1;
             --text-heading: #ffffff;
         }
-
         body {
-            @apply font-inter transition-colors duration-500 min-h-screen;
+            @apply font-inter transition-colors duration-300 min-h-screen;
             color: var(--text-main);
             background-color: var(--bg-color);
             background-image: var(--bg-gradient);
             background-attachment: fixed;
         }
-
-        h1, h2, h3 { 
-            @apply font-outfit mb-6;
+        h1, h2, h3 {
+            @apply font-outfit;
             color: var(--text-heading);
         }
-
         .text-gradient {
-            @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+            @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
         }
-
-        .glass {
-            @apply backdrop-blur-xl border bg-white/10 border-white/10 dark:bg-slate-900/40 dark:border-white/5;
+        .dark .text-gradient {
+            @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent;
         }
-
+        .app-card {
+            background-color: var(--surface-card);
+            border: 1px solid var(--surface-border);
+            @apply backdrop-blur-xl shadow-lg dark:shadow-2xl;
+        }
+        .nav-glass {
+            background-color: rgba(253, 245, 230, 0.82);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+            @apply backdrop-blur-xl;
+        }
+        .dark .nav-glass {
+            background-color: rgba(15, 23, 42, 0.82);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
         .nav-link {
-            @apply text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full;
+            @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
         }
-
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-        }
-
-        .animate-blob {
-            animation: blob 7s infinite alternate;
-        }
-
-        section p {
-            @apply mb-4 leading-relaxed;
-        }
-
-        section ul {
-            @apply list-disc pl-6 mb-6 space-y-2;
-        }
-
-        section h2 {
-            @apply text-3xl font-bold mt-12;
-        }
-
-        section h3 {
-            @apply text-xl font-semibold mt-8 mb-4;
-        }
+        .prose-legal p { @apply mb-4 leading-relaxed; }
+        .prose-legal ul { @apply list-disc pl-6 mb-6 space-y-2; }
+        .prose-legal h2 { @apply text-2xl sm:text-3xl font-bold mt-10 mb-4; }
+        .prose-legal h3 { @apply text-lg font-bold mt-6 mb-3; }
     </style>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Privacy Policy | Mood Meter","url":"https://moodmeter.cend.in/privacy_policy.html","isPartOf":{"@type":"WebSite","name":"Mood Meter","url":"https://moodmeter.cend.in/"}}</script>
 </head>
-<body class="selection:bg-primary/30 antialiased">
+<body class="selection:bg-indigo-500/30 antialiased">
 
-    <!-- Background Blobs -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-        <div class="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full animate-blob"></div>
-        <div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] bg-secondary/15 blur-[120px] rounded-full animate-blob [animation-delay:2s]"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass border-b">
-        <div class="container mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-extrabold tracking-tight group">
-                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">Mood Meter</span>
+    <header class="fixed top-0 inset-x-0 z-50 nav-glass">
+        <nav class="container mx-auto px-4 sm:px-6 h-20 flex justify-between items-center" aria-label="Primary">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="assets/images/app-icon.webp" alt="Mood Meter dial icon" width="40" height="40" class="w-10 h-10 rounded-xl shadow-md group-hover:scale-105 transition-transform">
+                <span class="font-outfit text-xl md:text-2xl font-extrabold tracking-tight" style="color: var(--text-heading);">
+                    Mood<span class="text-indigo-500">Meter</span>
+                </span>
             </a>
-            
-            <div class="hidden md:flex items-center space-x-8 font-medium">
+
+            <div class="hidden md:flex items-center gap-8">
                 <a href="index.html#features" class="nav-link">Features</a>
-                <a href="index.html#philosophy" class="nav-link">Philosophy</a>
-                <a href="index.html#download" class="nav-link">Download</a>
+                <a href="index.html#analytics" class="nav-link">Analytics</a>
+                <a href="privacy_policy.html" class="text-sm font-bold text-indigo-600 dark:text-indigo-400">Privacy</a>
+                <a href="terms_of_service.html" class="nav-link">Terms</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
 
-            <div class="flex items-center space-x-4">
-                <button id="theme-toggle" class="p-2.5 rounded-2xl glass hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle dark mode">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" type="button" class="p-2.5 rounded-2xl app-card hover:scale-105 transition-transform cursor-pointer" aria-label="Toggle color theme">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                 </button>
-                <a href="index.html#download" class="hidden sm:block px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-2xl hover:bg-primary-light hover:shadow-lg hover:shadow-primary/30 transition-all active:scale-95">
-                    Start Free
+                <a href="index.html#download" class="px-3.5 sm:px-5 py-2.5 bg-indigo-600 whitespace-nowrap hover:bg-indigo-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-indigo-600/25 transition-all active:scale-95">
+                    Get the App
                 </a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <main class="pt-32 pb-20">
+    <main class="pt-32 pb-24">
         <div class="container mx-auto px-6 max-w-4xl">
-            <header class="text-center mb-16">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-4">
+            <header class="text-center mb-14">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full app-card text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-4">
+                    Local-First Privacy
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-black mb-4">
                     Privacy <span class="text-gradient">Policy</span>
                 </h1>
-                <p class="text-slate-500 font-medium">Effective Date: February 14, 2026</p>
+                <p class="text-sm font-semibold opacity-75">Effective Date: February 14, 2026 • Last Updated: November 17, 2026</p>
             </header>
 
-            <div class="glass p-8 md:p-12 rounded-[3.5rem] border-white/10 shadow-2xl">
-                <section>
-                    <p>
-                        At <strong>Mood Meter</strong>, your privacy is our non-negotiable priority. We believe your emotional data is the most personal information you have, and it should remain entirely within your control. This Privacy Policy describes how we collect, use, and protect your information when you use the Mood Meter mobile application (the "App").
-                    </p>
+            <article class="app-card p-8 sm:p-12 rounded-[2.75rem] prose-legal">
+                <p>
+                    At <strong>Mood Meter</strong> ("MoodMeter", "we", "our", or "us"), your privacy is our foundational design principle. We believe your emotional entries and personal reflections belong exclusively to you. This Privacy Policy explains how information is handled when you use the Mood Meter mobile application for iOS and Android (the "App") and visit <a href="https://moodmeter.cend.in/" class="text-indigo-600 dark:text-indigo-400 underline font-semibold">moodmeter.cend.in</a>.
+                </p>
 
-                    <h2>1. Core Principles</h2>
-                    <ul>
-                        <li><strong>Privacy by Design:</strong> We build features with your anonymity in mind from day one.</li>
-                        <li><strong>Zero Data Monetization:</strong> We do not, and will never, sell your personal data.</li>
-                        <li><strong>Self-Custody:</strong> Wherever possible, your data stays on your device.</li>
-                    </ul>
+                <h2>1. Core Privacy Principles</h2>
+                <ul>
+                    <li><strong>100% On-Device Storage:</strong> Your mood entries, intensity ratings, custom vibes, and journal reflections are stored locally on your device—never on external servers operated by us.</li>
+                    <li><strong>No Account Required:</strong> Mood Meter never asks for your name, email address, phone number, or social sign-in.</li>
+                    <li><strong>Zero Data Monetization:</strong> We do not collect, sell, rent, or share personal or emotional data with advertisers or data brokers.</li>
+                </ul>
 
-                    <h2>2. Information We Collect</h2>
-                    
-                    <h3>Information You Provide</h3>
-                    <p>When you use Mood Meter, you may choose to provide:</p>
-                    <ul>
-                        <li>Mood entries, feelings, and journal reflections.</li>
-                        <li>Custom mood labels, activities, and tags.</li>
-                        <li>Optional profile settings (e.g., nicknames, notification preferences).</li>
-                    </ul>
+                <h2>2. Information Stored Locally on Your Device</h2>
+                <h3>Information You Create in the App</h3>
+                <p>When you use Mood Meter, the App saves the following data solely inside your device's local application storage:</p>
+                <ul>
+                    <li>Selected mood icons, intensity ratings (1–5 scale), timestamps, and optional journal reflections.</li>
+                    <li>Custom Vibes (custom mood labels and selected icons) created by you.</li>
+                    <li>Appearance preferences (such as Dark Mode or Light Mode).</li>
+                </ul>
 
-                    <h3>Automatically Collected Information</h3>
-                    <p>Unlike most applications, <strong>Mood Meter does not collect or transmit</strong> any automated technical data to external servers. We do not track your IP address, device ID, or usage patterns through any third-party analytics services.</p>
+                <h3>Automatically Collected Information</h3>
+                <p>
+                    <strong>Mood Meter does not collect or transmit</strong> telemetry, crash analytics, IP addresses, advertising identifiers (IDFA/GAID), location data, or behavioral tracking data to external servers.
+                </p>
 
-                    <h2>3. How We Use Your Information</h2>
-                    <p>We use the data we collect to:</p>
-                    <ul>
-                        <li>Provide visual analytics and emotional insights.</li>
-                        <li>Maintain app stability and security.</li>
-                        <li>Understand usage patterns to prioritize new feature development.</li>
-                        <li>Send setup reminders if enabled by you.</li>
-                    </ul>
+                <h2>3. How Local Data Is Used</h2>
+                <p>All data stored on your device is processed locally on your phone or tablet solely to:</p>
+                <ul>
+                    <li>Display your chronological mood history and search results.</li>
+                    <li>Compute on-device emotional analytics, including your Current Vibe Streak, Vibe Power Gauge, 7-day Intensity Trend, Vibe Distribution, and Hourly Activity charts.</li>
+                    <li>Remember your custom vibes and display theme preference.</li>
+                </ul>
 
-                    <h2>4. Data Storage and Security</h2>
-                    <p>
-                        Your mood entries, journal notes, and all other personal information are stored <strong>exclusively on your device</strong>. We do not maintain any cloud databases or central servers where your data is stored. 
-                    </p>
-                    <p>
-                        Since your data remains on your device, its security depends on your device's own protection (such as passcodes or biometric locks). We do not have access to your data and cannot recover it if you lose your device or delete the app.
-                    </p>
+                <h2>4. Data Security &amp; Retention</h2>
+                <p>
+                    Because your entries never leave your device, your data is protected by your operating system's sandboxing and your device's own security controls (such as Face ID, Touch ID, fingerprint unlock, or device passcode).
+                </p>
+                <p>
+                    We have no technical means to view, access, or recover your entries. You retain complete control over retention: you may edit or delete individual mood entries or custom vibes at any time inside the App, or permanently erase all local data by uninstalling the App.
+                </p>
 
-                    <h2>5. No Third-Party Services</h2>
-                    <p>Mood Meter is designed to be a standalone tool. We do not use any third-party analytics, tracking, or marketing services such as Google Firebase, Sentry, or Facebook SDK. Your usage remains entirely private and invisible to us and any third parties.</p>
+                <h2>5. No Third-Party Tracking SDKs</h2>
+                <p>
+                    Mood Meter integrates <strong>zero</strong> third-party analytics, advertising, or profiling SDKs (such as Google Analytics/Firebase, Meta SDK, or ad networks). Downloading the App via the Apple App Store or Google Play Store is subject to Apple's or Google's respective platform privacy policies.
+                </p>
 
-                    <h2>6. Your Rights (GDPR & CCPA)</h2>
-                    <p>Regardless of your location, we respect your rights to:</p>
-                    <ul>
-                        <li><strong>Access:</strong> Export your data from the app at any time.</li>
-                        <li><strong>Correction:</strong> Modify any entry within the app interface.</li>
-                        <li><strong>Deletion:</strong> Wipe all your data instantly using the "Delete All Data" feature.</li>
-                        <li><strong>Withdrawal:</strong> Stop providing data by simply uninstalling the app.</li>
-                    </ul>
+                <h2>6. Your Privacy Rights (GDPR, CCPA &amp; Global Standards)</h2>
+                <p>Because all data resides locally on your device under your direct custody, you can exercise your rights immediately at any time without submitting a request:</p>
+                <ul>
+                    <li><strong>Right to Access:</strong> View and search your complete history directly in the History and Analytics tabs.</li>
+                    <li><strong>Right to Rectification:</strong> Tap any logged mood or custom vibe to modify its intensity, reflection note, date/time, or label.</li>
+                    <li><strong>Right to Erasure:</strong> Delete individual entries inside the App or uninstall the App to wipe all local records immediately.</li>
+                </ul>
 
-                    <h2>7. Data Retention</h2>
-                    <p>
-                        Because we do not collect your data on our servers, data retention is managed entirely by you. All data is retained on your device for as long as the App is installed. Deleting the App will permanently remove all associated mood data from your device.
-                    </p>
+                <h2>7. Children's Privacy</h2>
+                <p>
+                    Mood Meter does not knowingly collect any personal information from anyone, including children under the age of 13.
+                </p>
 
-                    <h2>8. Children's Privacy</h2>
-                    <p>
-                        Mood Meter is not intended for children under 13 years of age. We do not knowingly collect personal data from children. If you believe we have inadvertently collected such data, please contact us for immediate removal.
-                    </p>
+                <h2>8. Changes to This Privacy Policy</h2>
+                <p>
+                    If we introduce optional features in the future that affect how data is handled, we will update this page and revise the "Last Updated" date above prior to release.
+                </p>
 
-                    <h2>9. Changes to This Policy</h2>
-                    <p>
-                        We may update this policy as we add new features or as laws change. We will notify you of any significant changes via in-app notifications or by updating the "Effective Date" at the top of this page.
-                    </p>
-
-                    <h2>10. Contact Us</h2>
-                    <div class="mt-8 p-6 rounded-3xl bg-primary/5 border border-primary/10">
-                        <p class="font-bold text-lg mb-2">Questions or Concerns?</p>
-                        <p>If you have any questions regarding your privacy, please reach out to our team:</p>
-                        <p class="mt-4">
-                            <a href="mailto:social@nandiraju.com" class="font-bold text-primary hover:underline">social@nandiraju.com</a>
-                        </p>
-                    </div>
-                </section>
-            </div>
-
-            <div class="mt-12 text-center">
-                <a href="index.html" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-primary transition-colors">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to Home
-                </a>
-            </div>
+                <h2>9. Contact Us</h2>
+                <div class="mt-6 p-6 rounded-3xl bg-indigo-500/10 border border-indigo-500/20">
+                    <p class="font-bold text-lg mb-1" style="color: var(--text-heading);">Questions about privacy?</p>
+                    <p class="mb-3 text-sm">Reach out anytime via our <a href="contact.html" class="text-indigo-600 dark:text-indigo-400 font-semibold underline">Contact page</a> or email us directly:</p>
+                    <a href="mailto:social@nandiraju.com" class="inline-flex items-center font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                        social@nandiraju.com
+                    </a>
+                </div>
+            </article>
         </div>
     </main>
 
-    <footer class="py-12 border-t border-white/5">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center space-x-2">
-                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-black">Mood Meter</span>
-                <span class="text-xs text-slate-500 font-medium">© 2026 Mood Meter Team</span>
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-900/10 dark:border-white/10">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="assets/images/app-icon.webp" alt="Mood Meter icon" width="32" height="32" loading="lazy" class="w-8 h-8 rounded-lg">
+                <div>
+                    <span class="font-outfit font-extrabold" style="color: var(--text-heading);">Mood Meter</span>
+                    <span class="text-xs ml-2">© 2026 Mood Meter. All rights reserved.</span>
+                </div>
             </div>
-            <div class="flex space-x-8 text-sm font-medium text-slate-500">
-                <a href="#" class="text-primary">Privacy Policy</a>
-                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
-                <a href="mailto:hello@moodmeter.app" class="hover:text-primary transition-colors">Contact</a>
+
+            <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold">
+                <a href="index.html" class="hover:text-indigo-500 transition-colors">Home</a>
+                <a href="privacy_policy.html" class="text-indigo-600 dark:text-indigo-400">Privacy Policy</a>
+                <a href="terms_of_service.html" class="hover:text-indigo-500 transition-colors">Terms of Service</a>
+                <a href="contact.html" class="hover:text-indigo-500 transition-colors">Contact</a>
             </div>
+        </div>
+        <div class="container mx-auto px-6 mt-6 text-center md:text-left">
+            <p class="text-[11px] opacity-60">
+                Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-500">Emoticon Set Pack by Smashicons on Flaticon</a>.
+            </p>
         </div>
     </footer>
 
     <script>
-        // Dark Mode Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-        if (document.documentElement.classList.contains('dark')) {
-            themeToggleLightIcon.classList.remove('hidden');
-        } else {
-            themeToggleDarkIcon.classList.remove('hidden');
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
+        function syncThemeIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
             } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
             }
+        }
+        syncThemeIcons();
+
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+            syncThemeIcons();
         });
     </script>
 </body>
