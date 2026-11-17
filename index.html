@@ -295,105 +295,145 @@
             @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
         }
 
-        /* Precision Concentric Titanium + Obsidian Studio Phone Frame */
-        .titanium-phone {
-            --r-outer: 2.35rem;
-            --p-rail: 3px;
-            --p-bezel: 6px;
+        /* iPhone 16 Pro proportions, scaled with the width of each mockup. */
+        .iphone {
             position: relative;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: var(--r-outer);
-            padding: var(--p-rail);
-            background: linear-gradient(145deg, #94a3b8 0%, #475569 24%, #1e293b 52%, #64748b 78%, #334155 100%);
-            box-shadow:
-                0 1px 0 0 rgba(255, 255, 255, 0.5) inset,
-                0 0 0 1px rgba(15, 23, 42, 0.22),
-                0 28px 56px -14px rgba(15, 23, 42, 0.30),
-                0 10px 22px -8px rgba(79, 70, 229, 0.14);
-            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+            container-type: inline-size;
+            aspect-ratio: 71.5 / 149.6;
+            margin-inline: auto;
+            border-radius: 15% / 7.17%;
+            background: linear-gradient(135deg, #a7a29b, #514e4a 28%, #292827 65%, #858078);
+            box-shadow: 0 0 0 1px #242322, 0 24px 42px -20px #0f172a80;
         }
 
-        .titanium-phone--hero {
-            --r-outer: 2.65rem;
-            --p-rail: 3.5px;
-            --p-bezel: 7px;
+        .dark .iphone {
+            box-shadow: 0 0 0 1px #1c1b1a, 0 24px 42px -18px #000b;
         }
 
-        .dark .titanium-phone {
-            background: linear-gradient(145deg, #64748b 0%, #334155 26%, #0f172a 52%, #475569 80%, #1e293b 100%);
-            box-shadow:
-                0 1px 0 0 rgba(255, 255, 255, 0.28) inset,
-                0 0 0 1px rgba(0, 0, 0, 0.65),
-                0 30px 64px -14px rgba(2, 6, 23, 0.80),
-                0 10px 26px -8px rgba(99, 102, 241, 0.20);
-        }
-
-        article:hover .titanium-phone {
-            transform: translateY(-4px);
-        }
-
-        .titanium-phone::before {
-            content: '';
+        .iphone-screen {
             position: absolute;
-            left: -2.5px;
-            top: 22%;
-            width: 2.5px;
-            height: 68px;
-            border-radius: 3px 0 0 3px;
-            background: linear-gradient(180deg, #64748b 0%, #334155 40%, transparent 40%, transparent 54%, #64748b 54%, #334155 100%);
-            opacity: 0.85;
-        }
-
-        .titanium-phone::after {
-            content: '';
-            position: absolute;
-            right: -2.5px;
-            top: 27%;
-            width: 2.5px;
-            height: 44px;
-            border-radius: 0 3px 3px 0;
-            background: linear-gradient(180deg, #64748b 0%, #334155 100%);
-            opacity: 0.85;
-        }
-
-        .titanium-bezel {
-            position: relative;
-            background: #060913;
-            padding: var(--p-bezel);
-            border-radius: calc(var(--r-outer) - var(--p-rail));
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-        }
-
-        .titanium-bezel::before {
-            content: '';
-            position: absolute;
-            top: 2.5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 36px;
-            height: 2.5px;
-            border-radius: 999px;
-            background: #1a2234;
-            z-index: 20;
-        }
-
-        .titanium-screen {
-            position: relative;
+            inset: 1.85cqw;
             overflow: hidden;
-            border-radius: calc(var(--r-outer) - var(--p-rail) - var(--p-bezel));
-            background-color: #0f172b;
-            padding-top: 6px;
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            border: 1.05cqw solid #090909;
+            border-radius: 13.15cqw;
+            background: linear-gradient(
+                var(--screen-top, #0e1728) 50%,
+                var(--screen-bottom, #020617) 50%
+            );
         }
 
-        .titanium-screen::after {
-            content: '';
+        .iphone-screen img {
+            position: absolute;
+            top: 7.5%;
+            width: 100%;
+            height: auto;
+            /* Hide the source status bar and gesture indicator. */
+            clip-path: inset(5% 0 2.5%);
+        }
+
+        .iphone-screen:has(img[src$="02-capture-vibe.webp"]) {
+            --screen-top: #0f172b;
+            --screen-bottom: #17181f;
+        }
+
+        .iphone-screen:has(img[src$="05-custom-moods.webp"]) {
+            --screen-bottom: #0f172b;
+        }
+
+        .iphone-controls {
             position: absolute;
             inset: 0;
             pointer-events: none;
-            background: linear-gradient(125deg, rgba(255, 255, 255, 0.065) 0%, rgba(255, 255, 255, 0.015) 26%, transparent 44%);
-            z-index: 10;
+        }
+
+        .iphone-controls::before,
+        .iphone-controls::after {
+            content: '';
+            position: absolute;
+            width: 1cqw;
+            border-radius: 1px;
+            background: #706d67;
+        }
+
+        .iphone-controls::before {
+            left: -0.8cqw;
+            top: 17%;
+            height: 3.3%;
+            box-shadow: 0 11cqw #706d67, 0 21cqw #706d67;
+        }
+
+        .iphone-controls::after {
+            right: -0.8cqw;
+            top: 24%;
+            height: 7%;
+        }
+
+        .iphone-status {
+            position: absolute;
+            inset: 2.3% 7.4% auto;
+            height: 7.6cqw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-inline: 2cqw;
+            color: #fff;
+            font: 600 3.8cqw/1 system-ui, sans-serif;
+        }
+
+        .iphone-island {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30cqw;
+            height: 7.6cqw;
+            border-radius: 999px;
+            background: radial-gradient(circle at 87% 50%, #192139, #090d16 5%, #000 8%);
+        }
+
+        .iphone-icons {
+            display: flex;
+            align-items: center;
+            gap: 1cqw;
+        }
+
+        .iphone-signal {
+            width: 4.5cqw;
+            height: 3cqw;
+            background: currentColor;
+            clip-path: polygon(0 100%, 0 71%, 18% 71%, 18% 100%, 28% 100%, 28% 48%, 46% 48%, 46% 100%, 56% 100%, 56% 24%, 74% 24%, 74% 100%, 82% 100%, 82% 0, 100% 0, 100% 100%);
+        }
+
+        .iphone-battery {
+            position: relative;
+            width: 5.4cqw;
+            height: 3cqw;
+            border: 0.25cqw solid #fff8;
+            border-radius: 0.75cqw;
+            background: currentColor content-box;
+            padding: 0.35cqw;
+        }
+
+        .iphone-battery::after {
+            content: '';
+            position: absolute;
+            left: calc(100% + 0.45cqw);
+            top: 25%;
+            width: 0.5cqw;
+            height: 50%;
+            border-radius: 0 1px 1px 0;
+            background: #fff8;
+        }
+
+        .iphone-screen::after {
+            content: '';
+            position: absolute;
+            bottom: 0.9%;
+            left: 33%;
+            width: 34%;
+            height: 1.15cqw;
+            border-radius: 999px;
+            background: #f8fafc;
+            pointer-events: none;
         }
 
         .phone-stage {
@@ -523,17 +563,24 @@
                     <div class="absolute -inset-6 bg-gradient-to-tr from-indigo-500/15 via-sky-400/15 to-pink-500/10 blur-3xl rounded-full pointer-events-none"></div>
 
                     <div class="relative mx-auto max-w-[310px]">
-                        <!-- Studio Titanium Hero Phone -->
-                        <div class="titanium-phone titanium-phone--hero max-w-[292px]">
-                            <div class="titanium-bezel">
-                                <div class="titanium-screen">
-                                    <img id="hero-screen-img"
-                                         src="app_screens/01-mood-picker.webp"
-                                         alt="Mood Meter app screen showing Explore 220+ moods grid with Energized, Grateful, Focused, Calm, Inspired, and Joyful icons"
-                                         width="1080"
-                                         height="1920"
-                                         fetchpriority="high"
-                                         class="w-full h-auto block">
+                        <!-- Interactive iPhone preview -->
+                        <div class="iphone max-w-[292px]">
+                            <div class="iphone-controls" aria-hidden="true"></div>
+                            <div class="iphone-screen">
+                                <img id="hero-screen-img"
+                                     src="app_screens/01-mood-picker.webp"
+                                     alt="Mood Meter app screen showing Explore 220+ moods grid with Energized, Grateful, Focused, Calm, Inspired, and Joyful icons"
+                                     width="1080"
+                                     height="1920"
+                                     fetchpriority="high"
+                                     class="w-full h-auto block">
+                                <div class="iphone-status" aria-hidden="true">
+                                    <span>9:41</span>
+                                    <span class="iphone-island"></span>
+                                    <span class="iphone-icons">
+                                        <span class="iphone-signal"></span>
+                                        <span class="iphone-battery"></span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -646,10 +693,17 @@
                                 </p>
                             </div>
                             <div class="phone-stage rounded-2xl p-6">
-                                <div class="titanium-phone w-full max-w-[236px]">
-                                    <div class="titanium-bezel">
-                                        <div class="titanium-screen">
-                                            <img src="app_screens/01-mood-picker.webp" alt="Mood Meter main screen showing Explore 220+ moods with Energized, Grateful, Focused, Calm, Inspired, Joyful, Playful, Content, and Reflective" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                <div class="iphone w-full max-w-[236px]">
+                                    <div class="iphone-controls" aria-hidden="true"></div>
+                                    <div class="iphone-screen">
+                                        <img src="app_screens/01-mood-picker.webp" alt="Mood Meter main screen showing Explore 220+ moods with Energized, Grateful, Focused, Calm, Inspired, Joyful, Playful, Content, and Reflective" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        <div class="iphone-status" aria-hidden="true">
+                                            <span>9:41</span>
+                                            <span class="iphone-island"></span>
+                                            <span class="iphone-icons">
+                                                <span class="iphone-signal"></span>
+                                                <span class="iphone-battery"></span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -669,10 +723,17 @@
                                 </p>
                             </div>
                             <div class="phone-stage rounded-2xl p-6">
-                                <div class="titanium-phone w-full max-w-[236px]">
-                                    <div class="titanium-bezel">
-                                        <div class="titanium-screen">
-                                            <img src="app_screens/02-capture-vibe.webp" alt="Capture Vibe screen showing Grateful mood, 3/5 intensity slider, and personal dinner reflection" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                <div class="iphone w-full max-w-[236px]">
+                                    <div class="iphone-controls" aria-hidden="true"></div>
+                                    <div class="iphone-screen">
+                                        <img src="app_screens/02-capture-vibe.webp" alt="Capture Vibe screen showing Grateful mood, 3/5 intensity slider, and personal dinner reflection" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        <div class="iphone-status" aria-hidden="true">
+                                            <span>9:41</span>
+                                            <span class="iphone-island"></span>
+                                            <span class="iphone-icons">
+                                                <span class="iphone-signal"></span>
+                                                <span class="iphone-battery"></span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -692,10 +753,17 @@
                                 </p>
                             </div>
                             <div class="phone-stage rounded-2xl p-6">
-                                <div class="titanium-phone w-full max-w-[236px]">
-                                    <div class="titanium-bezel">
-                                        <div class="titanium-screen">
-                                            <img src="app_screens/03-mood-history.webp" alt="Mood Meter History screen listing Energized 5/5, Focused 4/5, Grateful 5/5, and Calm 4/5 entries with journal notes" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                <div class="iphone w-full max-w-[236px]">
+                                    <div class="iphone-controls" aria-hidden="true"></div>
+                                    <div class="iphone-screen">
+                                        <img src="app_screens/03-mood-history.webp" alt="Mood Meter History screen listing Energized 5/5, Focused 4/5, Grateful 5/5, and Calm 4/5 entries with journal notes" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                        <div class="iphone-status" aria-hidden="true">
+                                            <span>9:41</span>
+                                            <span class="iphone-island"></span>
+                                            <span class="iphone-icons">
+                                                <span class="iphone-signal"></span>
+                                                <span class="iphone-battery"></span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -739,10 +807,17 @@
                             </div>
                             <div class="sm:col-span-5">
                                 <div class="phone-stage rounded-2xl p-4">
-                                    <div class="titanium-phone w-full max-w-[188px]">
-                                        <div class="titanium-bezel">
-                                            <div class="titanium-screen">
-                                                <img src="app_screens/04-mood-trends.webp" alt="Mood Meter Analytics screen displaying 14% Inspired and 14% Joyful donut gauges alongside a 7-day Intensity Trend line chart" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    <div class="iphone w-full max-w-[188px]">
+                                        <div class="iphone-controls" aria-hidden="true"></div>
+                                        <div class="iphone-screen">
+                                            <img src="app_screens/04-mood-trends.webp" alt="Mood Meter Analytics screen displaying 14% Inspired and 14% Joyful donut gauges alongside a 7-day Intensity Trend line chart" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                            <div class="iphone-status" aria-hidden="true">
+                                                <span>9:41</span>
+                                                <span class="iphone-island"></span>
+                                                <span class="iphone-icons">
+                                                    <span class="iphone-signal"></span>
+                                                    <span class="iphone-battery"></span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -784,10 +859,17 @@
                             </div>
                             <div class="sm:col-span-5">
                                 <div class="phone-stage rounded-2xl p-4">
-                                    <div class="titanium-phone w-full max-w-[188px]">
-                                        <div class="titanium-bezel">
-                                            <div class="titanium-screen">
-                                                <img src="app_screens/05-custom-moods.webp" alt="Custom Vibes screen showing Create New Vibe button and personal emotions Energized, Grateful, Focused, Calm, and Inspired" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                    <div class="iphone w-full max-w-[188px]">
+                                        <div class="iphone-controls" aria-hidden="true"></div>
+                                        <div class="iphone-screen">
+                                            <img src="app_screens/05-custom-moods.webp" alt="Custom Vibes screen showing Create New Vibe button and personal emotions Energized, Grateful, Focused, Calm, and Inspired" width="1080" height="1920" loading="lazy" decoding="async" class="w-full h-auto block">
+                                            <div class="iphone-status" aria-hidden="true">
+                                                <span>9:41</span>
+                                                <span class="iphone-island"></span>
+                                                <span class="iphone-icons">
+                                                    <span class="iphone-signal"></span>
+                                                    <span class="iphone-battery"></span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -1109,9 +1191,7 @@
                 screenTabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
                 tab.setAttribute('aria-selected', 'true');
                 const nextSrc = tab.getAttribute('data-screen');
-                if (heroImg.getAttribute('src') !== nextSrc) {
-                    swapHeroScreen(nextSrc, tab.getAttribute('data-alt'));
-                }
+                swapHeroScreen(nextSrc, tab.getAttribute('data-alt'));
             });
         });
 
