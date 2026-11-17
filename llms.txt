@@ -3,6 +3,7 @@
 > Mood Meter (MoodMeter) is a 100% free, local-first mood tracker and emotional journal for iOS and Android. No ads, no subscriptions, no accounts, and zero cloud tracking—every mood entry and reflection stays strictly on your device.
 
 ## Key Facts
+- **Developer:** Designed and developed by Srikanth Nandiraju ([srikanth.nandiraju.com](https://srikanth.nandiraju.com/))
 - **Price:** $0 forever (no ads, no subscriptions, no in-app purchases, no locked "Pro" features)
 - **Platforms:** iOS (iPhone & iPad via Apple App Store) and Android (phones & tablets via Google Play)
 - **Privacy Architecture:** 100% on-device local storage (`AsyncStorage`), offline-ready, no sign-up required, zero third-party analytics or ad SDKs in the app (the website uses Google Analytics)
