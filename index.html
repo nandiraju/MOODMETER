@@ -420,13 +420,14 @@
             @apply opacity-100 translate-y-0;
         }
 
-        @keyframes floatSlow {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .animate-float {
-            animation: floatSlow 5s ease-in-out infinite;
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
         }
 
         ion-icon {
@@ -532,7 +533,7 @@
                                          width="1080"
                                          height="1920"
                                          fetchpriority="high"
-                                         class="w-full h-auto block transition-opacity duration-200">
+                                         class="w-full h-auto block">
                                 </div>
                             </div>
                         </div>
@@ -1072,22 +1073,44 @@
             syncThemeIcons();
         });
 
+        // Hero screen switcher: native Web Animations API cross-fade
         const heroImg = document.getElementById('hero-screen-img');
         const screenTabs = document.querySelectorAll('.screen-tab');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let swapToken = 0;
+
+        async function swapHeroScreen(nextSrc, nextAlt) {
+            const token = ++swapToken;
+            const canAnimate = !prefersReducedMotion.matches && typeof heroImg.animate === 'function';
+            try {
+                if (canAnimate) {
+                    heroImg.getAnimations().forEach((a) => a.cancel());
+                    await heroImg.animate([{ opacity: 1 }, { opacity: 0.25 }], { duration: 140, easing: 'ease-out', fill: 'forwards' }).finished;
+                }
+                if (token !== swapToken) return;
+                heroImg.setAttribute('src', nextSrc);
+                heroImg.setAttribute('alt', nextAlt);
+                if (canAnimate) {
+                    await heroImg.decode().catch(() => {});
+                    if (token !== swapToken) return;
+                    const fadeIn = heroImg.animate([{ opacity: 0.25 }, { opacity: 1 }], { duration: 220, easing: 'ease-out', fill: 'forwards' });
+                    await fadeIn.finished;
+                    if (token === swapToken) heroImg.getAnimations().forEach((a) => a.cancel());
+                }
+            } catch (_) {
+                if (token !== swapToken) return;
+                heroImg.setAttribute('src', nextSrc);
+                heroImg.setAttribute('alt', nextAlt);
+            }
+        }
 
         screenTabs.forEach((tab) => {
             tab.addEventListener('click', () => {
                 screenTabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
                 tab.setAttribute('aria-selected', 'true');
                 const nextSrc = tab.getAttribute('data-screen');
-                const nextAlt = tab.getAttribute('data-alt');
                 if (heroImg.getAttribute('src') !== nextSrc) {
-                    heroImg.style.opacity = '0.35';
-                    setTimeout(() => {
-                        heroImg.setAttribute('src', nextSrc);
-                        heroImg.setAttribute('alt', nextAlt);
-                        heroImg.style.opacity = '1';
-                    }, 120);
+                    swapHeroScreen(nextSrc, tab.getAttribute('data-alt'));
                 }
             });
         });

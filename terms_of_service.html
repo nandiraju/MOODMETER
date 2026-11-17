@@ -154,6 +154,16 @@
             @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
         }
         .obf-addr[data-u]::before { content: attr(data-u) "\0040" attr(data-d); }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+        }
+
         ion-icon {
             pointer-events: none;
             vertical-align: middle;
