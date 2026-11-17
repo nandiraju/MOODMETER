@@ -5,7 +5,7 @@
 ## Key Facts
 - **Price:** $0 forever (no ads, no subscriptions, no in-app purchases, no locked "Pro" features)
 - **Platforms:** iOS (iPhone & iPad via Apple App Store) and Android (phones & tablets via Google Play)
-- **Privacy Architecture:** 100% on-device local storage (`AsyncStorage`), offline-ready, no sign-up required, zero third-party analytics or ad SDKs
+- **Privacy Architecture:** 100% on-device local storage (`AsyncStorage`), offline-ready, no sign-up required, zero third-party analytics or ad SDKs in the app (the website uses Google Analytics)
 - **Built-in Emotional Vocabulary:** 220+ expressive mood icons with instant search, plus unlimited user-created **Custom Vibes** (Custom Vibemojis)
 - **Mood Logging ("Capture Vibe"):** 1–5 intensity slider with dynamic pulse feedback, voice-typing friendly journal reflections, and flexible date/time backdating
 - **Timeline Journal ("History"):** Chronological feed with intensity badges, full-text search across mood names and reflections, and one-tap editing or deletion

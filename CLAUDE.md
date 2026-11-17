@@ -63,17 +63,71 @@ Marketing and legal website for the **Mood Meter** mobile application (iOS and A
   - Automatically pauses via `IntersectionObserver` when scrolled offscreen, on `document.visibilitychange`, and on pointer hover or keyboard focus; preserves playback progress across debounced (`150ms`) window resizes; degrades to a static scrollable strip (`[data-static]`) under `prefers-reduced-motion: reduce`.
 - **Non-JS & Reduced-Motion Resilience:** `<noscript>` forces `.reveal { opacity: 1 !important; transform: none !important; }` so crawlers and non-JS browsers see all content immediately, and `@media (prefers-reduced-motion: reduce)` collapses transitions/animations site-wide.
 
-## SEO & AI-Search (GEO / AEO) Checklist
-- **Canonical URL Hygiene:** Always link to home with `href="/"` or `href="/#section"`—never `index.html`—so crawlers only ever index `https://moodmeter.cend.in/`.
-- **Head Parity Across All 4 Pages:**
-  - Single `<h1>` and strict `h1 -> h2 -> h3` hierarchy; single `<header>`, `<nav aria-label="Primary">`, `<main id="main-content">` (with skip link), and `<footer>` landmarks.
+## SEO & AI-Search (GEO / AEO): Rules for This Site
+- **Canonical URL Hygiene:** Always link to home with `href="/"` or `href="/#section"`, never `index.html`, so crawlers only ever index `https://moodmeter.cend.in/`. GitHub Pages also answers `/index.html`, `/index`, `/contact`; the self-referencing canonicals handle those duplicates.
+- **Head Parity Across All Indexable Pages:**
+  - Single `<h1>` that carries the page's main keyword, and strict `h1 -> h2 -> h3` hierarchy; single `<header>`, `<nav aria-label="Primary">`, `<main id="main-content">` (with skip link), and `<footer>` landmarks.
   - `<title>` <= 60 chars and `<meta name="description">` ~140–155 chars, unique per page.
   - Self-referencing `<link rel="canonical">`, `hreflang="en"`, and `hreflang="x-default"`.
   - `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">` and `<meta name="apple-itunes-app" content="app-id=391278676">`.
   - Complete Open Graph (`og:type`, `og:site_name`, `og:locale`, `og:url`, `og:title`, `og:description`, `og:image`, `og:image:type`, `og:image:width`, `og:image:height`, `og:image:alt`) and Twitter/X `summary_large_image` tags (`twitter:url`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt`).
+  - `<link rel="manifest" href="site.webmanifest">`, 32px and 48px PNG favicons, 180px apple-touch-icon.
+  - `404.html` is `noindex, follow`, uses root-absolute URLs, and is excluded from the sitemap.
 - **Structured Data (Schema.org JSON-LD):**
   - `index.html` publishes the canonical `@graph`: `Organization` (`#org` with 512x512 logo and App Store / Google Play `sameAs` links), `WebSite` (`#website`), `WebPage` (`#webpage`), `MobileApplication` (`#app`), and `FAQPage` (`#faq-schema`).
-  - **Keep `FAQPage` JSON-LD answers synced word-for-word with the visible `#faq` cards.**
-  - No `softwareVersion` (iOS/Android versions differ and go stale). No `aggregateRating`/`review` unless taken from real store data **and** shown on the page (US App Store had 0 ratings as of 2026-11-17).
+  - **Keep `FAQPage` JSON-LD answers synced word-for-word with the visible `#faq` cards.** (FAQ rich results no longer show for normal sites; keep the block for AI/answer engines.)
+  - No `softwareVersion` (iOS/Android versions differ and go stale). No `aggregateRating`/`review` unless taken from real store data **and** shown on the page (US App Store had 0 ratings as of 2026-11-17), so no software rich result for now; that is accepted.
   - Subpages reference `#website`, `#org`, and `#app` by `@id` and include a `BreadcrumbList`.
-- **Freshness & Crawl Files:** Update `<lastmod>` in `sitemap.xml`, `<time datetime="...">` / `dateModified` on edited legal pages, and `llms.txt` whenever product facts or URLs change.
+- **Crawl & Discovery Files:** `robots.txt` = `User-agent: * Allow: /` + named groups for AI crawlers (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Google-Extended, Applebot-Extended, Amazonbot, DuckAssistBot, Meta-ExternalAgent) + `Sitemap:` line. Named groups do **not** inherit rules from `*` (RFC 9309), so any future `Disallow` must be repeated in each group. `sitemap.xml` lists the 4 indexable pages with image entries (screenshots, OG image, 512 icon). `llms.txt` is a fact sheet; Google ignores it, it costs nothing.
+- **Freshness:** Update a page's `<lastmod>` in `sitemap.xml` only when that page changes, plus `<time datetime="...">` / `dateModified` on edited legal pages, and `llms.txt` whenever product facts or URLs change.
+- **Analytics (GA4 `G-HBMC3XJK4X`, dedicated MoodMeter property; never the Cend.in stream `G-84VRLCP0H7`):** every page `<head>` loads `assets/js/analytics.js` **synchronously** and then `<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBMC3XJK4X">` (keep that order). Consent Mode v2 in `analytics.js`: region default denies everything for the EEA (EU 27 + IS, LI, NO), GB and CH; the global default grants `analytics_storage`; `ad_storage`, `ad_user_data`, `ad_personalization` are always denied. A stored choice (`localStorage["mm-consent"]`) is replayed as `consent update`. The accept/decline banner shows only when no choice is stored **and** the browser time zone is an EEA/UK/CH zone (GitHub Pages cannot geolocate; mismatches fail safe because Google applies the region default by IP). `window.mmConsent.open()` reopens it (privacy policy "Cookie settings" button). `store_click` (`store: app_store | google_play`) fires on any App Store / Google Play link (key event in GA4). Visible Google Play buttons carry `&referrer=utm_source%3Dmoodmeter_site%26utm_medium%3Dwebsite%26utm_campaign%3Dlanding`; App Store links stay plain until an App Store Connect campaign link exists. JSON-LD and `llms.txt` keep the clean store URLs. Privacy policy section `#website-analytics` states the website uses Google Analytics with cookies and the **app** collects no data; all "no third-party analytics/trackers" claims are scoped to the app. Change consent defaults and that wording in the same release. When testing locally, block `googletagmanager.com`/`google-analytics.com` so localhost hits never reach the property.
+
+## SEO Status Log (moodmeter.cend.in)
+- **2026-11-17 done:** shorter titles/descriptions; keyword line in the hero H1; `/` home links; Organization `sameAs`; subpage `BreadcrumbList` + `@id` links; OG/Twitter image alts; image sitemap; web manifest + 48/192/512 icons; 404 page; removed stale `softwareVersion`; precompiled Tailwind with hashed CSS URLs; dark theme default (`class="dark"` in HTML).
+- **2026-11-17 Analytics:** GA4 `G-HBMC3XJK4X` live on all pages with Consent Mode v2 (analytics granted globally, denied by default in EEA/UK/CH with a banner; ads always denied), `store_click` key event, Play referrer UTM, privacy policy updated (website uses GA cookies; app collects nothing).
+- **2026-11-17 Search Console:** `cend.in` verified as a **domain property** (covers this subdomain); `sitemap.xml` submitted and accepted (4 pages discovered); indexing requested for the homepage.
+- **2026-11-17 audit (claude-seo method), health 78/100:** Technical 91, Content 62, On-page 78, Schema 86, Performance 76, AI search 78, Images 84. No critical issues.
+- **Open items (priority order):**
+  1. Name the developer/publisher (matching the store "Seller" field) in the footer, privacy policy, `Organization.legalName`, and `llms.txt`; add a plain-text support role address in `contactPoint`. Disambiguate from Yale RULER's "Mood Meter" (wording to be confirmed by the owner).
+  2. FAQ additions that answer real objections, mirrored in JSON-LD: works offline, no account needed, not a medical app, what happens when changing phones/backups (verify app behaviour first).
+  3. Keyword-led H2s (keep slogans as eyebrow text); contact H1 "Mood Meter Support & Contact".
+  4. Self-host fonts (2 variable woff2 instead of 8 Google files) and replace Ionicons with a local SVG sprite (removes two third-party origins; makes "no IP addresses shared" true for the website).
+  5. Reduce dark-mode `backdrop-filter` cost on touch devices (about 70 blurred cards); keep glass on desktop.
+  6. Responsive screenshot variants (`srcset`, 540w/810w) incl. the hero preload; compress `og-image.png` (236 KB) to under 100 KB; delete unused `app_screens/screen_1-4.webp` and `og-image.webp`; maskable 512 manifest icon; `favicon.ico`.
+  7. Schema polish: screenshots as `ImageObject`s, `applicationSubCategory`, `offers.availability`, ContactPage `mainEntity` as an `@id` reference.
+  8. Off-site: set this URL as the website on both store listings; earn genuine store ratings; list on AlternativeTo / Product Hunt / privacy-app directories with the same name and developer everywhere.
+  9. Content investments: data-protection explainer page, factual comparison page (vs Daylio / How We Feel / Bearable), small guide/blog cluster with Article schema and a named author.
+
+## New-Site SEO Playbook (reuse for any new static site)
+Work through these in order. Verify each step with a command or a real browser, not by assumption.
+
+1. **Decide the basics before writing pages.**
+   - Pick one canonical origin (`https://`, with or without `www`) and stick to it in every URL, canonical, sitemap and schema.
+   - Write down the 3–5 queries each page must win and the one fact-based sentence that defines the product ("X is a free, ... for ..."). That sentence goes in the first paragraph, the meta description, schema `description` and `llms.txt`.
+   - Agree the brand spelling (and any alternate spelling) and the real legal/developer name. Check whether another well-known product shares the name.
+2. **Build fast by default.**
+   - Static HTML with all content in the raw HTML (no client-side rendering for text).
+   - Precompile CSS (e.g. Tailwind CLI) instead of runtime CDN builds; stamp a content hash on asset URLs (`?v=<hash>`) via a build script so caches never serve stale files.
+   - Self-host fonts (variable woff2, `font-display: swap`, preload the heading font) and icons (inline SVG sprite). Every third-party origin costs speed and leaks visitor IPs.
+   - Identify the LCP element: preload it, `fetchpriority="high"`, never lazy. Everything below the fold: `loading="lazy" decoding="async"`.
+   - Every `<img>` gets `width`/`height` matching its real aspect ratio; serve WebP/AVIF with `srcset`/`sizes` sized to the rendered width.
+   - Animate only `transform`/`opacity`; never put `backdrop-filter` on moving or numerous elements; pause infinite animations offscreen; honour `prefers-reduced-motion`.
+   - Put the stylesheet link before large JSON-LD blocks in `<head>`.
+3. **Head tags on every indexable page:** unique `<title>` (<= 60 chars, keyword first, brand last), unique meta description (140–155 chars), self-referencing absolute canonical, `robots` (`index, follow, max-image-preview:large`), `hreflang` if multilingual, theme-color, favicons (48px multiple), apple-touch-icon, manifest, full Open Graph + Twitter card with a 1200x630 image (< 100 KB) and alt text. Skip `meta keywords` (ignored).
+4. **Page structure:** one H1 containing the main keyword; H2s that say what the section is about (slogans go in eyebrow text, not headings); question-shaped headings where people ask questions; landmarks (`header`, `nav aria-label`, `main id` + skip link, `footer`); descriptive link text; `alt=""` for decorative images and for logos next to the same visible text.
+5. **Structured data:** one `@graph` on the home page with stable `@id`s (`#org`, `#website`, `#webpage`, plus the product type: `MobileApplication`/`SoftwareApplication`, `Product`, `LocalBusiness`, etc.). Subpages reference those `@id`s and add `BreadcrumbList`. Only mark up what is visible on the page. Never invent ratings, reviews, user counts or versions. Validate with Google's Rich Results Test and a JSON parser.
+6. **Trust (E-E-A-T):** name who makes the product (legal name, country), give a real contact route, date legal pages with `<time>`, and add a disclaimer for health/finance-adjacent topics. Make privacy claims precise and true for both the product **and** the website (fonts, CDNs and analytics count).
+7. **Crawl files:**
+   - `robots.txt`: allow everything you want indexed, add named groups for AI crawlers you welcome, include the `Sitemap:` line, and remember named groups don't inherit `*` rules.
+   - `sitemap.xml`: canonical URLs only (no 404/noindex pages), real per-page `<lastmod>`, image entries for key images. `changefreq`/`priority` are ignored by Google.
+   - `llms.txt`: short fact sheet (H1, blockquote summary, key facts, links). Optional, cheap.
+   - A real `404.html` (returns 404, `noindex, follow`, root-absolute links).
+   - On GitHub Pages, keep build/source files out of the public site (Jekyll `_config.yml` `exclude:` list, or deploy only the built folder).
+8. **Analytics and privacy:** create a dedicated GA4 property per site (free; up to 2,000 per account); set retention to 14 months; load with Consent Mode v2 default-denied unless you add a consent banner; track the main conversion (e.g. store clicks) as a key event; update the privacy policy in the same release.
+9. **Launch checks (run every time):**
+   - Live status codes: pages 200, unknown path 404, `http` -> `https` single 301.
+   - Deployed files match the repo (hash compare), CSS loads, no console errors or failed requests, no horizontal scroll at 390px and 1280px, both themes.
+   - Titles/descriptions lengths, one H1 per page, canonical present, JSON-LD parses, FAQ schema matches visible text, no broken local `src`/`href`, sitemap valid XML.
+10. **Get indexed:** verify in Google Search Console (a **domain** property via DNS covers all subdomains), submit the sitemap, request indexing for the homepage; do the same in Bing Webmaster Tools (can import from Search Console); link Search Console to GA4.
+11. **Off-site:** point app-store/marketplace listings and social profiles at the site, use the identical name and developer everywhere, earn genuine reviews, and list in relevant directories.
+12. **Keep it fresh:** re-run the launch checks after every deploy, re-audit quarterly, update `lastmod`/dates/`llms.txt` only when content really changes, and add focused pages (how it works, comparisons, guides) to reach more queries.
