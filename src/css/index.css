@@ -264,30 +264,72 @@ h1, h2, h3, h4 {
 /* App Store / Google Play badges: same orbiting shine, 3s loop.
    The SVG badges draw their own 1px black border (rx 5.5 of a 40-unit-high viewBox = ~7.7px at h-14),
    so a masked ring is laid exactly over it instead of adding a second border. */
+/* Store badges: orbiting shine. Uses real child spans rotated with `transform` (works in every browser)
+   rather than animating a custom property on ::before/::after, which some Safari versions won't run.
+   .badge-ring: border-only ring (mask) laid over the SVG's own 1px border.
+   .badge-glow: blurred halo behind the badge. Each holds an oversized conic square that spins. */
 .store-badge {
     position: relative;
     display: block;
     border-radius: 0.48rem;
+    isolation: isolate;
 }
-.store-badge img { display: block; }
-.store-badge::after {
-    content: '';
+.store-badge img {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+.badge-ring,
+.badge-glow {
     position: absolute;
-    inset: 0;
-    padding: 1.6px;
-    border-radius: inherit;
-    background: conic-gradient(
-        from var(--shine-angle, 0deg),
-        #0f172a 0deg, #4f46e5 40deg, #ffffff 75deg, #ec4899 110deg, #0f172a 160deg,
-        #0f172a 200deg, #38bdf8 245deg, #ffffff 270deg, #4f46e5 300deg, #0f172a 340deg
-    );
+    overflow: hidden;
+    pointer-events: none;
+}
+.badge-ring {
+    inset: -1px;
+    z-index: 2;
+    padding: 2.5px;
+    border-radius: calc(0.48rem + 1px);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-    pointer-events: none;
-    animation: shine-spin 3s linear infinite;
 }
-.store-badge:hover::after { box-shadow: 0 0 18px -2px rgba(99, 102, 241, 0.55); }
+.badge-glow {
+    inset: -5px;
+    z-index: 0;
+    border-radius: calc(0.48rem + 5px);
+    filter: blur(8px);
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
+}
+.store-badge:hover .badge-glow { opacity: 1; }
+.badge-ring::before,
+.badge-glow::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 130%;            /* wider than the badge diagonal, so the corners stay covered while spinning */
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    animation: badge-shine-rotate 12s linear infinite;
+}
+.badge-ring::before {
+    background: conic-gradient(
+        #4f46e5 0deg, #a5b4fc 30deg, #ffffff 55deg, #f472b6 85deg, #4f46e5 130deg,
+        #6366f1 180deg, #7dd3fc 210deg, #ffffff 235deg, #c084fc 265deg, #4f46e5 310deg, #4f46e5 360deg
+    );
+}
+.badge-glow::before {
+    background: conic-gradient(
+        transparent 0deg, rgba(129, 140, 248, 0.9) 45deg, rgba(244, 114, 182, 0.85) 85deg, transparent 140deg,
+        transparent 180deg, rgba(125, 211, 252, 0.9) 225deg, rgba(192, 132, 252, 0.85) 265deg, transparent 320deg
+    );
+}
+@keyframes badge-shine-rotate {
+    from { transform: translate(-50%, -50%) rotate(0turn); }
+    to { transform: translate(-50%, -50%) rotate(1turn); }
+}
 
 /* One-shot flare the moment a pill becomes selected */
 @keyframes pill-select-glow {
