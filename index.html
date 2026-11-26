@@ -56,7 +56,7 @@
     <!-- Fonts: self-hosted variable woff2 via @font-face in src/css/<page>.css (font-display: swap). Not preloaded on purpose: preloading competed with the render-blocking CSS on slow mobile connections. -->
 
     <!-- Precompiled Tailwind CSS (source: src/css/index.css) -->
-    <link rel="stylesheet" href="assets/css/index.css?v=dfe2a090a7">
+    <link rel="stylesheet" href="assets/css/index.css?v=112d44d840">
     <!-- Google tag (GA4, MoodMeter property). Consent defaults + banner live in assets/js/analytics.js, which must load first and synchronously. -->
     <script src="assets/js/analytics.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HBMC3XJK4X"></script>
@@ -277,12 +277,13 @@
                 </span>
             </a>
 
-            <div class="hidden md:flex items-center gap-7">
+            <div class="hidden lg:flex items-center gap-5 xl:gap-7">
                 <a href="#vibes" class="nav-link">220+ Moods</a>
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#analytics" class="nav-link">Analytics</a>
                 <a href="#privacy" class="nav-link">Privacy</a>
                 <a href="#faq" class="nav-link">FAQ</a>
+                <a href="free-mood-tracker-apps.html" class="nav-link">Compare</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
@@ -498,6 +499,13 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-6 mt-10 text-center reveal">
+                <a href="about.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full app-card text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:border-indigo-500 transition">
+                    <span>Browse every mood on the interactive Mood Meter vibe wall</span>
+                    <svg class="icon text-base" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#arrow-forward"></use></svg>
+                </a>
             </div>
         </section>
 

@@ -140,6 +140,19 @@ html, body {
     background: rgba(255, 255, 255, 0.55);
 }
 
+/* The primary nav pill carries a link to every other page, so on narrow screens
+   it scrolls inside itself rather than pushing the bottom bar past the viewport. */
+.glass-pill--nav {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.glass-pill--nav::-webkit-scrollbar {
+    display: none;
+}
+
 .pill-item.is-active {
     background: #ffffff;
     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.14);
@@ -314,5 +327,20 @@ html, body {
     .pill-item {
         padding: 7px 11px;
         font-size: 12px;
+    }
+    .bottom-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .glass-pill--nav {
+        order: -1;
+        width: 100%;
+        /* Six links do not fit one row on a phone; wrap them instead of
+           letting the last one sit clipped behind the pill's edge. */
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: visible;
+        border-radius: 22px;
+        row-gap: 2px;
     }
 }

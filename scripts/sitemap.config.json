@@ -1,0 +1,13 @@
+{
+  "images": {
+    "index.html": [
+      "assets/images/og-image.jpg",
+      "assets/images/icon-512x512.png",
+      "app_screens/01-mood-picker.webp",
+      "app_screens/02-capture-vibe.webp",
+      "app_screens/03-mood-history.webp",
+      "app_screens/04-mood-trends.webp",
+      "app_screens/05-custom-moods.webp"
+    ]
+  }
+}
