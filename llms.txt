@@ -15,6 +15,8 @@
 
 ## Official Pages
 - [Home](https://moodmeter.cend.in/): Product overview, interactive 5-screen tour, analytics breakdown, and FAQ
+- [About Mood Meter](https://moodmeter.cend.in/about.html): Interactive mood & vibe wall and the story behind Mood Meter
+- [Free Mood Tracker Apps Comparison](https://moodmeter.cend.in/free-mood-tracker-apps.html): Source-checked comparison of Mood Meter, Daylio, How We Feel, and Bearable
 - [Privacy Policy](https://moodmeter.cend.in/privacy_policy.html): Complete details on local-first on-device data custody
 - [Terms of Service](https://moodmeter.cend.in/terms_of_service.html): Free license terms, user content ownership, and wellness disclaimer
 - [Contact & Support](https://moodmeter.cend.in/contact.html): Support answers, feedback composer, and direct email contact

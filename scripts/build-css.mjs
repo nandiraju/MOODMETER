@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 
-const PAGES = ['index', 'contact', 'privacy_policy', 'terms_of_service', '404'];
+const PAGES = ['index', 'contact', 'privacy_policy', 'terms_of_service', 'free-mood-tracker-apps', 'about', '404'];
 
 for (const page of PAGES) {
   const out = `assets/css/${page}.css`;

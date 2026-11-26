@@ -1,0 +1,283 @@
+/* Source for assets/css/free-mood-tracker-apps.css — build with `npm run build:css`. Do not edit the output file. */
+@import "tailwindcss" source(none);
+@source "../../free-mood-tracker-apps.html";
+
+/* Self-hosted variable fonts (Google Fonts latin subset, SIL OFL 1.1). */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('../fonts/inter-latin-var.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600 900;
+    font-display: swap;
+    src: url('../fonts/outfit-latin-var.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-outfit: 'Outfit', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --color-primary: #4f46e5;
+    --color-secondary: #ec4899;
+}
+
+:root {
+    --bg-color: #f8fbff;
+    --bg-gradient: radial-gradient(circle at 10% 0%, rgba(79, 70, 229, 0.07) 0%, transparent 45%),
+                   radial-gradient(circle at 90% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 42%),
+                   radial-gradient(circle at 80% 90%, rgba(236, 72, 153, 0.05) 0%, transparent 45%);
+    --surface-card: #ffffff;
+    --surface-subtle: #f1f6fd;
+    --surface-border: rgba(15, 23, 42, 0.08);
+    --surface-shadow: 0 14px 34px -10px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+    --text-main: #475569;
+    --text-heading: #0f172a;
+}
+
+.dark {
+    --bg-color: #0f172a;
+    --bg-gradient: radial-gradient(circle at 12% 8%, rgba(99, 102, 241, 0.20) 0%, transparent 45%),
+                   radial-gradient(circle at 88% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+                   radial-gradient(circle at 60% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 35%);
+    --surface-card: rgba(30, 41, 59, 0.65);
+    --surface-subtle: rgba(255, 255, 255, 0.05);
+    --surface-border: rgba(255, 255, 255, 0.08);
+    --surface-shadow: 0 20px 45px -15px rgba(2, 6, 23, 0.65);
+    --text-main: #aab6cb;
+    --text-heading: #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    @apply font-inter transition-colors duration-300 min-h-screen;
+    color: var(--text-main);
+    background-color: var(--bg-color);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+    @apply font-outfit;
+    color: var(--text-heading);
+}
+
+.text-gradient {
+    @apply bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500 bg-clip-text text-transparent;
+}
+
+.dark .text-gradient {
+    @apply bg-gradient-to-r from-indigo-400 via-violet-400 to-pink-400 bg-clip-text text-transparent;
+}
+
+.app-card {
+    background-color: var(--surface-card);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--surface-shadow);
+    @apply backdrop-blur-xl;
+}
+
+.subtle-tile {
+    background-color: var(--surface-subtle);
+    border: 1px solid var(--surface-border);
+}
+
+.nav-glass {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+    @apply backdrop-blur-xl;
+}
+
+.dark .nav-glass {
+    background-color: rgba(15, 23, 42, 0.84);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-link {
+    @apply text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-colors;
+}
+
+/* Dark theme: liquid-glass surfaces over ambient color orbs */
+.ambient { display: none; }
+.dark .ambient {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+.ambient span {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.55;
+}
+.ambient .orb-a { width: 46vw; height: 46vw; top: -12%; left: -8%; background: #4f46e5; }
+.ambient .orb-b { width: 40vw; height: 40vw; top: 28%; right: -10%; background: #0ea5e9; opacity: 0.38; }
+.ambient .orb-c { width: 44vw; height: 44vw; bottom: -14%; left: 26%; background: #db2777; opacity: 0.34; }
+
+.dark .app-card {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.04) 45%, rgba(255, 255, 255, 0.07) 100%);
+    -webkit-backdrop-filter: blur(26px) saturate(170%);
+    backdrop-filter: blur(26px) saturate(170%);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+        inset 0 0 28px rgba(255, 255, 255, 0.025),
+        0 24px 48px -22px rgba(2, 6, 23, 0.75);
+}
+
+.dark .subtle-tile {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.dark .nav-glass {
+    background: rgba(15, 23, 42, 0.45);
+    -webkit-backdrop-filter: blur(24px) saturate(170%);
+    backdrop-filter: blur(24px) saturate(170%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.compare-table th,
+.compare-table td {
+    border-bottom: 1px solid var(--surface-border);
+    vertical-align: top;
+}
+
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* ---------- Semicircle background orbit (Mood Meter screenshots) ---------- */
+.arc {
+    --R: max(62vw, 560px);
+    --apex: 52svh;
+    --count: 25;
+    --dur: 110s;
+    --card-w: calc(var(--R) * 0.145);
+    --card-h: calc(var(--R) * 0.245);
+    --card-radius: calc(var(--R) * 0.018);
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.24;
+    contain: layout paint style;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 86%, transparent 100%);
+}
+
+.dark .arc {
+    opacity: 0.42;
+}
+
+.arc__ring {
+    position: absolute;
+    left: 50%;
+    top: calc(var(--apex) + var(--R));
+    width: 0;
+    height: 0;
+}
+
+.arc-item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    will-change: transform;
+    animation: mm-orbit var(--dur) linear infinite;
+    animation-delay: calc(var(--dur) / var(--count) * var(--i) * -1);
+}
+
+.arc-item img {
+    position: absolute;
+    left: calc(var(--card-w) / -2);
+    top: calc(var(--R) * -1 - var(--card-h) / 2);
+    width: var(--card-w);
+    height: var(--card-h);
+    max-width: none;
+    max-height: none;
+    display: block;
+    object-fit: cover;
+    object-position: 50% 0;
+    border-radius: var(--card-radius);
+    box-shadow: 0 28px 56px -22px rgba(15, 23, 42, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.10);
+    outline: 1px solid transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.dark .arc-item img {
+    box-shadow: 0 28px 56px -22px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+@keyframes mm-orbit {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+}
+
+@media (max-width: 720px) {
+    .arc {
+        --R: 720px;
+        --apex: 56svh;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .arc-item { animation-play-state: paused; }
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    flex-shrink: 0;
+    pointer-events: none;
+    vertical-align: middle;
+    overflow: visible;
+}
+.icon:not(.hidden) {
+    display: inline-block;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .dark .app-card {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.07) 45%, rgba(255, 255, 255, 0.10) 100%);
+    }
+    .dark .subtle-tile {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+    }
+    .app-card {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}

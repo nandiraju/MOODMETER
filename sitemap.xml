@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://moodmeter.cend.in/</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -27,6 +27,18 @@
     <image:image>
       <image:loc>https://moodmeter.cend.in/app_screens/05-custom-moods.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://moodmeter.cend.in/free-mood-tracker-apps.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://moodmeter.cend.in/about.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://moodmeter.cend.in/privacy_policy.html</loc>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>About Mood Meter — Interactive Vibe Wall &amp; Story</title>
+    <meta name="title" content="About Mood Meter — Interactive Vibe Wall & Story">
+    <meta name="description" content="Explore Mood Meter's interactive draggable vibe canvas and learn the story behind the 100% free, local-first mood tracker for iOS and Android.">
+    <meta name="author" content="Mood Meter">
+    <meta name="application-name" content="Mood Meter">
+    <meta name="apple-itunes-app" content="app-id=391278676">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#070912">
+
+    <link rel="canonical" href="https://moodmeter.cend.in/about.html">
+    <link rel="alternate" hreflang="en" href="https://moodmeter.cend.in/about.html">
+    <link rel="alternate" hreflang="x-default" href="https://moodmeter.cend.in/about.html">
+    <link rel="icon" type="image/svg+xml" href="assets/images/app-icon.svg?v=2">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/images/favicon-48x48.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="128x128" href="assets/images/icon-128x128-1.png?v=2">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192x192.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png?v=2">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mood Meter">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="About Mood Meter — Interactive Vibe Wall &amp; Story">
+    <meta property="og:description" content="Drag through Mood Meter's expressive vibes and discover how we built a 100% free, local-first mood tracker for iOS and Android.">
+    <meta property="og:url" content="https://moodmeter.cend.in/about.html">
+    <meta property="og:image" content="https://moodmeter.cend.in/assets/images/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Mood Meter app screens showing 220+ mood picker, Capture Vibe intensity slider, and Intensity Trend analytics">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://moodmeter.cend.in/about.html">
+    <meta name="twitter:title" content="About Mood Meter — Interactive Vibe Wall &amp; Story">
+    <meta name="twitter:description" content="Explore Mood Meter's interactive draggable mood canvas and local-first philosophy.">
+    <meta name="twitter:image" content="https://moodmeter.cend.in/assets/images/og-image.jpg">
+    <meta name="twitter:image:alt" content="Mood Meter app screens showing mood picker, capture vibe modal, and emotional analytics">
+
+    <!-- Precompiled Tailwind CSS (source: src/css/about.css) -->
+    <link rel="stylesheet" href="assets/css/about.css?v=74d85c13c8">
+    <!-- Google tag (GA4, MoodMeter property) -->
+    <script src="assets/js/analytics.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HBMC3XJK4X"></script>
+
+    <!-- GSAP + Three.js for WebGL infinite draggable tile canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "@id": "https://moodmeter.cend.in/about.html#aboutpage",
+      "name": "About Mood Meter — Interactive Vibe Wall & Story",
+      "description": "About Mood Meter: a 100% free, local-first mood tracker and emotional journal for iOS and Android designed by Srikanth Nandiraju.",
+      "url": "https://moodmeter.cend.in/about.html",
+      "datePublished": "2026-11-26",
+      "dateModified": "2026-11-26",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://moodmeter.cend.in/#website" },
+      "about": { "@id": "https://moodmeter.cend.in/#app" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moodmeter.cend.in/" },
+          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://moodmeter.cend.in/about.html" }
+        ]
+      }
+    }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Top HUD -->
+    <header class="topbar">
+        <a href="/" class="flex items-center gap-3 group" aria-label="Mood Meter Home">
+            <img src="assets/images/app-icon.svg" alt="Mood Meter dial icon" width="38" height="38" class="w-9 h-9 rounded-xl shadow-sm ring-1 ring-white/15 group-hover:scale-105 transition-transform">
+            <span class="font-outfit text-xl font-extrabold tracking-tight text-white">
+                Mood<span class="text-indigo-400">Meter</span>
+            </span>
+        </a>
+
+        <div class="topbar-manifesto">
+            MOOD METER IS A 100% FREE, LOCAL-FIRST MOOD TRACKER WITH 220+ EXPRESSIVE VIBES — BUILT FOR CLARITY &amp; PRIVACY.
+        </div>
+
+        <div class="flex items-center gap-2.5">
+            <button type="button" id="aboutStoryBtn" class="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white text-xs sm:text-sm font-semibold backdrop-blur-md transition cursor-pointer">
+                Our Story
+            </button>
+            <a href="/#download" class="px-4 sm:px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-indigo-600/30 transition">
+                Get the App
+            </a>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <h1 class="sr-only">About Mood Meter — Interactive Mood &amp; Vibe Wall</h1>
+        <div id="dragHint" class="drag-hint" aria-hidden="true">Drag or scroll to explore vibes • Click any tile to center</div>
+        <canvas id="glCanvas" aria-label="Interactive draggable grid of Mood Meter mood and vibe tiles"></canvas>
+    </main>
+
+    <!-- About Mood Meter Story Modal -->
+    <div id="aboutModal" class="about-modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+        <div class="about-card space-y-5">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-xs font-extrabold uppercase tracking-widest text-indigo-400 mb-1">About Mood Meter</p>
+                    <h2 id="aboutModalTitle" class="font-outfit text-2xl sm:text-3xl font-extrabold text-white">220+ Vibes. Zero Noise.</h2>
+                </div>
+                <button type="button" id="closeAboutBtn" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer transition" aria-label="Close about dialog">
+                    <svg class="icon text-lg" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#close-circle"></use></svg>
+                </button>
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed">
+                <strong>Mood Meter</strong> was created by <a href="https://srikanth.nandiraju.com/" target="_blank" rel="author noopener" class="text-indigo-400 font-semibold underline">Srikanth Nandiraju</a> with a simple belief: checking in with your emotions should take two seconds, never require an account, never show an ad, and never upload your private journal to someone else's cloud.
+            </p>
+            <p class="text-sm text-slate-300 leading-relaxed">
+                Every tile on this canvas represents one of the expressive moods inside the app—from <em>Joyful</em> and <em>In Love</em> to <em>Thinking</em>, <em>Tired</em>, and <em>Relieved</em>. Inside Mood Meter on iOS and Android, you can search 220+ moods, create unlimited Custom Vibes, rate 1–5 intensity, and inspect on-device trends—100% free forever.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-1">
+                <a href="https://apps.apple.com/us/app/mood-meter/id391278676" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition">
+                    App Store (iOS)
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.jaw_drop.moodmeter&amp;referrer=utm_source%3Dmoodmeter_site%26utm_medium%3Dwebsite%26utm_campaign%3Dabout" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition">
+                    Google Play (Android)
+                </a>
+                <a href="free-mood-tracker-apps.html" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition">
+                    Compare Apps
+                </a>
+            </div>
+            <p class="text-[11px] text-slate-400 pt-1">
+                Emoticon artwork from the <a href="https://www.flaticon.com/authors/smashicons" target="_blank" rel="noopener noreferrer" class="underline hover:text-indigo-400">Emoticon Set Pack by Smashicons on Flaticon</a>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Filter Drawer -->
+    <div class="filter-drawer" id="filterDrawer" aria-label="Filter moods by vibe category">
+        <button class="filter-chip is-active" type="button" data-filter="ALL">All Vibes</button>
+        <button class="filter-chip" type="button" data-filter="UPLIFTING">Uplifting</button>
+        <button class="filter-chip" type="button" data-filter="PLAYFUL">Playful</button>
+        <button class="filter-chip" type="button" data-filter="CALM">Calm</button>
+        <button class="filter-chip" type="button" data-filter="REFLECTIVE">Reflective</button>
+        <button class="filter-chip" type="button" data-filter="LOW ENERGY">Low Energy</button>
+        <button class="filter-chip" type="button" data-filter="INTENSE">Intense</button>
+    </div>
+
+    <!-- Bottom Floating Navigation -->
+    <footer class="bottom-bar">
+        <div class="glass-pill" aria-label="View mode">
+            <button class="icon-btn is-active" id="btnGrid" title="Curved 3D View" aria-label="Curved 3D View" type="button">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <rect x="1.5" y="1.5" width="5" height="5" rx="1" />
+                    <rect x="9.5" y="1.5" width="5" height="5" rx="1" />
+                    <rect x="1.5" y="9.5" width="5" height="5" rx="1" />
+                    <rect x="9.5" y="9.5" width="5" height="5" rx="1" />
+                </svg>
+            </button>
+            <button class="icon-btn" id="btnFlat" title="Flat Grid View" aria-label="Flat Grid View" type="button">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                    <path d="M2 4h12M2 8h12M2 12h12" />
+                </svg>
+            </button>
+        </div>
+
+        <nav class="glass-pill" aria-label="Primary">
+            <a href="/" class="pill-item">Home</a>
+            <a href="about.html" class="pill-item is-active" aria-current="page">About</a>
+            <a href="free-mood-tracker-apps.html" class="pill-item">Compare</a>
+            <a href="contact.html" class="pill-item">Contact</a>
+        </nav>
+
+        <button class="filter-btn" id="filterBtn" type="button">Filter</button>
+    </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const canvas = document.getElementById('glCanvas');
+            const dragHint = document.getElementById('dragHint');
+            if (!canvas || typeof THREE === 'undefined' || typeof gsap === 'undefined') return;
+
+            const MOODS = [
+                { name: 'Happy',     subtitle: 'WARM & BRIGHT',     tags: ['UPLIFTING', 'POSITIVE'],   intensity: '5/5', icon: 'assets/moods/happy.svg',     c1: '#f59e0b', c2: '#b45309', glow: '#fde047' },
+                { name: 'In Love',   subtitle: 'HEART FULL',        tags: ['UPLIFTING', 'WARM'],       intensity: '5/5', icon: 'assets/moods/in-love.svg',   c1: '#ec4899', c2: '#831843', glow: '#f472b6' },
+                { name: 'Joyful',    subtitle: 'PURE DELIGHT',      tags: ['UPLIFTING', 'ENERGIZED'],  intensity: '5/5', icon: 'assets/moods/joyful.svg',    c1: '#f97316', c2: '#9a3412', glow: '#fdba74' },
+                { name: 'Relieved',  subtitle: 'WEIGHT LIFTED',     tags: ['CALM', 'PEACEFUL'],        intensity: '4/5', icon: 'assets/moods/relieved.svg',  c1: '#10b981', c2: '#065f46', glow: '#6ee7b7' },
+                { name: 'Winking',   subtitle: 'LIGHTHEARTED',      tags: ['PLAYFUL', 'SOCIAL'],       intensity: '4/5', icon: 'assets/moods/winking.svg',   c1: '#8b5cf6', c2: '#4c1d95', glow: '#c4b5fd' },
+                { name: 'Laughing',  subtitle: 'OUT LOUD',          tags: ['UPLIFTING', 'PLAYFUL'],    intensity: '5/5', icon: 'assets/moods/laughing.svg',  c1: '#eab308', c2: '#854d0e', glow: '#fef08a' },
+                { name: 'Goofy',     subtitle: 'UNFILTERED FUN',    tags: ['PLAYFUL', 'SPONTANEOUS'],  intensity: '4/5', icon: 'assets/moods/goofy.svg',     c1: '#06b6d4', c2: '#155e75', glow: '#67e8f9' },
+                { name: 'Geek',      subtitle: 'DEEP FOCUS',        tags: ['REFLECTIVE', 'FOCUSED'],   intensity: '4/5', icon: 'assets/moods/geek.svg',      c1: '#4f46e5', c2: '#1e1b4b', glow: '#818cf8' },
+                { name: 'Thinking',  subtitle: 'CURIOUS MIND',      tags: ['REFLECTIVE', 'CALM'],      intensity: '3/5', icon: 'assets/moods/thinking.svg',  c1: '#3b82f6', c2: '#1e3a8a', glow: '#93c5fd' },
+                { name: 'Confused',  subtitle: 'UNTANGLING',        tags: ['REFLECTIVE', 'UNSURE'],    intensity: '3/5', icon: 'assets/moods/confused.svg',  c1: '#6366f1', c2: '#312e81', glow: '#a5b4fc' },
+                { name: 'Surprised', subtitle: 'UNEXPECTED SPARK',  tags: ['INTENSE', 'ALERT'],        intensity: '4/5', icon: 'assets/moods/surprised.svg', c1: '#0ea5e9', c2: '#0c4a6e', glow: '#7dd3fc' },
+                { name: 'Scared',    subtitle: 'ON EDGE',           tags: ['INTENSE', 'CAUTIOUS'],     intensity: '4/5', icon: 'assets/moods/scared.svg',    c1: '#7c3aed', c2: '#2e1065', glow: '#a78bfa' },
+                { name: 'Sad',       subtitle: 'QUIET WEIGHT',      tags: ['LOW ENERGY', 'HEAVY'],     intensity: '2/5', icon: 'assets/moods/sad.svg',       c1: '#2563eb', c2: '#172554', glow: '#60a5fa' },
+                { name: 'Crying',    subtitle: 'EMOTIONAL RELEASE', tags: ['LOW ENERGY', 'INTENSE'],   intensity: '2/5', icon: 'assets/moods/crying.svg',    c1: '#0284c7', c2: '#082f49', glow: '#38bdf8' },
+                { name: 'Angry',     subtitle: 'HIGH VOLTAGE',      tags: ['INTENSE', 'FIERY'],        intensity: '5/5', icon: 'assets/moods/angry.svg',     c1: '#dc2626', c2: '#450a0a', glow: '#f87171' },
+                { name: 'Tired',     subtitle: 'NEEDING REST',      tags: ['LOW ENERGY', 'QUIET'],     intensity: '2/5', icon: 'assets/moods/tired.svg',     c1: '#475569', c2: '#0f172a', glow: '#94a3b8' },
+                { name: 'Sick',      subtitle: 'RECOVERY MODE',     tags: ['LOW ENERGY', 'REST'],      intensity: '1/5', icon: 'assets/moods/sick.svg',      c1: '#65a30d', c2: '#1a2e05', glow: '#bef264' },
+                { name: 'Dazed',     subtitle: 'FOGGY DRIFT',       tags: ['LOW ENERGY', 'REFLECTIVE'],intensity: '2/5', icon: 'assets/moods/dazed.svg',     c1: '#a855f7', c2: '#3b0764', glow: '#e879f9' },
+                { name: 'Smug',      subtitle: 'QUIET CONFIDENCE',  tags: ['PLAYFUL', 'PROUD'],        intensity: '4/5', icon: 'assets/moods/smug.svg',      c1: '#d97706', c2: '#451a03', glow: '#fbbf24' },
+                { name: 'Angel',     subtitle: 'SERENE & KIND',     tags: ['CALM', 'UPLIFTING'],       intensity: '5/5', icon: 'assets/moods/angel.svg',     c1: '#14b8a6', c2: '#134e4a', glow: '#5eead4' }
+            ];
+
+            const ATLAS_COLS = 5;
+            const ATLAS_ROWS = 4;
+            const CELL_W = 512;
+            const CELL_H = 512;
+            const SS = 1.5;
+
+            const off = document.createElement('canvas');
+            off.width = ATLAS_COLS * CELL_W * SS;
+            off.height = ATLAS_ROWS * CELL_H * SS;
+            const ctx = off.getContext('2d');
+
+            const loadedImages = new Array(MOODS.length).fill(null);
+
+            const tex = new THREE.CanvasTexture(off);
+            tex.generateMipmaps = true;
+            tex.minFilter = THREE.LinearMipmapLinearFilter;
+            tex.magFilter = THREE.LinearFilter;
+            tex.anisotropy = 8;
+            tex.flipY = false;
+
+            function drawAtlas() {
+                ctx.setTransform(SS, 0, 0, SS, 0, 0);
+
+                MOODS.forEach((m, idx) => {
+                    const col = idx % ATLAS_COLS;
+                    const row = Math.floor(idx / ATLAS_COLS);
+                    const ox = col * CELL_W;
+                    const oy = row * CELL_H;
+
+                    // Dark liquid-slate tile background (shader detects dark pixels for vibrant hover fill)
+                    ctx.fillStyle = '#080b14';
+                    ctx.fillRect(ox, oy, CELL_W, CELL_H);
+
+                    // Top-left mood name
+                    ctx.fillStyle = '#f8fafc';
+                    ctx.font = '700 21px Outfit, Inter, system-ui, sans-serif';
+                    ctx.textBaseline = 'top';
+                    ctx.textAlign = 'left';
+                    ctx.fillText(m.name, ox + 28, oy + 24);
+
+                    // Top-right vibe subtitle
+                    ctx.fillStyle = 'rgba(226, 232, 240, 0.56)';
+                    ctx.font = '500 11.5px ui-monospace, SFMono-Regular, monospace';
+                    ctx.textAlign = 'right';
+                    ctx.fillText(m.subtitle, ox + CELL_W - 28, oy + 28);
+
+                    // Center rounded artwork card
+                    const ax = ox + 106;
+                    const ay = oy + 98;
+                    const aw = 300;
+                    const ah = 300;
+
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.roundRect(ax, ay, aw, ah, 36);
+                    ctx.clip();
+
+                    const grad = ctx.createLinearGradient(ax, ay, ax + aw, ay + ah);
+                    grad.addColorStop(0, m.c1 + '44');
+                    grad.addColorStop(1, m.c2 + '88');
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(ax, ay, aw, ah);
+
+                    const rg = ctx.createRadialGradient(ax + aw * 0.5, ay + ah * 0.45, 16, ax + aw * 0.5, ay + ah * 0.5, 155);
+                    rg.addColorStop(0, m.glow + '66');
+                    rg.addColorStop(1, 'transparent');
+                    ctx.fillStyle = rg;
+                    ctx.fillRect(ax, ay, aw, ah);
+
+                    const img = loadedImages[idx];
+                    if (img) {
+                        const iconSize = 196;
+                        ctx.drawImage(img, ax + (aw - iconSize) / 2, ay + (ah - iconSize) / 2, iconSize, iconSize);
+                    }
+                    ctx.restore();
+
+                    // Subtle glass rim around center artwork card
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.14)';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.roundRect(ax, ay, aw, ah, 36);
+                    ctx.stroke();
+
+                    // Bottom pill tags
+                    let tx = ox + 28;
+                    const ty = oy + CELL_H - 40;
+                    ctx.font = '500 10.5px ui-monospace, SFMono-Regular, monospace';
+                    ctx.textBaseline = 'middle';
+                    ctx.textAlign = 'left';
+
+                    m.tags.forEach((tag) => {
+                        const tw = ctx.measureText(tag).width + 18;
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.24)';
+                        ctx.lineWidth = 1.4;
+                        ctx.beginPath();
+                        ctx.roundRect(tx, ty - 11, tw, 22, 11);
+                        ctx.stroke();
+                        ctx.fillStyle = 'rgba(241, 245, 249, 0.76)';
+                        ctx.fillText(tag, tx + 9, ty + 0.5);
+                        tx += tw + 8;
+                    });
+
+                    // Bottom-right intensity badge
+                    ctx.fillStyle = 'rgba(241, 245, 249, 0.58)';
+                    ctx.textAlign = 'right';
+                    ctx.fillText(m.intensity, ox + CELL_W - 28, ty);
+                });
+
+                tex.needsUpdate = true;
+            }
+
+            drawAtlas();
+
+            MOODS.forEach((m, idx) => {
+                const img = new Image();
+                img.onload = () => {
+                    loadedImages[idx] = img;
+                    drawAtlas();
+                };
+                img.src = m.icon;
+            });
+
+            const hoverColorA = MOODS.map((m) => new THREE.Color(m.c1));
+            const hoverColorB = MOODS.map((m) => new THREE.Color(m.c2));
+
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+            const uniforms = {
+                uTex: { value: tex },
+                uPan: { value: new THREE.Vector2(0.5, 0.5) },
+                uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                uGridDensity: { value: 2.95 },
+                uDistortion: { value: -0.07 },
+                uZoom: { value: 1.0 },
+                uAtlas: { value: new THREE.Vector2(ATLAS_COLS, ATLAS_ROWS) },
+                uTotalProjects: { value: MOODS.length },
+                uHoverCell: { value: new THREE.Vector2(-9999, -9999) },
+                uHoverAmount: { value: 0 },
+                uHoverColorA: { value: hoverColorA },
+                uHoverColorB: { value: hoverColorB }
+            };
+
+            const geometry = new THREE.PlaneGeometry(2, 2);
+            const material = new THREE.ShaderMaterial({
+                uniforms,
+                extensions: { derivatives: true, shaderTextureLOD: true },
+                vertexShader: `
+                    varying vec2 vUv;
+                    void main() {
+                        vUv = uv;
+                        gl_Position = vec4(position.xy, 0.0, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    varying vec2 vUv;
+                    uniform sampler2D uTex;
+                    uniform vec2 uPan;
+                    uniform vec2 uResolution;
+                    uniform float uGridDensity;
+                    uniform float uDistortion;
+                    uniform float uZoom;
+                    uniform vec2 uAtlas;
+                    uniform float uTotalProjects;
+                    uniform vec2 uHoverCell;
+                    uniform float uHoverAmount;
+                    uniform vec3 uHoverColorA[20];
+                    uniform vec3 uHoverColorB[20];
+
+                    float modI(float a, float b) {
+                        return a - b * floor(a / b);
+                    }
+
+                    void main() {
+                        float aspect = uResolution.x / uResolution.y;
+
+                        vec2 mappedUV = 2.0 * (vUv - 0.5);
+                        float r2 = dot(mappedUV, mappedUV);
+                        float d = uDistortion * aspect;
+                        vec2 distorted = (0.88 + d * r2) * mappedUV;
+
+                        vec2 p = distorted * vec2(aspect, -1.0) / uZoom;
+                        vec2 gridCoord = p * uGridDensity + uPan;
+                        vec2 cellId = floor(gridCoord);
+                        vec2 cellUv = fract(gridCoord);
+
+                        float isHovered = step(length(cellId - uHoverCell), 0.1) * uHoverAmount;
+                        vec2 zoomedUv = (cellUv - 0.5) * mix(1.0, 0.96, isHovered) + 0.5;
+
+                        float idx = modI(cellId.x * 7.0 + cellId.y * 3.0, uTotalProjects);
+                        int iIdx = int(idx + 0.5);
+                        float col = modI(idx, uAtlas.x);
+                        float row = floor(idx / uAtlas.x);
+
+                        vec2 pad = vec2(0.004);
+                        vec2 atlasUv = (vec2(col, row) + mix(pad, 1.0 - pad, zoomedUv)) / uAtlas;
+
+                        vec2 gDx = dFdx(gridCoord) * mix(1.0, 0.96, isHovered) / uAtlas;
+                        vec2 gDy = dFdy(gridCoord) * mix(1.0, 0.96, isHovered) / uAtlas;
+                        vec4 texColor = texture2DGradEXT(uTex, atlasUv, gDx, gDy);
+
+                        vec3 hA = vec3(0.31, 0.27, 0.90);
+                        vec3 hB = vec3(0.12, 0.11, 0.29);
+                        for (int n = 0; n < 20; n++) {
+                            if (n == iIdx) {
+                                hA = uHoverColorA[n];
+                                hB = uHoverColorB[n];
+                            }
+                        }
+                        vec3 hoverBg = mix(hA, hB, cellUv.y * 0.85 + cellUv.x * 0.15);
+                        float isDarkBg = 1.0 - smoothstep(0.03, 0.14, dot(texColor.rgb, vec3(0.333)));
+                        vec3 cardRgb = mix(texColor.rgb, hoverBg, isHovered * isDarkBg * 0.92);
+
+                        vec2 px = vec2(
+                            length(vec2(dFdx(gridCoord.x), dFdy(gridCoord.x))),
+                            length(vec2(dFdx(gridCoord.y), dFdy(gridCoord.y)))
+                        );
+                        vec2 edgeDist = min(cellUv, 1.0 - cellUv);
+                        vec2 dPx = edgeDist / max(px, vec2(1e-5));
+                        vec2 lineMask = smoothstep(1.6, 0.25, dPx);
+                        float border = max(lineMask.x, lineMask.y);
+
+                        vec3 borderColor = mix(vec3(0.20, 0.24, 0.34), vec3(0.65, 0.70, 0.95), isHovered);
+                        vec3 finalColor = mix(cardRgb, borderColor, border * mix(0.68, 0.95, isHovered));
+
+                        float dist = distance(vUv, vec2(0.5));
+                        float vig = smoothstep(0.82, 0.48, 1.18 * dist);
+                        gl_FragColor = vec4(finalColor * clamp(vig, 0.38, 1.0), 1.0);
+                    }
+                `
+            });
+
+            scene.add(new THREE.Mesh(geometry, material));
+
+            function onResize() {
+                const w = window.innerWidth;
+                const h = window.innerHeight;
+                renderer.setSize(w, h);
+                uniforms.uResolution.value.set(w, h);
+            }
+            window.addEventListener('resize', onResize);
+
+            const pan = { x: 0.5, y: 0.5 };
+            const velocity = { x: 0, y: 0 };
+            let dragDelta = { x: 0, y: 0 };
+            let isDragging = false;
+            let moved = false;
+            let startX = 0;
+            let startY = 0;
+            let lastX = 0;
+            let lastY = 0;
+            let panTween = null;
+
+            gsap.ticker.add((_, deltaTime) => {
+                const dt = Math.min(deltaTime, 50) / 1000;
+                if (isDragging) {
+                    pan.x += dragDelta.x;
+                    pan.y += dragDelta.y;
+                    dragDelta.x = 0;
+                    dragDelta.y = 0;
+                } else {
+                    pan.x += velocity.x;
+                    pan.y += velocity.y;
+                    const damp = Math.max(0, Math.min(1, 4 * dt));
+                    velocity.x += (0 - velocity.x) * damp;
+                    velocity.y += (0 - velocity.y) * damp;
+                }
+                uniforms.uPan.value.set(pan.x, pan.y);
+                renderer.render(scene, camera);
+            });
+
+            const pixelToGrid = () => (2.0 / window.innerHeight) * uniforms.uGridDensity.value / uniforms.uZoom.value;
+
+            function getCellAtPointer(clientX, clientY) {
+                const aspect = window.innerWidth / window.innerHeight;
+                const mx = 2.0 * (clientX / window.innerWidth - 0.5);
+                const my = 2.0 * (clientY / window.innerHeight - 0.5);
+                const r2 = mx * mx + my * my;
+                const d = uniforms.uDistortion.value * aspect;
+                const dx = (0.88 + d * r2) * mx;
+                const dy = (0.88 + d * r2) * my;
+                const px = (dx * aspect) / uniforms.uZoom.value;
+                const py = dy / uniforms.uZoom.value;
+                return {
+                    x: Math.floor(pan.x + px * uniforms.uGridDensity.value),
+                    y: Math.floor(pan.y + py * uniforms.uGridDensity.value)
+                };
+            }
+
+            canvas.addEventListener('pointerdown', (e) => {
+                if (dragHint) dragHint.classList.add('is-hidden');
+                if (panTween) panTween.kill();
+                isDragging = true;
+                moved = false;
+                velocity.x = 0;
+                velocity.y = 0;
+                gsap.to(uniforms.uZoom, { value: 0.84, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+                gsap.to(uniforms.uHoverAmount, { value: 0, duration: 0.15, overwrite: 'auto' });
+                canvas.classList.add('is-dragging');
+                canvas.setPointerCapture(e.pointerId);
+                startX = lastX = e.clientX;
+                startY = lastY = e.clientY;
+            });
+
+            canvas.addEventListener('pointermove', (e) => {
+                if (!isDragging) {
+                    const cell = getCellAtPointer(e.clientX, e.clientY);
+                    if (uniforms.uHoverCell.value.x !== cell.x || uniforms.uHoverCell.value.y !== cell.y) {
+                        uniforms.uHoverCell.value.set(cell.x, cell.y);
+                        uniforms.uHoverAmount.value = 0;
+                        gsap.to(uniforms.uHoverAmount, { value: 1, duration: 0.25, ease: 'power2.out', overwrite: 'auto' });
+                    }
+                    return;
+                }
+                const dx = e.clientX - lastX;
+                const dy = e.clientY - lastY;
+                if (Math.hypot(e.clientX - startX, e.clientY - startY) > 5) moved = true;
+
+                const scale = pixelToGrid();
+                const stepX = -dx * scale;
+                const stepY = -dy * scale;
+                dragDelta.x += stepX;
+                dragDelta.y += stepY;
+                velocity.x = stepX;
+                velocity.y = stepY;
+                lastX = e.clientX;
+                lastY = e.clientY;
+            });
+
+            canvas.addEventListener('pointerleave', () => {
+                gsap.to(uniforms.uHoverAmount, {
+                    value: 0,
+                    duration: 0.25,
+                    ease: 'power2.out',
+                    onComplete: () => uniforms.uHoverCell.value.set(-9999, -9999)
+                });
+            });
+
+            function endDrag(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                canvas.classList.remove('is-dragging');
+                if (e.pointerId !== undefined && canvas.hasPointerCapture(e.pointerId)) {
+                    canvas.releasePointerCapture(e.pointerId);
+                }
+                gsap.to(uniforms.uZoom, { value: 1.0, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
+                if (!moved) {
+                    velocity.x = 0;
+                    velocity.y = 0;
+                    const cell = getCellAtPointer(e.clientX, e.clientY);
+                    panTween = gsap.to(pan, {
+                        x: cell.x + 0.5,
+                        y: cell.y + 0.5,
+                        duration: 0.55,
+                        ease: 'power2.inOut'
+                    });
+                }
+            }
+
+            canvas.addEventListener('pointerup', endDrag);
+            canvas.addEventListener('pointercancel', endDrag);
+
+            canvas.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if (dragHint) dragHint.classList.add('is-hidden');
+                if (panTween) panTween.kill();
+                const scale = pixelToGrid();
+                velocity.x = e.deltaX * scale * 0.28;
+                velocity.y = e.deltaY * scale * 0.28;
+            }, { passive: false });
+
+            // View mode toggle (Curved 3D vs Flat Grid)
+            const btnGrid = document.getElementById('btnGrid');
+            const btnFlat = document.getElementById('btnFlat');
+            btnGrid.addEventListener('click', () => {
+                btnGrid.classList.add('is-active');
+                btnFlat.classList.remove('is-active');
+                gsap.to(uniforms.uDistortion, { value: -0.07, duration: 0.6, ease: 'power3.out' });
+            });
+            btnFlat.addEventListener('click', () => {
+                btnFlat.classList.add('is-active');
+                btnGrid.classList.remove('is-active');
+                gsap.to(uniforms.uDistortion, { value: 0.0, duration: 0.6, ease: 'power3.out' });
+            });
+
+            // Filter drawer: find a cell whose modulo index matches the selected vibe category
+            const filterBtn = document.getElementById('filterBtn');
+            const filterDrawer = document.getElementById('filterDrawer');
+            filterBtn.addEventListener('click', () => {
+                filterDrawer.classList.toggle('is-open');
+            });
+
+            document.querySelectorAll('.filter-chip').forEach((chip) => {
+                chip.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-chip').forEach((c) => c.classList.remove('is-active'));
+                    chip.classList.add('is-active');
+                    const tag = chip.dataset.filter;
+                    const matchIdx = tag === 'ALL' ? 0 : MOODS.findIndex((m) => m.tags.includes(tag));
+                    if (matchIdx >= 0) {
+                        // Find cell (cx, 0) where (cx * 7) mod 20 === matchIdx
+                        let targetX = 0;
+                        for (let cx = 0; cx < MOODS.length; cx++) {
+                            if ((cx * 7) % MOODS.length === matchIdx) { targetX = cx; break; }
+                        }
+                        if (panTween) panTween.kill();
+                        velocity.x = 0;
+                        velocity.y = 0;
+                        panTween = gsap.to(pan, {
+                            x: targetX + 0.5,
+                            y: 0.5,
+                            duration: 0.85,
+                            ease: 'power3.inOut'
+                        });
+                    }
+                    filterDrawer.classList.remove('is-open');
+                });
+            });
+
+            // About Story Modal
+            const aboutModal = document.getElementById('aboutModal');
+            const aboutStoryBtn = document.getElementById('aboutStoryBtn');
+            const closeAboutBtn = document.getElementById('closeAboutBtn');
+            aboutStoryBtn.addEventListener('click', () => aboutModal.classList.add('is-open'));
+            closeAboutBtn.addEventListener('click', () => aboutModal.classList.remove('is-open'));
+            aboutModal.addEventListener('click', (e) => {
+                if (e.target === aboutModal) aboutModal.classList.remove('is-open');
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    aboutModal.classList.remove('is-open');
+                    filterDrawer.classList.remove('is-open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
