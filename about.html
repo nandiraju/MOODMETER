@@ -44,7 +44,7 @@
     <meta name="twitter:image:alt" content="Mood Meter app screens showing mood picker, capture vibe modal, and emotional analytics">
 
     <!-- Precompiled Tailwind CSS (source: src/css/about.css) -->
-    <link rel="stylesheet" href="assets/css/about.css?v=a02da37015">
+    <link rel="stylesheet" href="assets/css/about.css?v=8a25f759c8">
     <!-- Google tag (GA4, MoodMeter property) -->
     <script src="assets/js/analytics.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HBMC3XJK4X"></script>
@@ -99,6 +99,14 @@
             <a href="/#download" class="px-4 sm:px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-indigo-600/30 transition">
                 Get the App
             </a>
+            <button type="button" id="fullscreenBtn" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center backdrop-blur-md transition cursor-pointer" aria-label="Enter fullscreen" title="Enter fullscreen" aria-pressed="false">
+                <svg id="fsEnterIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg>
+                <svg id="fsExitIcon" class="hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+                </svg>
+            </button>
         </div>
     </header>
 
@@ -353,7 +361,7 @@
                 uPan: { value: new THREE.Vector2(0.5, 0.5) },
                 uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
                 uGridDensity: { value: 2.95 },
-                uDistortion: { value: -0.07 },
+                uCurvature: { value: 1.0 },
                 uZoom: { value: 1.0 },
                 uAtlas: { value: new THREE.Vector2(ATLAS_COLS, ATLAS_ROWS) },
                 uTotalProjects: { value: MOODS.length },
@@ -380,7 +388,7 @@
                     uniform vec2 uPan;
                     uniform vec2 uResolution;
                     uniform float uGridDensity;
-                    uniform float uDistortion;
+                    uniform float uCurvature;
                     uniform float uZoom;
                     uniform vec2 uAtlas;
                     uniform float uTotalProjects;
@@ -396,18 +404,22 @@
                     void main() {
                         float aspect = uResolution.x / uResolution.y;
 
+                        // Isotropic circular coordinates for true looking-into-a-sphere curvature
                         vec2 mappedUV = 2.0 * (vUv - 0.5);
-                        float r2 = dot(mappedUV, mappedUV);
-                        float d = uDistortion * aspect;
-                        vec2 distorted = (0.88 + d * r2) * mappedUV;
+                        vec2 sc = mappedUV * vec2(aspect, -1.0);
+                        float normScale = max(aspect * aspect * 0.5 + 0.5, 1.0);
+                        float r2 = dot(sc, sc) / normScale;
 
-                        vec2 p = distorted * vec2(aspect, -1.0) / uZoom;
+                        // Bounded concave spherical warp (gentle looking-into-a-sphere bowl without edge skew)
+                        float warp = 1.0 - (0.15 * uCurvature * r2) / (1.0 + 0.24 * r2);
+                        vec2 p = (sc * warp) / uZoom;
+
                         vec2 gridCoord = p * uGridDensity + uPan;
                         vec2 cellId = floor(gridCoord);
                         vec2 cellUv = fract(gridCoord);
 
                         float isHovered = step(length(cellId - uHoverCell), 0.1) * uHoverAmount;
-                        vec2 zoomedUv = (cellUv - 0.5) * mix(1.0, 0.96, isHovered) + 0.5;
+                        vec2 zoomedUv = (cellUv - 0.5) * mix(1.0, 0.95, isHovered) + 0.5;
 
                         float idx = modI(cellId.x * 7.0 + cellId.y * 3.0, uTotalProjects);
                         int iIdx = int(idx + 0.5);
@@ -417,8 +429,8 @@
                         vec2 pad = vec2(0.004);
                         vec2 atlasUv = (vec2(col, row) + mix(pad, 1.0 - pad, zoomedUv)) / uAtlas;
 
-                        vec2 gDx = dFdx(gridCoord) * mix(1.0, 0.96, isHovered) / uAtlas;
-                        vec2 gDy = dFdy(gridCoord) * mix(1.0, 0.96, isHovered) / uAtlas;
+                        vec2 gDx = dFdx(gridCoord) * mix(1.0, 0.95, isHovered) / uAtlas;
+                        vec2 gDy = dFdy(gridCoord) * mix(1.0, 0.95, isHovered) / uAtlas;
                         vec4 texColor = texture2DGradEXT(uTex, atlasUv, gDx, gDy);
 
                         vec3 hA = vec3(0.31, 0.27, 0.90);
@@ -433,21 +445,22 @@
                         float isDarkBg = 1.0 - smoothstep(0.03, 0.14, dot(texColor.rgb, vec3(0.333)));
                         vec3 cardRgb = mix(texColor.rgb, hoverBg, isHovered * isDarkBg * 0.92);
 
-                        vec2 px = vec2(
+                        // Continuous anti-aliased grid border (symmetric across seams so curved lines stay unbroken)
+                        vec2 fw = vec2(
                             length(vec2(dFdx(gridCoord.x), dFdy(gridCoord.x))),
                             length(vec2(dFdx(gridCoord.y), dFdy(gridCoord.y)))
                         );
-                        vec2 edgeDist = min(cellUv, 1.0 - cellUv);
-                        vec2 dPx = edgeDist / max(px, vec2(1e-5));
-                        vec2 lineMask = smoothstep(1.6, 0.25, dPx);
+                        vec2 gridDist = abs(fract(gridCoord + 0.5) - 0.5);
+                        vec2 dPx = gridDist / max(fw, vec2(1e-4));
+                        vec2 lineMask = 1.0 - smoothstep(0.75, 2.15, dPx);
                         float border = max(lineMask.x, lineMask.y);
 
-                        vec3 borderColor = mix(vec3(0.20, 0.24, 0.34), vec3(0.65, 0.70, 0.95), isHovered);
-                        vec3 finalColor = mix(cardRgb, borderColor, border * mix(0.68, 0.95, isHovered));
+                        vec3 borderColor = vec3(0.24, 0.29, 0.42);
+                        vec3 finalColor = mix(cardRgb, borderColor, border * 0.72);
 
-                        float dist = distance(vUv, vec2(0.5));
-                        float vig = smoothstep(0.82, 0.48, 1.18 * dist);
-                        gl_FragColor = vec4(finalColor * clamp(vig, 0.38, 1.0), 1.0);
+                        // Soft spherical depth vignette
+                        float vig = mix(1.0, clamp(1.08 - 0.46 * smoothstep(0.08, 1.45, r2), 0.36, 1.0), 0.55 + 0.45 * uCurvature);
+                        gl_FragColor = vec4(finalColor * vig, 1.0);
                     }
                 `
             });
@@ -497,12 +510,13 @@
                 const aspect = window.innerWidth / window.innerHeight;
                 const mx = 2.0 * (clientX / window.innerWidth - 0.5);
                 const my = 2.0 * (clientY / window.innerHeight - 0.5);
-                const r2 = mx * mx + my * my;
-                const d = uniforms.uDistortion.value * aspect;
-                const dx = (0.88 + d * r2) * mx;
-                const dy = (0.88 + d * r2) * my;
-                const px = (dx * aspect) / uniforms.uZoom.value;
-                const py = dy / uniforms.uZoom.value;
+                const scx = mx * aspect;
+                const scy = my;
+                const normScale = Math.max(aspect * aspect * 0.5 + 0.5, 1.0);
+                const r2 = (scx * scx + scy * scy) / normScale;
+                const warp = 1.0 - (0.15 * uniforms.uCurvature.value * r2) / (1.0 + 0.24 * r2);
+                const px = (scx * warp) / uniforms.uZoom.value;
+                const py = (scy * warp) / uniforms.uZoom.value;
                 return {
                     x: Math.floor(pan.x + px * uniforms.uGridDensity.value),
                     y: Math.floor(pan.y + py * uniforms.uGridDensity.value)
@@ -591,18 +605,18 @@
                 velocity.y = e.deltaY * scale * 0.28;
             }, { passive: false });
 
-            // View mode toggle (Curved 3D vs Flat Grid)
+            // View mode toggle (Sphere 3D vs Flat Grid)
             const btnGrid = document.getElementById('btnGrid');
             const btnFlat = document.getElementById('btnFlat');
             btnGrid.addEventListener('click', () => {
                 btnGrid.classList.add('is-active');
                 btnFlat.classList.remove('is-active');
-                gsap.to(uniforms.uDistortion, { value: -0.07, duration: 0.6, ease: 'power3.out' });
+                gsap.to(uniforms.uCurvature, { value: 1.0, duration: 0.6, ease: 'power3.out' });
             });
             btnFlat.addEventListener('click', () => {
                 btnFlat.classList.add('is-active');
                 btnGrid.classList.remove('is-active');
-                gsap.to(uniforms.uDistortion, { value: 0.0, duration: 0.6, ease: 'power3.out' });
+                gsap.to(uniforms.uCurvature, { value: 0.0, duration: 0.6, ease: 'power3.out' });
             });
 
             // Filter drawer: find a cell whose modulo index matches the selected vibe category
@@ -637,6 +651,41 @@
                     filterDrawer.classList.remove('is-open');
                 });
             });
+
+            // Fullscreen toggle
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const fsEnterIcon = document.getElementById('fsEnterIcon');
+            const fsExitIcon = document.getElementById('fsExitIcon');
+            if (fullscreenBtn) {
+                const rootEl = document.documentElement;
+                const canFullscreen = !!(rootEl.requestFullscreen || rootEl.webkitRequestFullscreen);
+                if (!canFullscreen) {
+                    fullscreenBtn.classList.add('hidden');
+                } else {
+                    const isFullscreen = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
+                    const syncFullscreenUI = () => {
+                        const active = isFullscreen();
+                        fsEnterIcon.classList.toggle('hidden', active);
+                        fsExitIcon.classList.toggle('hidden', !active);
+                        fullscreenBtn.setAttribute('aria-pressed', active ? 'true' : 'false');
+                        const label = active ? 'Exit fullscreen' : 'Enter fullscreen';
+                        fullscreenBtn.setAttribute('aria-label', label);
+                        fullscreenBtn.setAttribute('title', label);
+                        onResize();
+                    };
+                    fullscreenBtn.addEventListener('click', () => {
+                        if (isFullscreen()) {
+                            const exit = document.exitFullscreen || document.webkitExitFullscreen;
+                            if (exit) Promise.resolve(exit.call(document)).catch(() => {});
+                        } else {
+                            const req = rootEl.requestFullscreen || rootEl.webkitRequestFullscreen;
+                            if (req) Promise.resolve(req.call(rootEl)).catch(() => {});
+                        }
+                    });
+                    document.addEventListener('fullscreenchange', syncFullscreenUI);
+                    document.addEventListener('webkitfullscreenchange', syncFullscreenUI);
+                }
+            }
 
             // About Story Modal
             const aboutModal = document.getElementById('aboutModal');
